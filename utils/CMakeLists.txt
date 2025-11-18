@@ -1,0 +1,19 @@
+file(GLOB_RECURSE UTILS_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+)
+
+file(GLOB_RECURSE UTILS_HEADERS
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp"
+)
+
+add_library(utils_lib STATIC
+    ${UTILS_SOURCES}
+    ${UTILS_HEADERS}
+)
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${UTILS_SOURCES} ${UTILS_HEADERS})
+
+target_include_directories(utils_lib PUBLIC
+    ${CMAKE_SOURCE_DIR}
+)

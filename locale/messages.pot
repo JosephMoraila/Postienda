@@ -1,0 +1,1391 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-17 10:35-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: constants/MESSAGES_ADVICE/ERROR/DB/DB_ERRORS.hpp:12
+#, c-format
+msgid ""
+"Database error\n"
+"\n"
+"File: %s\n"
+"Line: %d\n"
+"\n"
+"Error message:\n"
+"%s"
+msgstr ""
+
+#: constants/MESSAGES_ADVICE/ERROR/PRINTING/PRINTING_ERRORS.hpp:10
+msgid "You have not selected a valid printer."
+msgstr ""
+
+#: constants/MESSAGES_ADVICE/ERROR/PRINTING/PRINTING_ERRORS.hpp:11
+#: gui/TicketFrame/PrintMenu/Print/WindowsPrint/WindowsPrint.cpp:16
+#: print/Windows/Windows_Print_Functions_.hpp:27
+#: print/Windows/Windows_Print_Functions_.hpp:32
+#: print/Windows/Windows_Print_Functions_.hpp:38
+#: print/Windows/Windows_Print_Functions_.hpp:77
+msgid "Printing Error"
+msgstr ""
+
+#: constants/MESSAGES_ADVICE/ERROR/PRINTING/PRINTING_ERRORS.hpp:12
+msgid "No items found in ticket."
+msgstr ""
+
+#: constants/MESSAGES_ADVICE/ERROR/PRINTING/PRINTING_ERRORS.hpp:13
+msgid "An error occurred while retrieving mode."
+msgstr ""
+
+#: constants/MESSAGES_ADVICE/ERROR/PRINTING/PRINTING_ERRORS.hpp:14
+msgid "Error printing the ticket:\n"
+msgstr ""
+
+#: constants/MESSAGES_ADVICE/INFO/NO_PRODUCT.hpp:4
+msgid "You haven't created any products yet."
+msgstr ""
+
+#: constants/MESSAGES_ADVICE/WARNING/ATENCION.hpp:4
+msgid "Attention"
+msgstr ""
+
+#: constants/MESSAGES_ADVICE/WARNING/WARNING_MESSAGES.hpp:10
+#: print/Print_Utils_Getters.hpp:445
+msgid "Warning"
+msgstr ""
+
+#: constants/MESSAGES_ADVICE/WARNING/WARNING_MESSAGES.hpp:11
+msgid "Invalid barcode"
+msgstr ""
+
+#: gui/LanguageFrame/LanguageFrame.hpp:8 gui/MainFrame/MainFrame_UI.cpp:20
+msgid "Language"
+msgstr ""
+
+#: gui/LanguageFrame/LanguageFrame_Bindings.cpp:33
+msgid "Could not write: "
+msgstr ""
+
+#: gui/LanguageFrame/LanguageFrame_Bindings.cpp:33
+#: gui/MainFrame/logic/MainFrame_DB.cpp:133
+#: gui/MainFrame/MainFrame_Binds.cpp:198 gui/MainFrame/MainFrame_Binds.cpp:215
+msgid "Error"
+msgstr ""
+
+#: gui/LanguageFrame/LanguageFrame_Bindings.cpp:37
+msgid "The language change will take effect after restarting the application."
+msgstr ""
+
+#: gui/LanguageFrame/LanguageFrame_Bindings.cpp:37
+msgid "Information"
+msgstr ""
+
+#: gui/LanguageFrame/LanguageFrame_UI.cpp:50
+msgid "Select your language:"
+msgstr ""
+
+#: gui/LanguageFrame/LanguageFrame_UI.cpp:64
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:84
+#: gui/ProductosFrame/StockDialog/StockDialog.cpp:60
+#: gui/TicketFrame/Canvas/InputTextModal/InputTextModal.cpp:25
+msgid "Accept"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:23
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_Binds.cpp:37
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:99
+msgid "No canvas available by the moment. Select EscPos"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:23
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_Binds.cpp:37
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:99
+msgid "No available"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:26
+msgid "Error obtaining print mode"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:60
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:42
+msgid "The products could not be obtained."
+msgstr ""
+
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:159
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_DB.cpp:37
+msgid "No items were found for this purchase."
+msgstr ""
+
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:190
+#, c-format
+msgid ""
+"Total: $%s\n"
+"Paid: $%s\n"
+"Change: $%s\n"
+"Attended by: %s"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:10 gui/TicketFrame/TicketFrame.cpp:58
+msgid "Settings"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:11 gui/ProductosFrame/ProductosFrame.cpp:14
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Conect_Load.cpp:101
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Search.cpp:173
+msgid "Products"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:14
+msgid "Users"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:17
+msgid "Ticket"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:25
+msgid "View"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:27
+msgid "Previous purchases"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:32
+msgid "Appearance"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:34 gui/MainFrame/MainFrame_UI.cpp:57
+msgid "Light"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:35 gui/MainFrame/MainFrame_UI.cpp:58
+msgid "Dark"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:36 gui/MainFrame/MainFrame_UI.cpp:59
+msgid "System"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:79
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:16
+msgid "Delete"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:84
+msgid "Make purchase"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:93
+msgid "Enter name or barcode"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:119
+msgid "Product"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:120
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:43
+msgid "Price"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:121
+msgid "Barcode"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:122
+msgid "ID"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:11
+msgid "Close the windows Products before continuing"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:44
+msgid "That product with that barcode does not exist."
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:88
+msgid "Kilos"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:89
+msgid "Grams"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:92
+msgid "Do you want to enter the amount in kilograms or grams?"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:92
+msgid "Unit of measurement"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:101
+msgid "Enter the quantity in kilograms (example: 1.5):"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:101
+msgid "Enter the amount in grams (example: 750):"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:103
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:42
+msgid "Quantity"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:114
+#, c-format
+msgid " (%.3f kg)"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:118
+#, c-format
+msgid " (%.3f g)"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:133
+msgid "Invalid quantity"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:161
+#: gui/MainFrame/logic/MainFrame_DB.cpp:190
+#: gui/MainFrame/logic/MainFrame_DB.cpp:217
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_DB.cpp:37
+msgid "Info"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:166
+#: gui/MainFrame/logic/MainFrame_DB.cpp:194
+#: gui/MainFrame/logic/MainFrame_DB.cpp:220
+msgid "Error obtaining products: "
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:230
+msgid "No products were found with that name.."
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:230
+msgid "Advice"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:244
+msgid " - Category: "
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:246
+msgid " - Barcode: "
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:250
+msgid ""
+"Multiple products with that name were found.\n"
+"Choose one:"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:250
+msgid "Select product"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:280
+msgid "Error creating cart table "
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:296
+msgid "Error adding product to cart:"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:327
+msgid "Confirm"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:335
+#: gui/MainFrame/logic/MainFrame_DB.cpp:423
+#, c-format
+msgid "Error emptying cart: %s"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:342
+#, c-format
+msgid ""
+"SQL error while emptying the cart\n"
+"\n"
+"Code: %d\n"
+"Message: %s"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:417
+msgid ""
+"The program did not close properly and there are items in the cart.\n"
+"Do you want to restore them?"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:481
+msgid "Error creating the purchases table:"
+msgstr ""
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:531
+#, c-format
+msgid "Error registering purchase: %s"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:51
+msgid "To access products, you need to empty your cart. Do you want to empty it and access?"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:152
+msgid "Do you want to delete the selected item?"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:152
+msgid "Do you want to delete the selected items?"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:153
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:45
+msgid "Confirm deletion"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:170
+msgid "Cash"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:171
+msgid "Card"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:176
+msgid "Select payment method:"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:177
+msgid "Payment method"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:195
+#, c-format
+msgid ""
+"Total: $%.2f\n"
+"\n"
+"Enter amount received:"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:195
+msgid "Cash payment"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:198
+msgid "Invalid amount, please try again."
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:207
+#, c-format
+msgid ""
+"Purchase registered successfully.\n"
+"Total: $%.2f\n"
+"Paid: $%.2f\n"
+"Change: $%.2f"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:208
+#, c-format
+msgid ""
+"Purchase registered successfully.\n"
+"Total: $%.2f\n"
+"Paid with card."
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:212
+msgid "Purchase completed"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:215
+#, c-format
+msgid "Error creating table: %s"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:221
+#, c-format
+msgid "Total: %.2f"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:236
+msgid ""
+"You have products in your cart.\n"
+"Do you want to close? Cart items will be deleted."
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame.cpp:6
+msgid "Previous Purchases"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:20
+msgid "Searching only for the ID cancels all other filters"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:23
+msgid "Start date:"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:26
+msgid "Start time:"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:29
+msgid "End date:"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:32
+msgid "End time:"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:35
+msgid "Minimum amount:"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:39
+msgid "Maximum amount:"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:43
+msgid "Worker:"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:46
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:172
+msgid "Search"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:78
+msgid "Date"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:79
+msgid "Time"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:80
+msgid "Total"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:81
+msgid "Worker"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:88
+msgid "Load previous"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:92
+msgid "Page: -/-"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:97
+msgid "Load more"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_Binds.cpp:66
+msgid "Copy row"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_Binds.cpp:67
+msgid "View purchase"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_Binds.cpp:89
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:77
+msgid "Copied to clipboard"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:29
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:68
+msgid "The database was not found at:\n"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:29
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:69
+msgid "Database error"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:40
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:80
+msgid "No purchases found. You have not done any purchase."
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:40
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:80
+msgid "Table not found"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:46
+msgid "Page: -"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:50
+#, c-format
+msgid "No purchases were found with the ID %llu."
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:50
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:147
+msgid "No results"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:57
+msgid "An unknown error occurred while processing the purchase."
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:147
+msgid "No purchases were found with the specified filters."
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:150
+msgid "No more records available."
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:150
+msgid "End of results"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:162
+msgid "An unknown error occurred while retrieving purchases."
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu.cpp:4
+#, c-format
+msgid "Purchase ID: %llu"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_DB.cpp:41
+msgid "Error loading purchase details:\n"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_DB.cpp:44
+msgid "Unknown error loading purchase details."
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:114
+#, c-format
+msgid ""
+"Total: %s\n"
+"Attended by: %s"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:17
+msgid "Print ticket"
+msgstr ""
+
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:41
+#: gui/UsuariosFrame/UsuariosFrame.cpp:27
+msgid "Name"
+msgstr ""
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:6
+msgid "Edit Product"
+msgstr ""
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:26
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:65
+msgid "Price per kilo:"
+msgstr ""
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:32
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:23
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:71
+msgid "Price:"
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:9
+msgid "New product"
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:18
+msgid "Name:"
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:35
+msgid "Barcode (optional):"
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:41
+msgid "The barcode must contain only numbers and letters (maximum 20 characters)."
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:47
+msgid "Product by weight?"
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:85
+#: gui/TicketFrame/Canvas/InputTextModal/InputTextModal.cpp:26
+msgid "Cancel"
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:137
+msgid "The product name cannot be empty or contain only spaces."
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:148
+msgid "The price must be a number greater than or equal to zero."
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:168
+msgid "The barcode cannot have more than 20 characters."
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:174
+msgid "The barcode must contain at least one number or letter."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:10
+msgid "You cannot add a category within a product."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:13
+msgid "Enter category name:"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:13
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:14
+msgid "New category"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:18
+msgid "Invalid name. Category was not created"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:27
+#, c-format
+msgid "There is already a category called '%s' at this level."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:38
+msgid "You cannot add a product inside another product."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:52
+msgid "Invalid name. The product was not created."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:60
+#, c-format
+msgid "There is already a product called '%s' in this category."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:68
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:132
+#, c-format
+msgid "The barcode '%s' is already in use by another product."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:68
+msgid "Duplicated barcode"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:86
+msgid "There are no items selected to delete."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:94
+msgid "Selected item is not valid."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:100
+#, c-format
+msgid "Are you sure you want to delete the '%s' category?"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:100
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:124
+msgid "Confirm Deletion"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Category.cpp:72
+msgid "Enter the category name:"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Category.cpp:72
+msgid "N­ew category"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Category.cpp:83
+msgid "There is already a category with that name at this level."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Conect_Load.cpp:254
+#, c-format
+msgid "Error getting stock: %s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Delete.cpp:15
+#, c-format
+msgid ""
+"Error deleting category from database\n"
+"\n"
+"File: %s\n"
+"Line: %d\n"
+"\n"
+"Error message:\n"
+"%s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Delete.cpp:28
+#, c-format
+msgid "Error obtaining products: %s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Insert.cpp:21
+#, c-format
+msgid ""
+"Error inserting new category into database\n"
+"\n"
+"File: %s\n"
+"Line: %d\n"
+"\n"
+"Error message:\n"
+"%s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Insert.cpp:63
+#, c-format
+msgid ""
+"Error inserting new product into database\n"
+"\n"
+"File: %s\n"
+"Line: %d\n"
+"\n"
+"Error message:\n"
+"%s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Insert.cpp:83
+#, c-format
+msgid ""
+"Error inserting stock for the product into the database\n"
+"\n"
+"File: %s\n"
+"Line: %d\n"
+"\n"
+"Error message:\n"
+"%s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Search.cpp:333
+#, c-format
+msgid ""
+"Error loading filtered tree\n"
+"\n"
+"File: %s\n"
+"Line: %d\n"
+"\n"
+"Error message:\n"
+"%s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Update.cpp:15
+msgid "There is already a category with the same name at the same level."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Update.cpp:20
+#, c-format
+msgid "Error inserting category: %s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Update.cpp:63
+msgid "There is already a product with the same name at the same level."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Update.cpp:66
+msgid "There is already a product with that barcode."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Update.cpp:69
+#, c-format
+msgid "Error updating product: %s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Utils.cpp:33
+#, c-format
+msgid ""
+"Error verifying the existence of a category in the database\n"
+"\n"
+"File: %s\n"
+"Line: %d\n"
+"\n"
+"Error message:\n"
+"%s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Utils.cpp:57
+#, c-format
+msgid ""
+"Error verifying product existence in the database\n"
+"\n"
+"File: %s\n"
+"Line: %d\n"
+"\n"
+"Error message:\n"
+"%s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Utils.cpp:80
+#, c-format
+msgid ""
+"Error verifying the existence of a barcode in the database\n"
+"\n"
+"File: %s\n"
+"Line: %d\n"
+"\n"
+"Error message:\n"
+"%s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Utils.cpp:106
+#, c-format
+msgid "Error adjusting stock: %s"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:33
+msgid "Error: Category father could not be obtained"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:45
+msgid "Are you sure you want to delete the product '"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:45
+msgid "'­from the category '"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:54
+msgid "Error: Category not found on item map"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:61
+msgid "Error: Pointer to father category is null"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:111
+msgid "The product name is invalid. It must contain at least one valid character."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:111
+msgid "Invalid name"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:122
+msgid "There is already a product with that name in this category."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:122
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:132
+msgid "Duplicate Product"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:9
+msgid ""
+"Manage your products and categories.\n"
+"When registering a product, remember to update its inventory (stock)."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:15
+msgid "New Product"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:17
+msgid "Modify"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:72
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:95
+msgid "Edit category"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:72
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:99
+msgid "Edit product"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:73
+msgid "Edit stock"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:162
+msgid "Search:"
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:168
+msgid "Enter category or product name, barcode, or price..."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:177
+msgid "Clean"
+msgstr ""
+
+#: gui/ProductosFrame/StockDialog/StockDialog.cpp:36
+msgid ""
+"\n"
+"Enter stock per kilo."
+msgstr ""
+
+#: gui/ProductosFrame/StockDialog/StockDialog.cpp:36
+msgid ""
+"\n"
+"Enter stock per unit"
+msgstr ""
+
+#: gui/ProductosFrame/StockDialog/StockDialog.cpp:38
+msgid ""
+"Product stock.\n"
+"Please note that it decreases as purchases are made."
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:93
+msgid ""
+"Sunday, 9/november/2025\n"
+"16:14:30\n"
+"Bread    1234    $99\n"
+"Meat  4321    $199\n"
+"Total: $288\n"
+"Paid: $300\n"
+"Change: $12\n"
+"Attended by: Jose"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:102
+msgid "Purchase information has been added to the receipt. Please note that this is an example of how it will appear, as the actual receipt may be longer when purchasing many items, so the actual size may be longer than what you are editing."
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:109
+msgid "The ticket file could not be created"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:152 gui/TicketFrame/TicketFrame.cpp:371
+msgid "Error saving image in memory"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:175
+#, c-format
+msgid "Error saving JSON: %s"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:179
+#, c-format
+msgid "Saving error: %s"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:187
+msgid "No ticket was found."
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:193
+msgid "File ticket could not be opened"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:217
+msgid "No data.json was found in the file"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:262
+msgid "Invalid items format"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:321
+#, c-format
+msgid "Image was not found: %s"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:329
+msgid "Invalid EscPos Format"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:390
+#, c-format
+msgid "ESC/POS image not found in ZIP: %s"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:403
+#, c-format
+msgid "Unknown item format: %d"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:420
+#, c-format
+msgid "Error JSON reading ticket: %s"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:424
+#, c-format
+msgid "Exception when reading the ticket: %s"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas.cpp:428
+msgid "Unknown error reading ticket"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/Canvas_Binds.cpp:129
+msgid "Edit text"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/InputTextModal/InputTextModal.cpp:14
+msgid "Position below purchase information"
+msgstr ""
+
+#: gui/TicketFrame/Canvas/InputTextModal/InputTextModal.cpp:18
+msgid ""
+"Activate to place text in the position it is in, but it will be placed below the purchase receipt.\n"
+"Since the purchase information has a variable size."
+msgstr ""
+
+#: gui/TicketFrame/Canvas/InputTextModal/InputTextModal.hpp:6
+#: gui/TicketFrame/TicketFrame.cpp:41 gui/TicketFrame/TicketFrame.cpp:158
+msgid "Add text"
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/Print/EscPos.cpp:11
+msgid "No items found in ticket"
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/Print/WindowsPrint/WindowsPrint.cpp:16
+msgid "There are no elements to print on the ticket."
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:30
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:88
+msgid "No printers were detected"
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:33
+msgid "Select a printer where the tickets will be printed:"
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:52
+msgid "Print receipt when making purchase"
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:59
+msgid "Test print"
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:66
+msgid ""
+"If the ticket is not being printed, maybe you need\n"
+"to enable your user to use line printers on terminal.\n"
+"Try this command: "
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:69
+msgid "Copy command"
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:92
+msgid "Please select a valid printer."
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:92
+msgid "Selection Error"
+msgstr ""
+
+#: gui/TicketFrame/PrintMenu/PrintMenu.hpp:18
+msgid "Ticket Settings"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:22
+msgid "Error saving canvas ticket"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:27 gui/TicketFrame/TicketFrame.cpp:251
+msgid "Error saving EscPos ticket"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:45
+msgid "Add image"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:49
+msgid "Add purchase info"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:53
+msgid ""
+"Add purchase information.\n"
+"This can only be added once."
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:54
+msgid "Save"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:62 gui/TicketFrame/TicketFrame.cpp:295
+msgid "Change to EscPos"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:68
+msgid "Width (mm):"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:74
+msgid "Height (mm):"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:170
+msgid "Select Image"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:170
+msgid "Image files (*.png;*.jpg;*.jpeg;*.bmp;*.webp)|*.png;*.jpg;*.jpeg;*.bmp;*.webp"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:175
+msgid "Image could not be loaded."
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:196
+msgid ""
+"Purchase information is already on the receipt.\n"
+"It can only be added once."
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:203
+msgid ""
+"\n"
+"[PURCHASE_INFO_STARTS]\n"
+"Sunday, 9/noviembre/2025\n"
+"16:14:30\n"
+"Bread 1234 $99\n"
+"Meat 4321 $199\n"
+"Total: $288\n"
+"Paid: $300\n"
+"Change: $12\n"
+"Attended by: Jose\n"
+"[PURCHASE_INFO_FINISHES]\n"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:211
+msgid ""
+"Purchase information is already on the receipt.\n"
+"It can only be added once.."
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:215
+msgid ""
+"The purchase information has been added to the receipt.\n"
+"Please note that this is just a preview of how it will look, as the actual receipt may become longer when a purchase includes many products, so the real size may be larger than what you are currently editing."
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:254
+msgid ""
+"Ticket saved successfully.\n"
+"If you want to test the ticket, click the \"Settings\" > \"Test print\" button."
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:254
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:104
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:154
+msgid "Success"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:258
+msgid "Error loading ticket"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:288
+msgid "Change Canvas"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:312
+msgid "Ticket file could not be opened"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:345
+msgid "No data.json found in file"
+msgstr ""
+
+#: gui/TicketFrame/TicketFrame.cpp:406
+msgid "The ticket file could not be written"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame.cpp:6
+msgid "Usuarios"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame.cpp:23
+#: gui/UsuariosFrame/UsuariosFrame.cpp:31
+msgid "ADD"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame.cpp:37
+msgid "DELETE"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame.cpp:46
+msgid "User"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame.cpp:67
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:113
+msgid "SESSION: "
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame.cpp:71
+msgid "LOG IN"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame.cpp:76
+msgid "LOG OUT OF ALL SESSIONS"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame.h:40
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:46
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:78
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:111
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:129
+msgid "None"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:26
+#, c-format
+msgid "Error connecting to the database: %s"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:63
+msgid "Name can not be empty"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:79
+msgid "User name already exists, choose another one.."
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:89
+#, c-format
+msgid "Error validating name: %s"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:104
+msgid "User added successfully"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:107
+#, c-format
+msgid "Error adding user: %s"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:118
+msgid "No selected user to delete."
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:124
+msgid "Are you sure you want to delete the user?\""
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:133
+msgid "Invalid user ID selected"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:141
+msgid "You cannot delete a user who is currently logged in."
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:154
+msgid "User successfully removed."
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:157
+#, c-format
+msgid "Error deleting user: %s"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:47
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:51
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:97
+msgid "SESSION: "
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:60
+msgid "No user selected to log in"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:79
+msgid "None: "
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:99
+msgid "Session started as: "
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:99
+msgid "Session"
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:131
+msgid "SESSIO: "
+msgstr ""
+
+#: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:133
+msgid "You have logged out, so purchases will not have an assigned user."
+msgstr ""
+
+#: print/Print_Utils_Getters.hpp:28 print/Print_Utils_Getters.hpp:156
+#: print/Print_Utils_Getters.hpp:363
+msgid "No saved ticket was found."
+msgstr ""
+
+#: print/Print_Utils_Getters.hpp:34 print/Print_Utils_Getters.hpp:161
+#: print/Print_Utils_Getters.hpp:368
+msgid "The ticket file could not be opened"
+msgstr ""
+
+#: print/Print_Utils_Getters.hpp:58 print/Print_Utils_Getters.hpp:185
+#: print/Print_Utils_Getters.hpp:392
+msgid "No data.json file was found."
+msgstr ""
+
+#: print/Print_Utils_Getters.hpp:66
+msgid "The mode could not be obtained"
+msgstr ""
+
+#: print/Print_Utils_Getters.hpp:193
+msgid "Invalid item format"
+msgstr ""
+
+#: print/Print_Utils_Getters.hpp:333 print/Print_Utils_Getters.hpp:445
+#, c-format
+msgid "Image not found: %s"
+msgstr ""
+
+#: print/Windows/Windows_Print_Functions_.hpp:27
+msgid "Error creating device context for the selected printer."
+msgstr ""
+
+#: print/Windows/Windows_Print_Functions_.hpp:32
+msgid "Error starting print document."
+msgstr ""
+
+#: print/Windows/Windows_Print_Functions_.hpp:38
+msgid "Error starting the print page."
+msgstr ""
+
+#: print/Windows/Windows_Print_Functions_.hpp:77
+msgid "Error creating the font for printing."
+msgstr ""
+
+#: print/Windows/Windows_Print_Functions_.hpp:199
+msgid "Error opening printer:"
+msgstr ""
+
+#: print/Windows/Windows_Print_Functions_.hpp:227
+#, c-format
+msgid "Error sending RAW data to the printer. Bytes written: %lu"
+msgstr ""

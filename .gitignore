@@ -1,0 +1,49 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+.vscode/
+
+# Compilación
+Debug/
+x64/
+FirstGUI/
+Release/
+*.obj
+*.pdb
+*.ilk
+*.exe
+*.log
+*.tlog
+*.cache
+*.idb
+
+# Archivos generados
+*.ipch
+*.aps
+*.ncb
+*.sdf
+
+#documentación:
+docs/
+
+# Otros
+*.db
+*.sln.docstates
+*.opensdf
+lastID.bin
+products.json
+session.json
+Doxyfile
+darkMode.json
+lastProductID.bin
+ticket.tkt
+printerSettings.cfg
+ticket.zip
+printerSettings.json
+*.zip
+Postienda/
+build/
+build-release/
