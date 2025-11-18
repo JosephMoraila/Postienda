@@ -66,9 +66,14 @@ Download the source code from [wxWidgets official website](https://www.wxwidgets
 10- Save and reload with: ```source ~/.bashrc```
 
 
-##Demonstration:
+## Demonstration:
 
 Linux:
 
 ![Linux](images/demostration_products_ticket.png)
 
+
+Windows
+
+
+![Windows](images/demostration_products_ticket_windows.png)
