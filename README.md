@@ -64,3 +64,11 @@ Download the source code from [wxWidgets official website](https://www.wxwidgets
 9- Add at the end of the file: ```export PATH=/opt/wxlinux/bin:$PATH```
 
 10- Save and reload with: ```source ~/.bashrc```
+
+
+##Demonstration:
+
+Linux:
+
+![Linux](images/demostration_products_ticket.png)
+
