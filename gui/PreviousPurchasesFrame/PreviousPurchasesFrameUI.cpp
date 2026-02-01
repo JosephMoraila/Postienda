@@ -23,14 +23,16 @@ void PreviousPurchaseFrame::Widgets() {
     wxStaticText* startDateLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Start date:"));
     startDatePicker = new wxDatePickerCtrl(scrollWidgets, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
 
+    wxDateTime zeroStartTime = wxDateTime::Now(); zeroStartTime.SetHour(0); zeroStartTime.SetMinute(0); zeroStartTime.SetSecond(0);//We set to 00:00 to the start time by default
     wxStaticText* startLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Start time:"));
-    startTimePicker = new wxTimePickerCtrl(scrollWidgets, wxID_ANY);
+    startTimePicker = new wxTimePickerCtrl(scrollWidgets, wxID_ANY, zeroStartTime);
 
     wxStaticText* endDateLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("End date:"));
     endDatePicker = new wxDatePickerCtrl(scrollWidgets, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
 
+    wxDateTime endEndTime = wxDateTime::Now();endEndTime.SetHour(23); endEndTime.SetMinute(59); endEndTime.SetSecond(59);//We set to 23:59 to the end time by default
     wxStaticText* endLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("End time:"));
-    endTimePicker = new wxTimePickerCtrl(scrollWidgets, wxID_ANY);
+    endTimePicker = new wxTimePickerCtrl(scrollWidgets, wxID_ANY, endEndTime);
 
     wxStaticText* minLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Minimum amount:"));
     minAmountInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(80, -1));
