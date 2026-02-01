@@ -50,6 +50,8 @@ void PreviousPurchaseFrame::Widgets() {
     searchButton->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {OnWidgetLeave(event, temaOscuro); });
     searchButton->Bind(wxEVT_BUTTON, &PreviousPurchaseFrame::OnSearch, this);
 
+    totalByFilter = new wxStaticText(mainPanel, wxID_ANY, wxString::Format("Total: %.2f", totalAppliedFilter));
+
     // ---- AÃÂ±adir al topSizer ----
     topSizer->Add(idLabel, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(IdInput, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
@@ -117,6 +119,7 @@ void PreviousPurchaseFrame::Widgets() {
 
     // ---- Agregar todo al sizer principal ----
     mainSizer->Add(filtersPanel, 0, wxEXPAND | wxALL, 5);
+    mainSizer->Add(totalByFilter, 0, wxEXPAND | wxALL, 5);
     mainSizer->Add(list, 1, wxEXPAND | wxALL, 5);
     mainSizer->Add(bottomPanel, 0, wxALIGN_CENTER | wxBOTTOM, 5);
 

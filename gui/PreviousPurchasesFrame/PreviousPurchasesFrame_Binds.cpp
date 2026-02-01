@@ -33,6 +33,7 @@ void PreviousPurchaseFrame::OnSearch(wxCommandEvent& event) {
         //Save the data to instance members so when OnLoadPrev or OnLoadNext are called keep searching the same data but with differente given pages from DB
         this->startDateTime = start; this->endDateTime = end; this->minAmount = minAmount; this->maxAmount = maxAmount; this->worker = worker;
         GetPurchases(start, end, minAmount, maxAmount, worker); 
+        GetTotalByFilter(start, end, minAmount, maxAmount, worker);
     }
 }
 

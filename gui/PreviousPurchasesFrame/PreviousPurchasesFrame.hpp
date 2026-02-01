@@ -30,6 +30,7 @@ private:
     wxTextCtrl* minAmountInput;
     wxTextCtrl* maxAmountInput;
     wxTextCtrl* workerInput;
+    wxStaticText* totalByFilter;
     wxPanel* mainPanel;
     wxButton* prevButton;
     wxButton* nextButton;
@@ -136,6 +137,8 @@ private:
     double minAmount = 0.0;///Used to pass it to GetPurchases when showing more pages from the same searching done in OnSearch when OnLoadPrev or OnLoadNext is called, so keep the same data but showing more pages of a searching
     double maxAmount = 0.0;///Used to pass it to GetPurchases when showing more pages from the same searching done in OnSearch when OnLoadPrev or OnLoadNext is called, so keep the same data but showing more pages of a searching
     std::string worker = "";///Used to pass it to GetPurchases when showing more pages from the same searching done in OnSearch when OnLoadPrev or OnLoadNext is called, so keep the same data but showing more pages of a searching
+    double totalAppliedFilter = 0.0; ///> Total when filter is aplyed
+
 
     static constexpr int PAGE_SIZE = 50;   /// nÃºmero de registros por pÃ¡gina
     size_t currentOffset = 0;                 /// desplazamiento actual en la base de datos
@@ -165,6 +168,15 @@ private:
         @param limit         - Records limit to show
     **/
     void GetPurchases(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string worker, size_t offset = 0, size_t limit = 50);
+
+    /**
+    @brief Updates totalByFilter label to show the total matched with filters
+    @param startDateTime - Start time to search
+    @param endDateTime   - End time to search
+    @param minAmount     - If it's -1 it doesn't consider searching minAmount
+    @param maxAmount     - If it's -1 it doesn't consider searching maxAmount
+    **/
+    void GetTotalByFilter(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string worker);
 
     ///@}
 };

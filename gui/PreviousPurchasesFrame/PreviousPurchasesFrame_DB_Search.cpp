@@ -46,6 +46,9 @@ void PreviousPurchaseFrame::GetPurchaseById(unsigned long long& id) {
         pageLabel->SetLabelText(_("Page: -"));
         db << "SELECT id, date, total, worker FROM purchases WHERE id = ?;" << id >> [&](unsigned long long ide, std::string date, double total, std::string worker) {
             AddToListFromDB(ide, date, total, worker, &found);
+            totalAppliedFilter = total;
+            totalByFilter->SetLabel(wxString::Format("Total: $%s", FormatFloatWithCommas(total)));
+
         };
         if(!found) wxMessageBox(wxString::Format(_("No purchases were found with the ID %llu."), id), _("No results"), wxOK | wxICON_INFORMATION, this);
 
@@ -59,8 +62,7 @@ void PreviousPurchaseFrame::GetPurchaseById(unsigned long long& id) {
 }
 
 
-void PreviousPurchaseFrame::GetPurchases(std::string startDateTime, std::string endDateTime,
-    double minAmount, double maxAmount, std::string worker, size_t offset, size_t limit)
+void PreviousPurchaseFrame::GetPurchases(std::string startDateTime, std::string endDateTime,double minAmount, double maxAmount, std::string worker, size_t offset, size_t limit)
 {
     try {
         wxString dbPath = GetDBPath();
@@ -164,4 +166,25 @@ void PreviousPurchaseFrame::GetPurchases(std::string startDateTime, std::string 
         prevButton->Disable();
         nextButton->Disable();
     }
+}
+
+void PreviousPurchaseFrame::GetTotalByFilter(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string worker){
+    sqlite::database db(GetDBPath());
+    db << "PRAGMA encoding = 'UTF-8';";
+    std::string countQuery = "SELECT IFNULL(SUM(total), 0) FROM purchases WHERE 1=1";
+    countQuery += " AND date BETWEEN ? AND ?";
+    if (minAmount != -1.0) countQuery += " AND total >= ?";
+    if (maxAmount != -1.0) countQuery += " AND total <= ?";
+    if (!worker.empty()) countQuery += " AND worker LIKE ?";
+
+    auto countStmt = db << countQuery;
+    countStmt << startDateTime << endDateTime;
+    if (minAmount != -1.0) countStmt << minAmount;
+    if (maxAmount != -1.0) countStmt << maxAmount;
+    if (!worker.empty()) countStmt << ("%" + worker + "%");
+
+    countStmt >> [&](double totalSold) {
+        totalAppliedFilter = totalSold;
+        };
+    totalByFilter->SetLabel(wxString::Format("Total: $%s", FormatFloatWithCommas(totalAppliedFilter)));
 }
