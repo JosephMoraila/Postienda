@@ -89,3 +89,13 @@ std::string LimpiarCaracteresInvalidosOnAddProduct(std::string nombre);
  * @return Cadena limpia. Example:  " Hello  /   World      " -> "Hello World"
  */
 wxString LimpiarYValidarNombreWx(const wxString& nombre);
+
+/**
+ * @brief Verifica numeros strings enteros positivos para checar si todos son numeros. Ejemplo: True:"123", False:"ab12"
+ * @return True si todos son numeros enteros positivos, false si no se cumple esa condicion
+ */
+bool EsNumerico(const std::string& str);
+
+
+
+

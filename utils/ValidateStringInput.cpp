@@ -216,3 +216,8 @@ std::string LimpiarCaracteresInvalidosOnAddProduct(std::string nombre) {
         }).base(), nombre.end());
 	return nombre;
 }
+
+bool EsNumerico(const std::string& str) {
+    if (str.empty()) return false;
+    return std::all_of(str.begin(), str.end(), [](unsigned char c) { return std::isdigit(c); });
+}

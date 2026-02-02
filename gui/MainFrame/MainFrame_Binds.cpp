@@ -143,6 +143,26 @@ void MainFrame::OnPreviousPurchasesClicked(wxCommandEvent& event) {
     }
 }
 
+void MainFrame::onInfoProductsClicked(wxCommandEvent& event) {
+    if (infoProductsVentana && infoProductsVentana->IsShown()) {
+        if (infoProductsVentana->IsIconized()) {
+            infoProductsVentana->Iconize(false);
+        }
+        infoProductsVentana->Show();
+        infoProductsVentana->Raise();
+        infoProductsVentana->SetFocus();
+    }
+    else {
+        infoProductsVentana = new InfoProductsFrame(this);
+        infoProductsVentana->AplicarTema(temaOscuro);
+        infoProductsVentana->Show();
+        infoProductsVentana->Bind(wxEVT_CLOSE_WINDOW, [this](wxCloseEvent& evt) {
+            infoProductsVentana = nullptr;
+            evt.Skip();
+            });
+    }
+}
+
 //TABLE PRODUCTS
 
 void MainFrame::OnListaKeyDown(wxKeyEvent& event) {

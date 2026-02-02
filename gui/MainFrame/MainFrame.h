@@ -12,6 +12,7 @@
 #include "gui/ProductosFrame/ProductosFrame.h"
 #include "gui/TicketFrame/TicketFrame.hpp"
 #include "gui/PreviousPurchasesFrame/PreviousPurchasesFrame.hpp"
+#include "gui//InfoProductsFrame/InfoProductsFrame.hpp"
 #include "gui/MainFrame/logic/MainFrame_models.hpp"
 #include "gui/LanguageFrame/LanguageFrame.hpp"
 #include "utils/MathUtils.hpp"
@@ -143,6 +144,8 @@ private:
     **/
     void OnPreviousPurchasesClicked(wxCommandEvent& event);
 
+    void onInfoProductsClicked(wxCommandEvent& event);
+
     /**
      * @brief Evento al seleccionar tema claro.
      * @param event Evento de comando.
@@ -246,6 +249,8 @@ private:
 	TicketFrame* ticketVentana = nullptr; ///> Ventana de tickets (nullptr si no estÃÂÃÂ¡ abierta)
 
     PreviousPurchaseFrame* previousPurchasesVentana = nullptr; ///Previous purchases window (nullptr if is not opened)
+
+    InfoProductsFrame* infoProductsVentana = nullptr; ///Info products window
 
 	LanguageFrame* LanguageWindow = nullptr; ///> Window for language selection (nullptr if is not opened)
 
@@ -432,6 +437,7 @@ private:
         ID_MENU_TICKET,
 		ID_MENU_LANGUAGE,
         ID_MENU_PREVIOUS_PURCHASES,
+        ID_MENU_INFO_PRODUCTS,
         ID_MENU_CLARO,
         ID_MENU_OSCURO,
         ID_SYSTEM_MODE,
