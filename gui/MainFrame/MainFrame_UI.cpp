@@ -27,7 +27,7 @@ void MainFrame::MenuBar() {
     watchMenu->Append(ID_MENU_PREVIOUS_PURCHASES, _("Previous purchases"));
     Bind(wxEVT_MENU, &MainFrame::OnPreviousPurchasesClicked, this, ID_MENU_PREVIOUS_PURCHASES);
 
-    watchMenu->Append(ID_MENU_INFO_PRODUCTS, _("Info Productos"));
+    watchMenu->Append(ID_MENU_INFO_PRODUCTS, _("Info Products"));
     Bind(wxEVT_MENU, &MainFrame::onInfoProductsClicked, this, ID_MENU_INFO_PRODUCTS);
 
     // Apariencia
