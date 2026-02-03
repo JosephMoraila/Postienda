@@ -27,6 +27,7 @@ private:
     wxTextCtrl* minAmountInput;
     wxTextCtrl* maxAmountInput;
     wxTextCtrl* productNameBarcodeInput;
+    wxCheckBox* descQuantityCheckbox; ///< Checkbox para indicar si es descendente, es decir, del mayor al menor
     wxPanel* mainPanel;
     wxButton* prevButton;
     wxButton* nextButton;
@@ -97,12 +98,12 @@ private:
     double minAmount = 0.0;///Used to pass it to GetPurchases when showing more pages from the same searching done in OnSearch when OnLoadPrev or OnLoadNext is called, so keep the same data but showing more pages of a searching
     double maxAmount = 0.0;///Used to pass it to GetPurchases when showing more pages from the same searching done in OnSearch when OnLoadPrev or OnLoadNext is called, so keep the same data but showing more pages of a searching
     std::string productNameBarcode = "";///Used to pass it to GetPurchases when showing more pages from the same searching done in OnSearch when OnLoadPrev or OnLoadNext is called, so keep the same data but showing more pages of a searching
-
+    bool byDesc = true;
 
     static constexpr int PAGE_SIZE = 50;   /// número de registros por página
     size_t currentOffset = 0;                 /// desplazamiento actual en la base de datos
 
-    void GetSoldProducts(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string productNameBarcode, size_t offset = 0, size_t limit = 50);
+    void GetSoldProducts(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string productNameBarcode,bool byDesc, size_t offset = 0, size_t limit = 50);
 
     void AddToListFromDB(std::string& name, double& price, std::string& barcode, double& quantity ,size_t* found = nullptr);
 

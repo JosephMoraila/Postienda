@@ -19,6 +19,7 @@ void InfoProductsFrame::OnSearch(wxCommandEvent& event) {
     double minAmount = GetMinPrice();
     double maxAmount = GetMaxPrice();
     wxString productNameBarcode = GetNameBarcodeProduct();
+    bool byDesc = this->descQuantityCheckbox->IsChecked();
 
     std::string productNameBarcodeStr = std::string(productNameBarcode.mb_str(wxConvUTF8));
     std::string start = StartDateTime.ToStdString();
@@ -26,8 +27,8 @@ void InfoProductsFrame::OnSearch(wxCommandEvent& event) {
 
     currentOffset = 0; //Start a new searching
     //Save the data to instance members so when OnLoadPrev or OnLoadNext are called keep searching the same data but with differente given pages from DB
-    this->startDateTime = start; this->endDateTime = end; this->minAmount = minAmount; this->maxAmount = maxAmount; this->productNameBarcode = productNameBarcode;
-    GetSoldProducts(start, end, minAmount, maxAmount, productNameBarcodeStr);
+    this->startDateTime = start; this->endDateTime = end; this->minAmount = minAmount; this->maxAmount = maxAmount; this->productNameBarcode = productNameBarcode; this->byDesc = byDesc;
+    GetSoldProducts(start, end, minAmount, maxAmount, productNameBarcodeStr, byDesc);
     
 }
 
@@ -35,11 +36,11 @@ void InfoProductsFrame::OnSearch(wxCommandEvent& event) {
 void InfoProductsFrame::OnLoadPrev(wxCommandEvent&) {
     if (currentOffset >= PAGE_SIZE) {
         currentOffset -= PAGE_SIZE;
-        GetSoldProducts(startDateTime, endDateTime, minAmount, maxAmount, productNameBarcode, currentOffset);
+        GetSoldProducts(startDateTime, endDateTime, minAmount, maxAmount, productNameBarcode, byDesc, currentOffset);
     }
 }
 
 void InfoProductsFrame::OnLoadNext(wxCommandEvent&) {
     currentOffset += PAGE_SIZE;
-    GetSoldProducts(startDateTime, endDateTime, minAmount, maxAmount, productNameBarcode, currentOffset);
+    GetSoldProducts(startDateTime, endDateTime, minAmount, maxAmount, productNameBarcode, byDesc, currentOffset);
 }

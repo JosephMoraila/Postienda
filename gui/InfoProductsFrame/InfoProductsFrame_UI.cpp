@@ -41,6 +41,12 @@ void InfoProductsFrame::Widgets() {
     wxStaticText* productNaameBarcodeLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Product name/barcode:"));
     productNameBarcodeInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(120, -1));
 
+    descQuantityCheckbox = new wxCheckBox(scrollWidgets, wxID_ANY, _("Highest to lowest"));
+    descQuantityCheckbox->SetValue(true);
+    descQuantityCheckbox->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent& event) {descQuantityCheckbox->SetCursor(wxCursor(wxCURSOR_HAND)); event.Skip(); });
+    descQuantityCheckbox->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {descQuantityCheckbox->SetCursor(wxCursor(wxCURSOR_ARROW)); event.Skip();});
+
+
     wxButton* searchButton = new wxButton(scrollWidgets, wxID_ANY, _("Search"), wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
     searchButton->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent& event) {OnWidgetEnter(event, temaOscuro); });
     searchButton->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {OnWidgetLeave(event, temaOscuro); });
@@ -61,6 +67,7 @@ void InfoProductsFrame::Widgets() {
     topSizer->Add(maxAmountInput, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(productNaameBarcodeLabel, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(productNameBarcodeInput, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
+    topSizer->Add(descQuantityCheckbox, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(searchButton, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
 
     // ---- Ajustar scroll solo dentro de su panel ----

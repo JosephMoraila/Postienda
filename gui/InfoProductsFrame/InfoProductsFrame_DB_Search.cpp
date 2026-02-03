@@ -10,7 +10,7 @@
 #include "utils/DateTimeUtils.hpp"
 #include "utils/ValidateStringInput.h"
 
-void InfoProductsFrame::GetSoldProducts(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string productNameBarcode, size_t offset, size_t limit) {
+void InfoProductsFrame::GetSoldProducts(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string productNameBarcode,bool byDesc, size_t offset, size_t limit) {
     try {
         wxString dbPath = GetDBPath();
         // Verificar si existe el archivo de base de datos
@@ -81,16 +81,18 @@ void InfoProductsFrame::GetSoldProducts(std::string startDateTime, std::string e
         //Llamar a las columnas para mostrar
         std::string queySelect = "";
         queySelect = R"(
-                SELECT pi.product_name, pro.barcode, SUM(pi.quantity) AS cantidad, COALESCE(pro.price, (SELECT pi2.price_at_purchase 
-                 FROM purchase_items pi2 
-                 JOIN purchases pur2 ON pi2.purchase_id = pur2.id
-                 WHERE pi2.product_name = pi.product_name 
-                 ORDER BY pur2.id DESC 
-                 LIMIT 1)
+                SELECT pi.product_name, pro.barcode, SUM(pi.quantity) AS cantidad, (
+                SELECT pi2.price_at_purchase
+                FROM purchase_items pi2
+                JOIN purchases pur2 ON pi2.purchase_id = pur2.id
+                WHERE pi2.product_name = pi.product_name
+                  AND pur2.date BETWEEN ? AND ?
+                ORDER BY pur2.date DESC, pi2.id DESC
+                LIMIT 1
             ) AS precio
                 FROM purchase_items pi
                 JOIN purchases pur ON pi.purchase_id = pur.id
-                LEFT JOIN products pro ON pi.product_id = pro.id
+                LEFT JOIN products pro ON pi.product_id = pro.id OR (pi.product_name = pro.name)
                 WHERE 1=1
                 )";
         queySelect += " AND pur.date BETWEEN ? AND ?";
@@ -103,16 +105,18 @@ void InfoProductsFrame::GetSoldProducts(std::string startDateTime, std::string e
             }
             else { //Se busca por codigo de barras por lo que se busca directamente en productos su nombre y no en el historial
                 queySelect = R"(
-                    SELECT pro.name, pro.barcode, SUM(pi.quantity) AS cantidad, COALESCE(pro.price, (SELECT pi2.price_at_purchase 
-                     FROM purchase_items pi2 
-                     JOIN purchases pur2 ON pi2.purchase_id = pur2.id
-                     WHERE pi2.product_name = pi.product_name 
-                     ORDER BY pur2.id DESC 
-                     LIMIT 1)
+                    SELECT pro.name, pro.barcode, SUM(pi.quantity) AS cantidad, (
+                    SELECT pi2.price_at_purchase
+                    FROM purchase_items pi2
+                    JOIN purchases pur2 ON pi2.purchase_id = pur2.id
+                    WHERE pi2.product_name = pi.product_name
+                      AND pur2.date BETWEEN ? AND ?
+                    ORDER BY pur2.date DESC, pi2.id DESC
+                    LIMIT 1
                 ) AS precio
                     FROM purchase_items pi
                     JOIN purchases pur ON pi.purchase_id = pur.id
-                    JOIN products pro ON pi.product_id = pro.id
+                    JOIN products pro ON pi.product_id = pro.id OR (pi.product_name = pro.name)
                     WHERE 1=1
                     )";
                 queySelect += " AND pur.date BETWEEN ? AND ?";
@@ -124,9 +128,11 @@ void InfoProductsFrame::GetSoldProducts(std::string startDateTime, std::string e
             }
         }
         else queySelect += " GROUP BY pi.product_name";
-        queySelect += " ORDER BY cantidad DESC LIMIT ? OFFSET ?;";
+        std::string orderBy = byDesc ? " DESC " : " ASC ";
+        queySelect += " ORDER BY cantidad " + orderBy + " LIMIT ? OFFSET ?;";
 
-        sqlite::database_binder selectStmt = db << queySelect;
+        auto selectStmt = db << queySelect;
+        selectStmt << startDateTime << endDateTime;
         selectStmt << startDateTime << endDateTime;
         if (minAmount != -1.0) selectStmt << minAmount;
         if (maxAmount != -1.0) selectStmt << maxAmount;
