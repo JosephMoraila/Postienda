@@ -12,7 +12,7 @@ namespace CreateFolder {
         @brief Create the settings folder
     **/
     inline void CreateSettingsFolder() {
-        fs::path dirPath = SETTINGS_FOLDER_PATH;
+        fs::path dirPath = SETTINGS_FOLDER_PATH();
         fs::create_directories(dirPath);
     }
 }

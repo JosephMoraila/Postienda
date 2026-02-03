@@ -80,10 +80,8 @@ if (!m_locale.Init(langToTry)) {
 // Configurar rutas y cargar catálogo
 // --------------------------------------
 {
-    wxString folders = wxString::Format("%s%s",
-        SETTINGS_FOLDER_PATH,
-        LOCALE_FOLDER_PATH
-    );
+    wxString folders;
+    folders << SETTINGS_FOLDER_PATH() << wxFileName::GetPathSeparator() << LOCALE_FOLDER_PATH;
 
     m_locale.AddCatalogLookupPathPrefix(folders);
 

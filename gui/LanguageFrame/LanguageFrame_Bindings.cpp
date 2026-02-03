@@ -14,7 +14,8 @@ void LanguageFrame::OnAcccept(wxCommandEvent& event) {
     wxString lang = languages[sel];
 
     // Asegurar que exista el directorio locale/
-    wxString Folder = wxString::Format("%s%s", SETTINGS_FOLDER_PATH, LOCALE_FOLDER_PATH);
+    wxString Folder;
+    Folder << SETTINGS_FOLDER_PATH() << wxFileName::GetPathSeparator() << LOCALE_FOLDER_PATH;
     if (!wxDirExists(Folder)) wxMkdir(Folder);
 
     std::string path = GetJsonLanguagePath();

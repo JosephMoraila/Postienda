@@ -1,19 +1,41 @@
-﻿#include "constants/FOLDERS/SETTINGS/SETTINGS_FOLDER.hpp"
+﻿#pragma once
+
 #include "constants/APPNAME/APPNAME.h"
+#include "constants/FOLDERS/SETTINGS/SETTINGS_FOLDER.hpp"
 #include <filesystem>
+#include <string>
 
 namespace fs = std::filesystem;
 
-#ifdef _WIN32
-const std::string SETTINGS_FOLDER_PATH = []() {
-    std::string path = APPNAME + "\\"+  "settings\\";
-    fs::create_directories(path);
-    return path;
-    }();
+/**
+ * @brief If debug mode is enabled the settings folder is created on the executable path, if not in appdata/.config folder
+ *
+ * \return path / APPNAME / settings
+ */
+std::string SETTINGS_FOLDER_PATH() {
+
+    fs::path base;
+
+#if defined(_DEBUG) || !defined(NDEBUG)
+    // -----------------------------
+    //          DEBUG MODE
+    // -----------------------------
+    base = fs::current_path() / APPNAMEDIR / "settings";
+
 #else
-const std::string SETTINGS_FOLDER_PATH = []() {
-    std::string path = std::string("PostiendaDir") + "/" + "settings/";
-    fs::create_directories(path);
-    return path;
-    }();
+    // -----------------------------
+    //         RELEASE MODE
+    // -----------------------------
+#ifdef _WIN64
+    base = fs::path(getenv("APPDATA")) / APPNAME / "settings";
+#elif defined(__linux__)
+    base = fs::path(getenv("HOME")) / ".config" / APPNAME / "settings";
 #endif
+
+#endif // DEBUG/RELEASE
+
+    // Create folders recurcively
+    fs::create_directories(base);
+
+    return base.string();
+}

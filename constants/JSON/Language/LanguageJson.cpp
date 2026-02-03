@@ -4,5 +4,10 @@
 
 std::string GetJsonLanguagePath() {
     // Calcular la ruta en tiempo de ejecución evita problemas de orden de inicialización.
-    return SETTINGS_FOLDER_PATH + LOCALE_FOLDER_PATH + "language.json";
+#ifdef _WIN64
+    return SETTINGS_FOLDER_PATH() + "\\" + LOCALE_FOLDER_PATH + "language.json";
+#elif defined(__linux__)
+    return SETTINGS_FOLDER_PATH() + "/" + LOCALE_FOLDER_PATH + "language.json";
+#endif
+
 }
