@@ -30,3 +30,16 @@ void InfoProductsFrame::OnSearch(wxCommandEvent& event) {
     GetSoldProducts(start, end, minAmount, maxAmount, productNameBarcodeStr);
     
 }
+
+
+void InfoProductsFrame::OnLoadPrev(wxCommandEvent&) {
+    if (currentOffset >= PAGE_SIZE) {
+        currentOffset -= PAGE_SIZE;
+        GetSoldProducts(startDateTime, endDateTime, minAmount, maxAmount, productNameBarcode, currentOffset);
+    }
+}
+
+void InfoProductsFrame::OnLoadNext(wxCommandEvent&) {
+    currentOffset += PAGE_SIZE;
+    GetSoldProducts(startDateTime, endDateTime, minAmount, maxAmount, productNameBarcode, currentOffset);
+}

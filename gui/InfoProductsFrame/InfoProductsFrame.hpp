@@ -40,6 +40,8 @@ private:
     
     void OnSize(wxSizeEvent& event);
     void OnSearch(wxCommandEvent& event);
+    void OnLoadPrev(wxCommandEvent&);
+    void OnLoadNext(wxCommandEvent&);
 
     ///@}
     
@@ -101,6 +103,8 @@ private:
     size_t currentOffset = 0;                 /// desplazamiento actual en la base de datos
 
     void GetSoldProducts(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string productNameBarcode, size_t offset = 0, size_t limit = 50);
+
+    void AddToListFromDB(std::string& name, double& price, std::string& barcode, double& quantity ,size_t* found = nullptr);
 
     ///@}
 };

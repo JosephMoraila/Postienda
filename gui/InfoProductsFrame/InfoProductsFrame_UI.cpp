@@ -70,8 +70,9 @@ void InfoProductsFrame::Widgets() {
     // ---- Tabla (fuera del scroll totalmente) ----
     list = new wxListCtrl(mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxLC_SINGLE_SEL);
     list->InsertColumn(0, _("Product name"), wxLIST_FORMAT_LEFT, 150);
-    list->InsertColumn(1, _("Barcode"), wxLIST_FORMAT_LEFT, 150);
-    list->InsertColumn(2, _("Quantity sold"), wxLIST_FORMAT_LEFT, 150);
+    list->InsertColumn(1, _("Price"), wxLIST_FORMAT_LEFT, 150);
+    list->InsertColumn(2, _("Barcode"), wxLIST_FORMAT_LEFT, 150);
+    list->InsertColumn(3, _("Quantity sold"), wxLIST_FORMAT_LEFT, 150);
 
 
     // ---- Panel de botones de paginaciÃÂ³n ----
@@ -96,8 +97,8 @@ void InfoProductsFrame::Widgets() {
     nextButton->Disable();
 
     // opcional: asignar eventos
-    //prevButton->Bind(wxEVT_BUTTON, &InfoProductsFrame::OnLoadPrev, this);
-    //nextButton->Bind(wxEVT_BUTTON, &InfoProductsFrame::OnLoadNext, this);
+    prevButton->Bind(wxEVT_BUTTON, &InfoProductsFrame::OnLoadPrev, this);
+    nextButton->Bind(wxEVT_BUTTON, &InfoProductsFrame::OnLoadNext, this);
 
     bottomSizer->AddStretchSpacer(1);
     bottomSizer->Add(prevButton, 0, wxALL, 5);
@@ -123,6 +124,7 @@ void InfoProductsFrame::AjustarColumnasListCtrl() {
 
         if (totalWidth > 0) {
             int productNameWidth = 0;
+            int priceWidth = 0;
             int barcodeWidth = 0;
             int quantitySoldWidth = 0;
 
@@ -133,26 +135,30 @@ void InfoProductsFrame::AjustarColumnasListCtrl() {
 
             if (!IsMaximized()) {
                 // DistribuciÃÂ³n en modo normal
-                productNameWidth = static_cast<int>(totalWidth * 0.30);
-                barcodeWidth = static_cast<int>(totalWidth * 0.30);
-                quantitySoldWidth = totalWidth - productNameWidth - barcodeWidth;
+                productNameWidth = static_cast<int>(totalWidth * 0.25);
+                priceWidth = static_cast<int>(totalWidth * 0.25);
+                barcodeWidth = static_cast<int>(totalWidth * 0.25);
+                quantitySoldWidth = totalWidth - productNameWidth - priceWidth - barcodeWidth;
             }
             else {
                 // DistribuciÃÂ³n en modo maximizado
-                productNameWidth = static_cast<int>(totalWidth * 0.35);
-                barcodeWidth = static_cast<int>(totalWidth * 0.35);
-                quantitySoldWidth = totalWidth - productNameWidth - barcodeWidth;
+                productNameWidth = static_cast<int>(totalWidth * 0.25);
+                priceWidth = static_cast<int>(totalWidth * 0.25);
+                barcodeWidth = static_cast<int>(totalWidth * 0.25);
+                quantitySoldWidth = totalWidth - productNameWidth - priceWidth - barcodeWidth;
             }
 
             // Anchos mÃÂ­nimos
             productNameWidth = wxMax(200, productNameWidth);
+            priceWidth = wxMax(100, priceWidth);
             barcodeWidth = wxMax(150, barcodeWidth);
             quantitySoldWidth = wxMax(150, quantitySoldWidth);
 
             // Asignar a columnas (ajusta el ÃÂ­ndice si el orden es diferente)
             list->SetColumnWidth(0, productNameWidth);
-            list->SetColumnWidth(1, barcodeWidth);
-            list->SetColumnWidth(2, quantitySoldWidth);
+            list->SetColumnWidth(1, priceWidth);
+            list->SetColumnWidth(2, barcodeWidth);
+            list->SetColumnWidth(3, quantitySoldWidth);
         }
     }
 }
