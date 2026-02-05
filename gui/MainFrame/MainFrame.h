@@ -293,6 +293,8 @@ private:
 
     std::optional<ProductInfo> m_lastSelectedProduct; ///> Almacena el ÃÂÃÂºltimo producto seleccionado
 
+    std::unordered_map<size_t, double> productsIdsStock; ///Sirve para almacenar el id del producto y su stock para agregar uno y si ya existe actualizar y si baja de 0 no dejar que registre ese producto a comprar porque ya no hay o sumar si se devuelve. Es un stock temporal.
+
     /**
 		@brief Asks the user for the weight of the last selected product and calculates its price based on it. Then updates the GUI list control.
     **/
@@ -381,6 +383,11 @@ private:
 	     @param v - Vector of indices of the products to delete from the cart.
      **/
 	void DeleteSelectedProductFromCart(const std::vector<size_t>& v);
+    /**
+     * @brief retorna el la cantidad al stock al unordered map productsIdsStock ya que se quito de el producto del carrito
+     * \param idsProductsCart Ids de cart/carrito para buscar su cantidad y product_id
+     */
+    void ReturnStockWhenDeletItemInCart(const std::vector<size_t>& idsProductsCart);
     /**
 		@brief Gets the price of an item in the cart list control by its index.
 		@param  searchId - Index of the item in the cart list control to get the price for.

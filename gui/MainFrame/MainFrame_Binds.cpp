@@ -218,7 +218,10 @@ void MainFrame::OnListaKeyDown(wxKeyEvent& event) {
         if (!IdsCart.empty()) {
             wxString mensaje = (IdsCart.size() == 1) ? _("Do you want to delete the selected item?") : _("Do you want to delete the selected items?");
             int respuesta = wxMessageBox(mensaje, _("Confirm deletion"), wxYES_NO | wxICON_QUESTION);
-            if (respuesta == wxYES) DeleteSelectedProductFromCart(IdsCart);
+            if (respuesta == wxYES) {
+                ReturnStockWhenDeletItemInCart(IdsCart);
+                DeleteSelectedProductFromCart(IdsCart);
+            }
         }
     }
     event.Skip();
@@ -285,6 +288,7 @@ void MainFrame::OnRealizarCompra(wxCommandEvent& event) {
     // Restaurar estado de UI
     UpdateButtonRealizarCompra();
     totalUI = 0.0;
+    productsIdsStock.clear(); //Limpiamos los ids de producto y su stock temporal
     labelTotal->SetLabel(wxString::Format(_("Total: %.2f"), totalUI));
 }
 

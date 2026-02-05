@@ -13,12 +13,13 @@ struct ProductInfo {
     bool porPeso;
 	std::string categoria; ///>Category of the product
     double cantidad;  ///< Cantidad con mÃ¡ximo 3 decimales
+    double stock;
 
     /**
         @brief ProductInfo object constructor by default
     **/
     ProductInfo()
-        : id(0), nombre(""), precio(0.0), codigoBarras(""), porPeso(false), categoria(""), cantidad(0.0) {}
+        : id(0), nombre(""), precio(0.0), codigoBarras(""), porPeso(false), categoria(""), cantidad(0.0), stock(0.0){}
 
     /**
         @brief Full ProductInfo object constructor
@@ -26,12 +27,18 @@ struct ProductInfo {
     ProductInfo(size_t id, const std::string& nombre, double precio, const std::string& codigoBarras, bool porPeso, const std::string& categoria)
         : id(id), nombre(nombre), precio(precio), codigoBarras(codigoBarras), porPeso(porPeso), categoria(categoria) {
     }
+    ProductInfo(size_t id, const std::string& nombre, double precio, const std::string& codigoBarras, bool porPeso, const std::string& categoria, double stock)
+        : id(id), nombre(nombre), precio(precio), codigoBarras(codigoBarras), porPeso(porPeso), categoria(categoria), stock(stock) {
+    }
 
     /**
 		@brief ProductInfo object constructor without category (for backward compatibility)
     **/
     ProductInfo(size_t id, const std::string& nombre, double precio, const std::string& codigoBarras, bool porPeso)
         : id(id), nombre(nombre), precio(precio), codigoBarras(codigoBarras), porPeso(porPeso), categoria("") {
+    }
+    ProductInfo(size_t id, const std::string& nombre, double precio, const std::string& codigoBarras, bool porPeso, double stock)
+        : id(id), nombre(nombre), precio(precio), codigoBarras(codigoBarras), porPeso(porPeso), categoria(""), stock(stock) {
     }
 
     /**

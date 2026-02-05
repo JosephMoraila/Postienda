@@ -53,6 +53,28 @@ void MainFrame::CheckInputLogic(wxCommandEvent& event) {
         // Acceder al valor del optional usando .value() o *
 		if (m_lastSelectedProduct->porPeso) CalculatePriceWeight(); // Si es por peso, pedir peso y calcular precio
 		else { // Si no es por peso, aÃÂÃÂ±adir directamente
+
+            size_t productId = m_lastSelectedProduct->id; //Obtenemos su id para añadir a productsIdsStock o verificar si queda stock si ya existe el id
+            if (productsIdsStock.find(productId) == productsIdsStock.end()) {//Si no existe lo añadimos
+                productsIdsStock[productId] = m_lastSelectedProduct->stock; 
+                double stockTemp = productsIdsStock.at(productId);
+                if (stockTemp <= 0) {
+                    wxMessageBox(_("You can not add to cart a product without stock"), ATENCION, wxOK | wxICON_WARNING);
+                    return;
+                }
+                productsIdsStock.at(productId) = stockTemp - 1;
+            }
+            else { //Si ya lo teniamos registrado tenemos que restar lo que teniamos en stock la primera vez que lo registramos menos 1 porque se esta comprando por unidad
+                double stockTemp = productsIdsStock.at(productId);
+                if (stockTemp <= 0) { //Si se quiere volver a agregar otra vez el producto al carrito como ya está verificado verificar que no sea 0
+                    wxMessageBox(_("You can not add to cart a product without stock"), ATENCION, wxOK | wxICON_WARNING);
+                    return;
+                }
+                productsIdsStock.at(productId) = stockTemp - 1;
+            }
+
+            //Verificar si el stock de ese producto es 0 y mandar mensaje porque no se pueden agregar productos al carrito qie ya no tienen stock
+ 
             wxString nombreCompleto = wxString::FromUTF8(m_lastSelectedProduct->nombre.c_str());
             double precioFinal = m_lastSelectedProduct->precio;
             m_lastSelectedProduct->setCantidad(1);
@@ -125,6 +147,17 @@ void MainFrame::CalculatePriceWeight() {
                 double precioFinal = m_lastSelectedProduct->precio * cantidadKilos;
                 m_lastSelectedProduct->precio = precioFinal;
 
+                size_t productId = m_lastSelectedProduct->id; //Obtenemos su id para añadir a productsIdsStock o verificar si queda stock si ya existe el id
+                if (productsIdsStock.find(productId) == productsIdsStock.end()) productsIdsStock[productId] = m_lastSelectedProduct->stock; //Si no existe lo añadimos
+
+                //Verificar si el stock de ese producto es 0 y mandar mensaje porque no se pueden agregar productos al carrito que ya no tienen stock
+                double stockTemp = productsIdsStock.at(productId);
+                if (stockTemp < m_lastSelectedProduct->cantidad) {
+                    wxMessageBox(_("There's not enough quantity"), ATENCION, wxOK | wxICON_WARNING);
+                    return;
+                }
+                productsIdsStock.at(productId) = stockTemp - m_lastSelectedProduct->cantidad;
+
                 wxString nombreCompleto = wxString::FromUTF8(m_lastSelectedProduct->nombre.c_str()) + cantidadTexto;
 
                 AddProductToListCtrl(nombreCompleto, precioFinal);
@@ -146,13 +179,14 @@ std::optional<ProductInfo> MainFrame::GetProductFromDBbyBarcode(const std::strin
 
         std::optional<ProductInfo> result;
 
-        db << "SELECT id, name, price, barcode, byWeight "
-            "FROM products "
-            "WHERE barcode = ?;"
+        db << "SELECT pro.id, pro.name, pro.price, pro.barcode, pro.byWeight, stk.quantity "
+            "FROM products pro "
+            "JOIN stock stk ON pro.id = stk.product_id "
+            "WHERE pro.barcode = ?;"
             << barcodeToFind
-            >> [&](size_t id, const std::string& nombre, double precio, const std::string& codigoBarras, unsigned char porPeso) {
+            >> [&](size_t id, const std::string& nombre, double precio, const std::string& codigoBarras, unsigned char porPeso, double stock) {
             // Llenamos el optional solo si hay resultado
-            result = ProductInfo(id, nombre, precio, codigoBarras, porPeso);
+            result = ProductInfo(id, nombre, precio, codigoBarras, porPeso, stock);
             };
 
         return result; // devolvemos el optional
@@ -176,12 +210,13 @@ ProductInfo MainFrame::GetProductFromDBbyId(size_t productId) {
         sqlite::database db(GetDBPath());
         db << "PRAGMA encoding = 'UTF-8';";
         ProductInfo Product; 
-        db << "SELECT id, name, price, barcode, byWeight "
-            "FROM products "
-            "WHERE id = ?;"
+        db << "SELECT pro.id, pro.name, pro.price, pro.barcode, pro.byWeight, stk.quantity "
+            "FROM products pro "
+            "JOIN stock stk ON pro.id = stk.product_id "
+            "WHERE pro.id = ?;"
             << productId
-            >> [&](size_t id, std::string nombre, double precio, std::string codigoBarras, unsigned char porPeso) {
-            Product = ProductInfo(id, nombre, precio, codigoBarras, porPeso);
+            >> [&](size_t id, std::string nombre, double precio, std::string codigoBarras, unsigned char porPeso, double stock) {
+            Product = ProductInfo(id, nombre, precio, codigoBarras, porPeso, stock);
             };
 
         return Product;
@@ -204,13 +239,14 @@ std::vector<ProductInfo> MainFrame::GetProductFromDBbyName(const std::string& pr
         sqlite::database db(GetDBPath());
         db << "PRAGMA encoding = 'UTF-8';";
 
-        db << "SELECT p.id, p.name, p.price, p.barcode, p.byWeight, c.name "
+        db << "SELECT p.id, p.name, p.price, p.barcode, p.byWeight, c.name, stk.quantity  "
             "FROM products p "
             "JOIN categories c ON p.category_id = c.id "
+            "JOIN stock stk ON p.id = stk.product_id "
             "WHERE p.name = ?;"
             << productName
-            >> [&](size_t id, std::string nombre, double precio,std::string codigoBarras, unsigned char porPeso, std::string categoria) {
-                    resultados.push_back({ id, nombre, precio, codigoBarras, porPeso != 0, categoria });
+            >> [&](size_t id, std::string nombre, double precio,std::string codigoBarras, unsigned char porPeso, std::string categoria, double stock) {
+                    resultados.push_back({ id, nombre, precio, codigoBarras, porPeso != 0, categoria, stock });
             };
     }
     catch (const sqlite::sqlite_exception& e) {
@@ -307,12 +343,14 @@ bool MainFrame::DeleteCartProductsAsk(wxString& mensaje) {
             if (tableExists == 0) {
                 totalUI = 0.0; 
 				labelTotal->SetLabel(wxString::Format("Total: %.2f", totalUI));
+                productsIdsStock.clear(); //Limpiamos los ids de producto y su stock temporal
                 return true;  // Tabla no existe, retornar ÃÂÃÂ©xito sin mostrar error
             }
         }
         catch (const std::exception&) {
             totalUI = 0.0;
             labelTotal->SetLabel(wxString::Format("Total: %.2f", totalUI));
+            productsIdsStock.clear();
             return true;  // Si falla la verificaciÃÂÃÂ³n, asumir que no existe
         }
 
@@ -322,6 +360,7 @@ bool MainFrame::DeleteCartProductsAsk(wxString& mensaje) {
         if (count == 0) {
             totalUI = 0.0;
             labelTotal->SetLabel(wxString::Format("Total: %.2f", totalUI));
+            productsIdsStock.clear();
             return true;
         }
         wxMessageDialog confirmDialog(this,mensaje, _("Confirm"), wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
@@ -330,6 +369,7 @@ bool MainFrame::DeleteCartProductsAsk(wxString& mensaje) {
                 DeleteCartProducts();
                 totalUI = 0.0;
                 labelTotal->SetLabel(wxString::Format("Total: %.2f", totalUI));
+                productsIdsStock.clear();
                 return true;
             }catch (const std::exception& e) {
                 wxMessageBox(wxString::Format(_("Error emptying cart: %s"), e.what()), "Error", wxOK | wxICON_ERROR);
@@ -358,8 +398,8 @@ void MainFrame::DeleteCartProducts() {
 void MainFrame::DeleteSelectedProductFromCart(const std::vector<size_t>& v) {
     if (v.empty()) return;
     try {
-        for (size_t i = 0; i < v.size(); ++i) {
-            double price = GetItemPriceById(v[i]);
+        for (const size_t& idProductCart : v) {
+            double price = GetItemPriceById(idProductCart);
 			totalUI -= price;
         }
         sqlite::database db(GetDBPath());
@@ -383,23 +423,49 @@ void MainFrame::DeleteSelectedProductFromCart(const std::vector<size_t>& v) {
     }
 }
 
-double MainFrame::GetItemPriceById(const size_t searchId) {
-    for (long i = 0; i < listaProductos->GetItemCount(); i++) {
-        // Obtener el ID de la columna 3 (columna oculta)
-        size_t rowId = static_cast<size_t>(std::stoul(listaProductos->GetItemText(i, 3).ToStdString()));
+void MainFrame::ReturnStockWhenDeletItemInCart(const std::vector<size_t>& idsProductsCart) {
+    try {
+        sqlite::database db(GetDBPath());
+        for (const size_t& idProductCart : idsProductsCart) {
+            db << "SELECT quantity, product_id FROM cart WHERE id = ?" << idProductCart >> [&](double quantity, size_t productId) {
+                double tempStock = productsIdsStock.at(productId);
+                double updatedStock = tempStock + quantity;
+                productsIdsStock.at(productId) = updatedStock;
+                };
+        }
+    }
+    catch (const std::exception& e) {
+        wxMessageBox(wxString::Format("Error: %s", e.what()), "Error", wxOK | wxICON_ERROR);
+    }
+}
+
+
+double MainFrame::GetItemPriceById(size_t searchId)
+{
+    for (long i = 0; i < listaProductos->GetItemCount(); ++i) {
+
+        size_t rowId = std::stoul(std::string(listaProductos->GetItemText(i, 3).mb_str()));
+
         if (rowId == searchId) {
-            // Obtener el texto de la columna 1 (precio)
-            wxString priceText = listaProductos->GetItemText(i, 1);
-            // Remover el sÃÂÃÂ­mbolo '$' y cualquier coma
-            priceText.Replace("$", "");
-            priceText.Replace(",", "");
-            // Convertir a double
-            double price;
-            if (priceText.ToDouble(&price)) return price;
+
+            wxString text = listaProductos->GetItemText(i, 1);
+
+            wxString clean;
+            for (wxChar c : text) {
+                if ((c >= '0' && c <= '9') || c == '.') {
+                    clean += c;
+                }
+            }
+
+            double price = 0.0;
+            clean.ToDouble(&price);
+
+            return price;
         }
     }
     return 0.0;
 }
+
 
 //CHECKS IF PRODUCTS IN CART:
 
@@ -425,11 +491,13 @@ void MainFrame::CartHasProducts() {
                 }
             }
             else {
+                std::unordered_map<size_t, double> sumaAllevarProductId;// Creamos la suma de la cantidad a llevar de un id de un producto para restarlo a productsIdsStock
                 db << "SELECT c.id, c.product_id, c.quantity, "
-                    "p.name, p.price, p.byWeight, p.barcode "
+                    "p.name, p.price, p.byWeight, p.barcode, stk.quantity "
                     "FROM cart c "
-                    "JOIN products p ON c.product_id = p.id;"
-                    >> [&](size_t cartId, size_t productId, double quantity,std::string name, double price, unsigned char byWeight, std::string barcode) {
+                    "JOIN products p ON c.product_id = p.id "
+                    "JOIN stock stk ON stk.product_id = c.product_id"
+                    >> [&](size_t cartId, size_t productId, double quantity,std::string name, double price, unsigned char byWeight, std::string barcode, double stock) {
 					long index = -1;
                     if (byWeight) {
                         index = listaProductos->InsertItem(listaProductos->GetItemCount(), wxString::FromUTF8(name.c_str()) + wxString::Format(" (%.3f kg)", quantity));
@@ -441,7 +509,23 @@ void MainFrame::CartHasProducts() {
                     }
                     listaProductos->SetItem(index, 2, barcode);
                     listaProductos->SetItem(index, 3, wxString::Format("%zu", cartId));
+                    //Si esta el producto y su stock lo agregamos
+                    
+                    //Si no esta lo agregamos y el valor inicial es la cantidad
+                    if (sumaAllevarProductId.find(productId) == sumaAllevarProductId.end()) sumaAllevarProductId[productId] = quantity;
+                    else {//Si ya existe le sumamos la cantidad nueva
+                        double totalQuantityProduct = sumaAllevarProductId.at(productId);
+                        double updatedQuantity = totalQuantityProduct + quantity;
+                        sumaAllevarProductId.at(productId) = updatedQuantity;
+                    } 
+                    if (productsIdsStock.find(productId) == productsIdsStock.end()) productsIdsStock[productId] = stock;
 					};
+                //Ya que terminamos de añadir el stock necesitamos restar la cantidad que hay en el cart/carrito
+                for (const auto& [productId, stock] : sumaAllevarProductId) {
+                    double totalQuantityProduct = sumaAllevarProductId.at(productId);
+                    double productStock = productsIdsStock.at(productId);
+                    productsIdsStock.at(productId) = productStock - totalQuantityProduct;
+                }
             }
             UpdateButtonRealizarCompra();
 		}

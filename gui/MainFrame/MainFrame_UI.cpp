@@ -104,7 +104,10 @@ void MainFrame::Widgets() {
             buttonDeleteProducts->Enable(true);
             buttonDeleteProducts->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { // Evento para eliminar productos seleccionados
                 std::vector<size_t> IdsCart = ReturnSelectedItemsControlList();
-                if (!IdsCart.empty()) DeleteSelectedProductFromCart(IdsCart);
+                if (!IdsCart.empty()) {
+                    ReturnStockWhenDeletItemInCart(IdsCart);
+                    DeleteSelectedProductFromCart(IdsCart);
+                }
                 }, wxID_ANY);
         }
         event.Skip();

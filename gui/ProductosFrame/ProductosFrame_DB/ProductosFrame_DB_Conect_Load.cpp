@@ -35,7 +35,7 @@ void ProductosFrame::CrearConexionBD() {
         db << "CREATE TABLE IF NOT EXISTS stock ("
             "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             "product_id INTEGER NOT NULL UNIQUE,"   // RelaciÃÂÃÂ³n 1:1 con products
-            "quantity REAL NOT NULL DEFAULT 0.000 CHECK(quantity = ROUND(quantity, 3)),"
+            "quantity REAL NOT NULL DEFAULT 0.000 CHECK (quantity >= 0 AND quantity = ROUND(quantity, 3)),"
             "FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE"
             ");";
 

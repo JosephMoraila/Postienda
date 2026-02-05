@@ -39,7 +39,7 @@ std::vector<size_t> MainFrame::ReturnSelectedItemsControlList() {
     while (true) {
         selected = listaProductos->GetNextItem(selected, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
         if (selected == -1) break; // ya no hay mÃÂÃÂ¡s seleccionados
-        wxString idStr = listaProductos->GetItemText(selected, 3); // Obtener ID (columna 3)
+        wxString idStr = listaProductos->GetItemText(selected, 3); // Obtener ID no del producto sino del carrito (columna 3)
         unsigned long tempId = 0;
         if (idStr.ToULong(&tempId)) {
             size_t id = static_cast<size_t>(tempId);
