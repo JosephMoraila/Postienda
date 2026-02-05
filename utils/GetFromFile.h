@@ -127,3 +127,7 @@ template<> inline std::string getUserFromJSON<std::string>() {
     }
     return "Ninguno";
 }
+
+inline bool FileExists(const std::string& path) {
+    return std::filesystem::exists(path) && std::filesystem::is_regular_file(path);
+}

@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
+
+
 project(Postienda LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -221,6 +223,17 @@ if(WIN32)
         $<$<CONFIG:Release>:${WX_LIBS_RELEASE}>
         ${WEBP_LIBS}
     )
+
+    # --- OpenSSL (vcpkg / system) ---
+    find_package(OpenSSL REQUIRED)
+
+    target_link_libraries(Postienda
+        PRIVATE
+        OpenSSL::SSL
+        OpenSSL::Crypto
+    )
+
+
 endif()
 
 # -----------------------------------

@@ -66,6 +66,27 @@ Download the source code from [wxWidgets official website](https://www.wxwidgets
 10- Save and reload with: ```source ~/.bashrc```
 
 
+# OpenSSL Setup Guide
+
+This guide explains how to download, compile, and install **OpenSSL** on **Windows** for static builds.
+
+
+## Download
+
+Clone with: ```git clone https://github.com/microsoft/vcpkg.git``` on any folder and **vcpkg.exe** from https://github.com/microsoft/vcpkg-tool/releases and place it on root vcpkg\ you just created
+
+
+## Windows
+
+1.- On your root \vcpkg copy this command: ```.\vcpkg.exe install openssl:x64-windows``` (If you there's an error by command it go to https://github.com/PowerShell/PowerShell/releases and download the latest version of this file: PowerShell-7.5.4-win-x64.msi)
+
+2.- Then run this command: ```.\vcpkg.exe integrate install```. This links vcpkg to Visual Studio
+
+3.- Export root folder to the path. You can do it with this command on PowerShell: ```setx VCPKG_ROOT {YourUserPath}\vcpkg```
+
+4.- If previously ```.\vcpkg.exe install openssl:x64-windows``` didn't work you can try again. Download OpenSSL and compile can take time.
+
+
 ## Demonstration:
 
 Linux:

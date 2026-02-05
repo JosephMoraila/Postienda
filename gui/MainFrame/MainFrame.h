@@ -121,6 +121,12 @@ private:
     void OnProductosClicked(wxCommandEvent& event);
 
     /**
+     * * @brief Abre la ventana de contraseña para crearla o ingresarla.
+     * \return True si fue exitoso el ingreso o la creacion, false si hubo un error o fue contraseña mala
+     */
+    bool PasswordWindow();
+
+    /**
      * @brief Evento al hacer clic en el botÃÂÃÂ³n de usuarios.
      * @param event Evento de comando de wxWidgets.
      */

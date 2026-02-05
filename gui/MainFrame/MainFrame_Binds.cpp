@@ -1,6 +1,11 @@
 ﻿#include "gui/MainFrame/MainFrame.h"
 #include "gui/UsuariosFrame/UsuariosFrame.h"
 #include "utils/FuenteUtils.h"
+#include "utils/GetFromFile.h"
+#include "gui/AskCreatePasswordFrame/AskCreatePasswordFrame.hpp"
+#include "gui/AskEnterPasswordFrame/AskEnterPasswordFrame.hpp"
+#include <filesystem>
+#include "constants/PASSWORD/PASSWORD_FILE.hpp"
 
 //MENU APARIENCIA
 
@@ -51,6 +56,11 @@ void MainFrame::OnProductosClicked(wxCommandEvent& event)
         wxString mensaje = _("To access products, you need to empty your cart. Do you want to empty it and access?");
         bool open = DeleteCartProductsAsk(mensaje);
         if (!open) return;
+
+        //Pedir password o crearla:
+        bool succcess = PasswordWindow();
+        if (!succcess) return;
+
         productosVentana = new ProductosFrame(this); // Crea una nueva instancia de ProductosFrame
         productosVentana->AplicarTema(temaOscuro); // Aplica el tema actual llamando a la funciÃÂ³n de ProductosFrame
         productosVentana->Show(); // Muestra la ventana de productos
@@ -61,6 +71,43 @@ void MainFrame::OnProductosClicked(wxCommandEvent& event)
             });
     }
 }
+
+bool MainFrame::PasswordWindow() {
+
+    if (FileExists(GetPasswordPath())) {
+        AskEnterPasswordFrame dlg(this);
+        dlg.AplicarTema(temaOscuro);
+        int result = dlg.ShowModal();
+        //Solo procede si el usuario presiona ok y todo salio bien
+        if (result == wxID_OK) return true;
+        //User pressed X or canceled
+        else if (result == wxID_CANCEL) return false;
+        //Failed, puede ser wxID_ABORT u otro
+        else {
+            wxMessageBox(_("Error verifying password"), _("Error"), wxOK | wxICON_ERROR);
+            return false;
+        }
+    }
+
+    else { //If not exists ask user for password
+
+        AskCreatePasswordFrame dlg(this);
+        dlg.AplicarTema(temaOscuro);
+        int result = dlg.ShowModal();
+
+        //Solo procede si el usuario presiona ok y todo salio bien
+        if (result == wxID_OK) return true;
+        //User pressed X or canceled
+        else if (result == wxID_CANCEL) return false;
+        //Failed
+        else {
+            wxMessageBox(_("There was an error creating the password, try again."), _("Error"), wxOK | wxICON_ERROR);
+            return false;
+        }
+       
+    }
+}
+
 
 void MainFrame::OnUsersClicked(wxCommandEvent& event) {
     if (usuariosVentana && usuariosVentana->IsShown()) {
