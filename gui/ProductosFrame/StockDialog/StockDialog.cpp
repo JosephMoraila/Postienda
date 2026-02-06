@@ -197,22 +197,29 @@ void StockDialog::AplicarTema(bool oscuro) {
 
 std::variant<unsigned long long, double> StockDialog::GetStock() const {
     wxString raw = txtStock->GetValue();
-    raw.Replace(",", ""); // elimina comas
+
+    // Eliminar comas de millares (ej: "1,250.50" -> "1250.50")
+    raw.Replace(",", "");
 
     if (m_productByWeight) {
         double value = 0.0;
-        raw.ToDouble(&value);
 
-        // Redondear a 3 decimales
-		value = round3(value);
+        // USAR ToCDouble: Esta función ignora la configuración regional del PC
+        // y SIEMPRE interpreta el punto (.) como separador decimal.
+        if (!raw.ToCDouble(&value)) {
+            // Si el usuario escribió letras o algo raro
+            return 0.0;
+        }
+
+        value = round3(value);
 
         return value;
     }
-    else {
-        unsigned long long value = 0;
-        raw.ToULongLong(&value);
-        return value;
-    }
+
+    // Para el caso de unidades enteras
+    unsigned long long ullValue = 0;
+    raw.ToULongLong(&ullValue);
+    return ullValue;
 }
 
 void StockDialog::FormatavailableStockToValue(const std::variant<unsigned long long, double>& availableStock) {
