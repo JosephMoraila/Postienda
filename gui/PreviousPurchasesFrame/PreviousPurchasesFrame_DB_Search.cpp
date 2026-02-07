@@ -169,8 +169,23 @@ void PreviousPurchaseFrame::GetPurchases(std::string startDateTime, std::string 
 }
 
 void PreviousPurchaseFrame::GetTotalByFilter(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string worker){
+    wxString dbPath = GetDBPath();
+    // Verificar si existe el archivo de base de datos
+    if (!wxFileExists(dbPath)) {
+        wxMessageBox(_("The database was not found at:\n") + dbPath, _("Database error"), wxOK | wxICON_ERROR, this);
+        return;
+    }
+
     sqlite::database db(GetDBPath());
     db << "PRAGMA encoding = 'UTF-8';";
+
+    char tableExists = 0;
+    db << "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='purchases';" >> tableExists;
+
+    if (tableExists == 0) {
+        return;
+    }
+    
     std::string countQuery = "SELECT IFNULL(SUM(total), 0) FROM purchases WHERE 1=1";
     countQuery += " AND date BETWEEN ? AND ?";
     if (minAmount != -1.0) countQuery += " AND total >= ?";
