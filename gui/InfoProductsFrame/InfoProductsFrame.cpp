@@ -4,6 +4,7 @@
 #include "utils/ValidateStringInput.h"
 
 InfoProductsFrame::InfoProductsFrame(wxWindow* parent) : wxFrame(parent, wxID_ANY, _("Info products"), wxDefaultPosition, wxDefaultSize) {
+    AplicarIconoPrincipal(this);
     Widgets();
     wxRect screenRect = wxDisplay(wxDisplay::GetFromWindow(this)).GetClientArea();
     int screenWidth = screenRect.GetWidth();

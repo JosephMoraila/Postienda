@@ -6,6 +6,7 @@ StockDialog::StockDialog(wxWindow* parent, std::variant<unsigned long long, doub
     : wxDialog(parent, wxID_ANY, "Stock", wxDefaultPosition, wxSize(350, 300)),
     m_availableStock(std::move(availableStock))   // guardamos en el miembro
 {
+    AplicarIconoPrincipal(this);
 
 	// PRIMERO: Determinar el tipo de producto antes de crear los widgets para informar al usuario si es por peso o por unidad.
     std::visit([this](auto&& arg) {

@@ -8,11 +8,12 @@
 #include "utils/ValidateStringInput.h"  
 #include <iomanip>
 #include <sstream>
-
+#include "utils/window/WindowUtils.h"
 #include <fstream>
 
 ProductosFrame::ProductosFrame(wxWindow* parent): wxFrame(parent, wxID_ANY, _("Products"), wxDefaultPosition, wxSize(800, 600)), enModoBusqueda(false)  // Inicializar variable
 {
+	AplicarIconoPrincipal(this);
 	Widgets();  // Inicializa los widgets de la ventana
     CrearConexionBD();
 	LoadCategoriesFromDB();

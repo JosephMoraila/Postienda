@@ -7,7 +7,7 @@ using namespace WARNING_MESSAGES;
 
 ProductoDialog::ProductoDialog(wxWindow* parent)
     : wxDialog(parent, wxID_ANY, _("New product"), wxDefaultPosition, wxSize(350, 300)) {
-
+    AplicarIconoPrincipal(this);
     Widgets();
 }
 

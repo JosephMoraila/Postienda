@@ -13,6 +13,7 @@ using namespace PRINTING_ERROR_MESSAGES;
 PrintMenu::PrintMenu(wxWindow* parent, const wxString& title)
     : wxDialog(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize)
 {
+    AplicarIconoPrincipal(this);
     Widgets();
     this->Bind(wxEVT_CLOSE_WINDOW, &PrintMenu::OnCloseSave, this);
 }

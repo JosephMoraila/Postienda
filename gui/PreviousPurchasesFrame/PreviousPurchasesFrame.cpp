@@ -4,6 +4,7 @@
 #include <wx/display.h>
 
 PreviousPurchaseFrame::PreviousPurchaseFrame(wxWindow* parent) : wxFrame(parent, wxID_ANY, _("Previous Purchases"), wxDefaultPosition, wxDefaultSize) {
+    AplicarIconoPrincipal(this);
     Widgets();
 
     // Obtener el ÃÂ¡rea de trabajo (tamaÃÂ±o de la pantalla excluyendo la barra de tareas)

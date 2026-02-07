@@ -67,3 +67,5 @@ void OnWidgetLeave(wxMouseEvent& event, bool temaOscuro);
  * @param temaOscuro true si el tema actual es oscuro, false si es claro.
  */
 void SetWidgetHover(wxWindow* wnd, bool enter, bool temaOscuro);
+
+void AplicarIconoPrincipal(wxTopLevelWindow* window);

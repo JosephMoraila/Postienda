@@ -2,6 +2,7 @@
 #include "utils/window/WindowUtils.h"
 
 SpecificPurchaseInfoMenu::SpecificPurchaseInfoMenu(wxWindow* parent, unsigned long long id) : wxFrame(parent, wxID_ANY, wxString::Format(_("Purchase ID: %llu"), id)), m_purchaseId(id){
+	AplicarIconoPrincipal(this);
 	Widgets();
 	Bind(wxEVT_SIZE, &SpecificPurchaseInfoMenu::OnSize, this);
 	LoadPurchaseDetails(id);

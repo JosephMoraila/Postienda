@@ -1,4 +1,5 @@
 #include "utils/window/WindowUtils.h"
+#include "constants/RES/ICON/ICON_PATH.hpp"
 #include "gui/TicketFrame/Canvas/Canvas.hpp"
 #include "gui/TicketFrame/TicketFrame.hpp"
 #include <wx/grid.h>
@@ -175,3 +176,16 @@ void SetWidgetHover(wxWindow* wnd, bool enter, bool temaOscuro) {
 }
 
 
+void AplicarIconoPrincipal(wxTopLevelWindow* window) {
+    if (!window) return;
+
+#ifdef __WXMSW__
+    // En Windows usa el recurso del .rc (MAINICON es el ID que definimos)
+    window->SetIcon(wxICON(MAINICON));
+#else
+    // En Linux/macOS carga el PNG
+    if (wxFileExists(ICON_PATH())) {
+        window->SetIcon(wxIcon(ICON_PATH(), wxBITMAP_TYPE_PNG));
+    }
+#endif
+}

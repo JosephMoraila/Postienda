@@ -131,7 +131,12 @@ add_subdirectory(src)
 # -----------------------------------
 # Ejecutable principal
 # -----------------------------------
-add_executable(Postienda src/App.cpp)
+if(WIN32)
+    set_source_files_properties(resources.rc PROPERTIES OBJECT_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/res/favicon.ico")
+    set(SOURCES resources.rc)
+endif()
+
+add_executable(Postienda src/App.cpp ${SOURCES})
 
 # -----------------------------------
 # Includes

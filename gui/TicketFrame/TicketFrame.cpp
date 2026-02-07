@@ -13,6 +13,7 @@ using json = nlohmann::json;
 // -------------------- TicketFrame --------------------
 TicketFrame::TicketFrame(wxWindow* parent) : wxFrame(parent, wxID_ANY, "Ticket", wxDefaultPosition, wxSize(1000, 700))
 {
+    AplicarIconoPrincipal(this);
     Widgets();
     Bind(wxEVT_SIZE, &TicketFrame::OnSize, this);
     AdjustCanvasScroll();

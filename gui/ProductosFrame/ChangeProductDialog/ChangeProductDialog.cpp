@@ -1,8 +1,10 @@
 ﻿#include "gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.h"
+#include "utils/window/WindowUtils.h"
 
 ChangeProductDialog::ChangeProductDialog(wxWindow* parent,Producto& product)
     : ProductoDialog(parent), m_product(product)
 {
+	AplicarIconoPrincipal(this);
 	SetTitle(_("Edit Product"));
 	//Widgets(); No hace falta llamar a Widgets porque ya se llama en el constructor de ProductoDialog
 	EstablecerDatos();

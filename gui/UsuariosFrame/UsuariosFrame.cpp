@@ -6,6 +6,7 @@ UsuariosFrame::UsuariosFrame(wxWindow* parent, MainFrame* mainFramePtr)
     : wxFrame(parent, wxID_ANY, _("Usuarios"), wxDefaultPosition, wxDefaultSize),
     mainFramePun(mainFramePtr)
 {
+    AplicarIconoPrincipal(this);
     SetSizeHints(500, 400, 500, 400); // TamaÃÂÃÂ±o fijo
     SetWindowStyleFlag(GetWindowStyleFlag() & ~wxRESIZE_BORDER); // Quitar borde de redimensionar
     Widgets();

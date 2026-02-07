@@ -18,6 +18,7 @@ using json = nlohmann::json;
 
 MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title)
 {
+	AplicarIconoPrincipal(this);
     MenuBar();
     Widgets();
 	CreateJSONTemaOscuro(); // Carga el estado del tema (o crea el archivo), tiene que ir primero porque crea o le el JSON que contendrÃÂÃÂ¡ si estamos en blanco o negro
