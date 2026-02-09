@@ -99,6 +99,14 @@ if(UNIX AND NOT APPLE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${WX_CXXFLAGS}")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${WX_LIBS}")
 
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
+    pkg_check_modules(GDK3 REQUIRED gdk-3.0)
+    include_directories(${GTK3_INCLUDE_DIRS})
+    include_directories(${GDK3_INCLUDE_DIRS}) 
+    link_directories(${GTK3_LIBRARY_DIRS})
+    link_directories(${GDK3_LIBRARY_DIRS}) 
+
     # GLib + GObject + GIO
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(GLIB REQUIRED glib-2.0 gobject-2.0 gio-2.0)
@@ -169,6 +177,8 @@ if(UNIX AND NOT APPLE)
     
     target_link_libraries(Postienda PRIVATE
         ${WX_LIBS}
+        ${GTK3_LIBRARIES}
+        ${GDK3_LIBRARIES}
         ${GLIB_LIBRARIES}
         ${CUPS_LIBRARIES}
         ${LIBUSB_LIBRARIES}

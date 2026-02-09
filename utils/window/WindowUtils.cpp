@@ -8,9 +8,18 @@
 #include <wx/treectrl.h>
 #include <wx/datectrl.h>
 #include <wx/timectrl.h>
+#include <wx/stdpaths.h> 
 
 #ifdef __linux__
 #include "res/favicon.xpm"
+#endif
+
+#ifdef __WXGTK__
+    #include <gtk/gtk.h>
+    #include <gdk/gdk.h>
+    #if GTK_CHECK_VERSION(3, 22, 0)
+        #include <gdk/gdkwayland.h>
+    #endif
 #endif
 
 void ApplyTheme(wxWindow* ventana, bool oscuro) {
@@ -187,9 +196,39 @@ void AplicarIconoPrincipal(wxTopLevelWindow* window) {
     // En Windows usa el recurso del .rc (MAINICON es el ID que definimos)
     window->SetIcon(wxICON(MAINICON));
 #else
-    //Works fine with x11 and does not need the original image
+    // Cargar ícono desde XPM embebido
     wxIconBundle bundle;
     bundle.AddIcon(wxIcon(app_icon_xpm));
+    
+    // Intentar cargar también desde archivo si existe
+    wxString iconPath = wxStandardPaths::Get().GetUserConfigDir() + "/Postienda/settings/res/favicon.png";
+    if (wxFileExists(iconPath)) {
+        wxIcon fileIcon;
+        if (fileIcon.LoadFile(iconPath, wxBITMAP_TYPE_PNG)) {
+            bundle.AddIcon(fileIcon);
+        }
+    }
+    
     window->SetIcons(bundle);
+
+    #ifdef __WXGTK__
+        // Para Wayland, establecer tanto WM_CLASS como el app_id de GDK
+        GtkWindow* gtkWin = GTK_WINDOW(window->GetHandle());
+        
+        // Método 1: WM_CLASS (para X11) - ignorar warning de deprecated
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        gtk_window_set_wmclass(gtkWin, "postienda", "Postienda");
+        #pragma GCC diagnostic pop
+        
+        // Método 2: Forzar el app_id en Wayland
+        #if GTK_CHECK_VERSION(3, 22, 0)
+            GdkWindow* gdkWin = gtk_widget_get_window(GTK_WIDGET(gtkWin));
+            if (gdkWin && GDK_IS_WAYLAND_WINDOW(gdkWin)) {
+                // En Wayland, el app_id debe coincidir con el nombre del .desktop
+                gdk_wayland_window_set_application_id(gdkWin, "postienda");
+            }
+        #endif
+    #endif
 #endif
 }

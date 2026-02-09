@@ -14,12 +14,23 @@
 #include <windows.h>
 #endif
 
+#ifdef __WXGTK__
+#include <glib.h>
+#endif
 
 using json = nlohmann::json;
 
 wxIMPLEMENT_APP(App);
 
 bool App::OnInit() {
+    // CRÍTICO: Establecer el nombre de la aplicación ANTES de crear ventanas (para Wayland)
+    #ifdef __WXGTK__
+        g_set_prgname("postienda");
+        g_set_application_name("Postienda");
+        SetAppName("postienda");
+        SetAppDisplayName("Postienda");
+    #endif
+
     //Verify if an instance already exists
 #ifdef _WIN32
     HWND hWnd = FindWindowA(nullptr, APPNAME.c_str());
@@ -105,11 +116,6 @@ fallback_no_locale:
     m_mainFrame->Maximize(true);
     m_mainFrame->Center();
     m_mainFrame->Show();
-
-    #ifdef __linux__ //Esto ayuda a Wayland a asociar ventana a .desktop.
-    SetAppName("postienda");
-    SetAppDisplayName("Postienda");
-    #endif
 
     return true;
 }
