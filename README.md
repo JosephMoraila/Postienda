@@ -71,7 +71,7 @@ Download the source code from [wxWidgets official website](https://www.wxwidgets
 This guide explains how to download, compile, and install **OpenSSL** on **Windows** for static builds.
 
 
-## Download
+## Download Windows
 
 Clone with: ```git clone https://github.com/microsoft/vcpkg.git``` on any folder and **vcpkg.exe** from https://github.com/microsoft/vcpkg-tool/releases and place it on root vcpkg\ you just created
 
@@ -85,6 +85,29 @@ Clone with: ```git clone https://github.com/microsoft/vcpkg.git``` on any folder
 3.- Export root folder to the path. You can do it with this command on PowerShell: ```setx VCPKG_ROOT {YourUserPath}\vcpkg```
 
 4.- If previously ```.\vcpkg.exe install openssl:x64-windows``` didn't work you can try again. Download OpenSSL and compile can take time.
+
+
+## Download Linux
+
+```git clone https://github.com/microsoft/vcpkg.git``` on any folder
+
+## Linux
+
+1.- After you downloaded itgo to vcpkg/
+
+2.- Give permitions to the installer script to execute: ```chmod +x bootstrap-vcpkg.sh``` and then ```./bootstrap-vcpkg.sh```
+
+3.- Then run ```./vcpkg install openssl```
+
+4.- This can depend on the distro but: ```install kernel-devel kernel-headers```
+
+5.- Also ```install perl``` and ```install perl-IPC-Cmd```
+
+5.- Maybe you can need ```groupinstall "Development Tools"``` and ```install cmake make gcc-c++ git```. It's not mandatory this step
+
+6.- Then: ```./vcpkg install openssl```
+
+7.- And finally integrate with CMake / Visual Studio Code: ```./vcpkg integrate install```
 
 
 ## Demonstration:
