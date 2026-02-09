@@ -146,6 +146,7 @@ if(UNIX AND NOT APPLE)
         ${GLIB_INCLUDE_DIRS}
         ${CUPS_INCLUDE_DIRS}
         ${LIBUSB_INCLUDE_DIRS}
+        ${OPENSSL_INCLUDE_DIR}
     )
 endif()
 
@@ -163,12 +164,16 @@ target_link_libraries(Postienda PRIVATE
 
 # Librerías Linux
 if(UNIX AND NOT APPLE)
+    # Buscar OpenSSL
+    find_package(OpenSSL REQUIRED)
+    
     target_link_libraries(Postienda PRIVATE
         ${WX_LIBS}
         ${GLIB_LIBRARIES}
         ${CUPS_LIBRARIES}
         ${LIBUSB_LIBRARIES}
-
+        OpenSSL::SSL
+        OpenSSL::Crypto
     )
 endif()
 

@@ -10,7 +10,7 @@ std::string ICON_PATH() {
 
 #else
 
-	std::string iconPath = resFolder + "favicon.png"
+	std::string iconPath = resFolder + "favicon.png";
 
 #endif
 

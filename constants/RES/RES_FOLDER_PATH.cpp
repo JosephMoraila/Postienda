@@ -7,11 +7,11 @@ std::string RES_FOLDER_PATH(){
 
 	#ifdef _WIN32
 
-	std::string resFolder = settingsFolder + "\\resources\\";
+	std::string resFolder = settingsFolder + "\\res\\";
 
 	#else
 
-	std::string resFolder = settingsFolder + "/resources/";
+	std::string resFolder = settingsFolder + "/res/";
 
 	#endif
 
