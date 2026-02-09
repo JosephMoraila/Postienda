@@ -86,6 +86,16 @@ Clone with: ```git clone https://github.com/microsoft/vcpkg.git``` on any folder
 
 4.- If previously ```.\vcpkg.exe install openssl:x64-windows``` didn't work you can try again. Download OpenSSL and compile can take time.
 
+5.- If you want OpenSSL to integrate statically to the exe downland MSI of Perl from: https://strawberryperl.com/
+
+6.- Open Developer Command Prompt de 64 bits and execute on any folder:```git clone https://github.com/openssl/openssl.git```. ```cd openssl``` .```git checkout openssl-3.2.1```
+
+7.- Execute (Can take a while): ```perl Configure VC-WIN64A no-shared no-tests --prefix=C:\openssl-static```
+
+8.- Compile (Can take also a while): ```nmake```
+
+9.- Install: ```nmake install```
+
 
 ## Download Linux
 

@@ -193,7 +193,7 @@ endif()
 # Librerías Windows
 if(WIN32)
     # Resolver conflictos de runtime library
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     
     # Librerías DEBUG (con sufijo 'd')
     set(WX_LIBS_DEBUG
@@ -243,15 +243,17 @@ if(WIN32)
         $<$<CONFIG:Release>:${WX_LIBS_RELEASE}>
         ${WEBP_LIBS}
     )
-
+    # Rutas de OpenSSL estático
+    set(OPENSSL_ROOT_DIR "C:/openssl-static")
+    set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
+    set(OPENSSL_LIB_DIR "${OPENSSL_ROOT_DIR}/lib")
+    set(OPENSSL_USE_STATIC_LIBS TRUE)  # Muy importante para librerías estáticas
+    add_definitions(-DOPENSSL_STATIC)  # Evita que busque DLLs
     # --- OpenSSL (vcpkg / system) ---
     find_package(OpenSSL REQUIRED)
 
-    target_link_libraries(Postienda
-        PRIVATE
-        OpenSSL::SSL
-        OpenSSL::Crypto
-    )
+    target_include_directories(Postienda PRIVATE ${OPENSSL_INCLUDE_DIR})
+    target_link_libraries(Postienda PRIVATE OpenSSL::SSL OpenSSL::Crypto)
 
 
 endif()
