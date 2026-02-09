@@ -106,6 +106,11 @@ fallback_no_locale:
     m_mainFrame->Center();
     m_mainFrame->Show();
 
+    #ifdef __linux__ //Esto ayuda a Wayland a asociar ventana a .desktop.
+    SetAppName("postienda");
+    SetAppDisplayName("Postienda");
+    #endif
+
     return true;
 }
 

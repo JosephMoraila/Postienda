@@ -9,6 +9,10 @@
 #include <wx/datectrl.h>
 #include <wx/timectrl.h>
 
+#ifdef __linux__
+#include "res/favicon.xpm"
+#endif
+
 void ApplyTheme(wxWindow* ventana, bool oscuro) {
     /// @brief Define los colores del tema de la aplicaciÃÂ³n.
     /// @details
@@ -183,9 +187,9 @@ void AplicarIconoPrincipal(wxTopLevelWindow* window) {
     // En Windows usa el recurso del .rc (MAINICON es el ID que definimos)
     window->SetIcon(wxICON(MAINICON));
 #else
-    // En Linux/macOS carga el PNG
-    if (wxFileExists(ICON_PATH())) {
-        window->SetIcon(wxIcon(ICON_PATH(), wxBITMAP_TYPE_PNG));
-    }
+    //Works fine with x11 and does not need the original image
+    wxIconBundle bundle;
+    bundle.AddIcon(wxIcon(app_icon_xpm));
+    window->SetIcons(bundle);
 #endif
 }

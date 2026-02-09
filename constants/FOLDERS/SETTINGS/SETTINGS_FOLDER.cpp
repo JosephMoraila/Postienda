@@ -1,6 +1,4 @@
-﻿#pragma once
-
-#include "constants/APPNAME/APPNAME.h"
+﻿#include "constants/APPNAME/APPNAME.h"
 #include "constants/FOLDERS/SETTINGS/SETTINGS_FOLDER.hpp"
 #include <filesystem>
 #include <string>
