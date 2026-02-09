@@ -47,3 +47,4 @@ printerSettings.json
 Postienda/
 build/
 build-release/
+build-debug/
