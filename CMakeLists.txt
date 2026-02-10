@@ -136,6 +136,14 @@ add_subdirectory(constants)
 add_subdirectory(gui)
 add_subdirectory(src)
 
+if(WIN32)
+    set(OPENSSL_ROOT_DIR "C:/openssl-static")
+    set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
+    set(OPENSSL_LIB_DIR "${OPENSSL_ROOT_DIR}/lib")
+    set(OPENSSL_USE_STATIC_LIBS TRUE)
+    add_definitions(-DOPENSSL_STATIC)
+endif()
+
 # -----------------------------------
 # Ejecutable principal
 # -----------------------------------
@@ -188,9 +196,6 @@ if(UNIX AND NOT APPLE)
 endif()
 
 # Librerías Windows
-# Librerías Windows
-# Librerías Windows
-# Librerías Windows
 if(WIN32)
     # Resolver conflictos de runtime library
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
@@ -237,24 +242,25 @@ if(WIN32)
         ${CMAKE_SOURCE_DIR}/third_party/webp/lib/libwebpmux.lib
     )
 
-    # Enlazar las librerías correctas según la configuración
-    target_link_libraries(Postienda PRIVATE 
+    # Incluir headers de OpenSSL
+    target_include_directories(Postienda PRIVATE ${OPENSSL_INCLUDE_DIR})
+
+    # Enlazar todas las librerías de una sola vez
+    target_link_libraries(Postienda PRIVATE
         $<$<CONFIG:Debug>:${WX_LIBS_DEBUG}>
         $<$<CONFIG:Release>:${WX_LIBS_RELEASE}>
         ${WEBP_LIBS}
+        "${OPENSSL_LIB_DIR}/libcrypto.lib"
+        "${OPENSSL_LIB_DIR}/libssl.lib"
+        crypt32
+        ws2_32
+        bcrypt
+        user32
+        gdi32
+        advapi32
+        ole32
+        shell32
     )
-    # Rutas de OpenSSL estático
-    set(OPENSSL_ROOT_DIR "C:/openssl-static")
-    set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
-    set(OPENSSL_LIB_DIR "${OPENSSL_ROOT_DIR}/lib")
-    set(OPENSSL_USE_STATIC_LIBS TRUE)  # Muy importante para librerías estáticas
-    add_definitions(-DOPENSSL_STATIC)  # Evita que busque DLLs
-    # --- OpenSSL (vcpkg / system) ---
-    find_package(OpenSSL REQUIRED)
-
-    target_include_directories(Postienda PRIVATE ${OPENSSL_INCLUDE_DIR})
-    target_link_libraries(Postienda PRIVATE OpenSSL::SSL OpenSSL::Crypto)
-
 
 endif()
 
