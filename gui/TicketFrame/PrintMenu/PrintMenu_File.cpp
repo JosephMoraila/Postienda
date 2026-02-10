@@ -110,7 +110,10 @@ void PrintMenu::SaveSettingsPrinterCheckbox(wxCommandEvent& event) {
 void PrintMenu::LoadSettingsPrinterCheckbox() {
     std::string filename = PRINT_SETTINGS_PATH;
     std::ifstream infile(filename);
-    if (!infile.is_open()) checkboxPrintTicket->SetValue(false);
+    if (!infile.is_open()) {
+        checkboxPrintTicket->SetValue(false);
+        return;
+    }
     try {
         json j;
         infile >> j;

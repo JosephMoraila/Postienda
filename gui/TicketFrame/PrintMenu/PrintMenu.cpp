@@ -53,6 +53,7 @@ void PrintMenu::Widgets() {
     checkboxPrintTicket = new wxCheckBox(panel, wxID_ANY, _("Print receipt when making purchase"));
     checkboxPrintTicket->Bind(wxEVT_CHECKBOX, &PrintMenu::SaveSettingsPrinterCheckbox, this);
     if (wxFileExists(PRINT_SETTINGS_PATH)) LoadSettingsPrinterCheckbox();
+    else checkboxPrintTicket->SetValue(false);
     checkboxPrintTicket->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent& event) { OnWidgetEnter(event, temaOscuro); });
     checkboxPrintTicket->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) { OnWidgetLeave(event, temaOscuro); });
     mainSizer->Add(checkboxPrintTicket, 0, wxALL | wxALIGN_CENTER, 5);
