@@ -4,6 +4,7 @@
 #include <wx/listctrl.h>
 #include <wx/sizer.h>
 #include "utils/DateTimeUtils.hpp"
+#include "utils/translate/Translate_Utils.hpp"
 
 void SpecificPurchaseInfoMenu::Widgets()
 {
@@ -20,7 +21,7 @@ void SpecificPurchaseInfoMenu::Widgets()
 	printButton->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {OnWidgetLeave(event, temaOscuro); });
     buttomSizer->Add(printButton, 0, wxALL, 5);
 
-	auto [worker, total, dateTime] = GetWorkerTotalDateTimePurchaseID(); // Llamada para inicializar totalUI
+	auto [worker, total, dateTime, method] = GetWorkerTotalDateTimePurchaseID(); // Llamada para inicializar totalUI
     labelTotal = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format("Total: %s", FormatFloatWithCommas(total)), wxDefaultPosition, wxDefaultSize);
 	buttomSizer->Add(labelTotal, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
@@ -31,6 +32,10 @@ void SpecificPurchaseInfoMenu::Widgets()
 	buttomSizer->Add(timeLabel, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 	wxStaticText* workerLabel = new wxStaticText(buttonPanel, wxID_ANY, worker, wxDefaultPosition, wxDefaultSize);
 	buttomSizer->Add(workerLabel, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    //Translate method
+    wxString translatedText = Translate_Utils::GetTranslatedPaymentMethod(std::string(method)); //Copy because method is rvalue
+    wxStaticText* methodLabel = new wxStaticText(buttonPanel, wxID_ANY, translatedText, wxDefaultPosition, wxDefaultSize);
+    buttomSizer->Add(methodLabel, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     buttonPanel->SetSizer(buttomSizer);
 

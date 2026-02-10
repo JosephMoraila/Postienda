@@ -2,12 +2,12 @@
 # Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Automatically generated, 2025.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-06 16:23-0600\n"
+"POT-Creation-Date: 2026-02-10 09:42-0600\n"
 "PO-Revision-Date: 2025-11-11 20:39-0600\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -114,7 +114,7 @@ msgstr "Confirma tu contraseña:"
 #: gui/AskEnterPasswordFrame/AskEnterPasswordFrame_UI.cpp:13
 #: gui/LanguageFrame/LanguageFrame_UI.cpp:64
 #: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:84
-#: gui/ProductosFrame/StockDialog/StockDialog.cpp:60
+#: gui/ProductosFrame/StockDialog/StockDialog.cpp:61
 #: gui/TicketFrame/Canvas/InputTextModal/InputTextModal.cpp:25
 msgid "Accept"
 msgstr "Aceptar"
@@ -136,52 +136,54 @@ msgid "Info products"
 msgstr "Info compras"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:18
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:29
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:70
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:37
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:78
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:191
 msgid "The database was not found at:\n"
 msgstr "No se encontró la base de datos en:\n"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:18
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:29
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:71
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:37
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:78
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:191
 msgid "Database error"
 msgstr "Error de base de datos"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:28
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:40
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:82
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:48
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:89
 msgid "No purchases found. You have not done any purchase."
 msgstr "No hay compras encontradas. No has hecho ninguna compra."
 
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:28
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:40
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:82
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:48
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:89
 msgid "Table not found"
 msgstr "Tabla no encontrada"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:168
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:149
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:165
 msgid "No purchases were found with the specified filters."
 msgstr "No se encontraron compras con los filtros especificados."
 
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:168
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:53
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:149
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:61
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:165
 msgid "No results"
 msgstr "Sin resultados"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:171
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:152
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:168
 msgid "No more records available."
 msgstr "No hay más registros disponibles."
 
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:171
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:152
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:168
 msgid "End of results"
 msgstr "Fin de los resultados"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:181
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:60
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:68
 msgid "An unknown error occurred while processing the purchase."
 msgstr "Ocurrió un error desconocido al procesar la compra."
 
@@ -222,7 +224,7 @@ msgid "Highest to lowest"
 msgstr "Mayor a menor"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:50
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:48
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:55
 #: gui/ProductosFrame/ProductosFrame_UI.cpp:172
 msgid "Search"
 msgstr "Buscar"
@@ -233,7 +235,7 @@ msgstr "Nombre del producto"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:80
 #: gui/MainFrame/MainFrame_UI.cpp:126
-#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:43
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:48
 msgid "Price"
 msgstr "Precio"
 
@@ -247,17 +249,17 @@ msgid "Quantity sold"
 msgstr "Cantidad vendida"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:89
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:92
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:102
 msgid "Load previous"
 msgstr "Cargar anteriores"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:93
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:96
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:106
 msgid "Page: -/-"
 msgstr "Página: -/-"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:98
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:101
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:111
 msgid "Load more"
 msgstr "Cargar más"
 
@@ -327,7 +329,7 @@ msgid "Enter the amount in grams (example: 750):"
 msgstr "Ingresa la cantidad en gramos (ejemplo: 750):"
 
 #: gui/MainFrame/logic/MainFrame_DB.cpp:125
-#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:42
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:47
 msgid "Quantity"
 msgstr "Cantidad"
 
@@ -429,11 +431,11 @@ msgstr ""
 "El programa no se cerró correctamente y hay elementos en el carrito.\n"
 "¿Deseas restaurarlos?"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:565
+#: gui/MainFrame/logic/MainFrame_DB.cpp:566
 msgid "Error creating the purchases table:"
 msgstr "Error al crear la tabla de compras:"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:615
+#: gui/MainFrame/logic/MainFrame_DB.cpp:619
 #, c-format
 msgid "Error registering purchase: %s"
 msgstr "Error al registrar la compra: %s"
@@ -468,10 +470,18 @@ msgid "Confirm deletion"
 msgstr "Confirmar eliminación"
 
 #: gui/MainFrame/MainFrame_Binds.cpp:240
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:51
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:18
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:103
+#: utils/translate/Translate_Utils.cpp:8
 msgid "Cash"
 msgstr "Efectivo"
 
 #: gui/MainFrame/MainFrame_Binds.cpp:241
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:52
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:19
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:104
+#: utils/translate/Translate_Utils.cpp:9
 msgid "Card"
 msgstr "Tarjeta"
 
@@ -548,46 +558,48 @@ msgstr ""
 "Tienes productos en tu carrito.\n"
 "¿Deseas cerrar? Los elementos del carrito serán eliminados."
 
-#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:23
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:24
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_Binds.cpp:37
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:99
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:100
 msgid "No canvas available by the moment. Select EscPos"
 msgstr "No canvas disponoble por el momento. Selecciona EscPos"
 
-#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:23
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:24
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_Binds.cpp:37
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:99
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:100
 msgid "No available"
 msgstr "No disponible"
 
-#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:26
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:27
 msgid "Error obtaining print mode"
 msgstr "Error al obtener el modo de impresión"
 
-#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:60
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:61
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:42
 msgid "The products could not be obtained."
 msgstr "No se pudieron obtener los productos."
 
-#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:159
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:162
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_DB.cpp:37
 msgid "No items were found for this purchase."
 msgstr "No se encontraron artículos para esta compra."
 
-#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:190
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:195
 #, c-format
 msgid ""
 "Total: $%s\n"
 "Paid: $%s\n"
 "Change: $%s\n"
+"Payment method: %s\n"
 "Attended by: %s"
 msgstr ""
 "Total: $%s\n"
 "Pagado: $%s\n"
 "Cambio: $%s\n"
+"Método de pago: %s\n"
 "Atendido por: %s"
 
-#: gui/MainFrame/MainFrame_UI.cpp:10 gui/TicketFrame/TicketFrame.cpp:58
+#: gui/MainFrame/MainFrame_UI.cpp:10 gui/TicketFrame/TicketFrame.cpp:59
 msgid "Settings"
 msgstr "Configuración"
 
@@ -674,45 +686,57 @@ msgstr "Monto máximo:"
 msgid "Worker:"
 msgstr "Empleado:"
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:82
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:48
+msgid "Method:"
+msgstr "Método"
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:50
+msgid "Any"
+msgstr "Cualquiera"
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:91
 msgid "Date"
 msgstr "Fecha"
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:83
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:92
 msgid "Time"
 msgstr "Hora"
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:84
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:93
 msgid "Total"
 msgstr "Total"
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:85
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:94
 msgid "Worker"
 msgstr "Empleado"
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_Binds.cpp:67
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:95
+msgid "Method"
+msgstr "Método"
+
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_Binds.cpp:73
 msgid "Copy row"
 msgstr "Copiar fila"
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_Binds.cpp:68
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_Binds.cpp:74
 msgid "View purchase"
 msgstr "Ver compra"
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_Binds.cpp:90
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:77
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_Binds.cpp:96
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:78
 msgid "Copied to clipboard"
 msgstr "Copiado al portapapeles"
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:46
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:54
 msgid "Page: -"
 msgstr "Página: -/-"
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:53
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:61
 #, c-format
 msgid "No purchases were found with the ID %llu."
 msgstr "No se encontraron compras con el ID %llu."
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:164
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:180
 msgid "An unknown error occurred while retrieving purchases."
 msgstr "Ocurrió un error desconocido al obtener las compras."
 
@@ -729,34 +753,36 @@ msgstr "Error al cargar los detalles de la compra:\n"
 msgid "Unknown error loading purchase details."
 msgstr "Error desconocido al cargar los detalles de la compra."
 
-#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:114
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:118
 #, c-format
 msgid ""
 "Total: %s\n"
+"Payment method: %s\n"
 "Attended by: %s"
 msgstr ""
-"Total: %s\n"
+"Total: $%s\n"
+"Método de pago: %s\n"
 "Atendido por: %s"
 
-#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:17
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:18
 msgid "Print ticket"
 msgstr "Imprimir ticket"
 
-#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:41
-#: gui/UsuariosFrame/UsuariosFrame.cpp:27
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:46
+#: gui/UsuariosFrame/UsuariosFrame.cpp:28
 msgid "Name"
 msgstr "Nombre"
 
-#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:6
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:8
 msgid "Edit Product"
 msgstr "Editar producto"
 
-#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:26
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:28
 #: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:65
 msgid "Price per kilo:"
 msgstr "Precio por kilo:"
 
-#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:32
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:34
 #: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:23
 #: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:71
 msgid "Price:"
@@ -1153,7 +1179,7 @@ msgstr ""
 msgid "Clean"
 msgstr "Limpiar"
 
-#: gui/ProductosFrame/StockDialog/StockDialog.cpp:36
+#: gui/ProductosFrame/StockDialog/StockDialog.cpp:37
 msgid ""
 "\n"
 "Enter stock per kilo."
@@ -1161,7 +1187,7 @@ msgstr ""
 "\n"
 "Introduce el stock por kilo."
 
-#: gui/ProductosFrame/StockDialog/StockDialog.cpp:36
+#: gui/ProductosFrame/StockDialog/StockDialog.cpp:37
 msgid ""
 "\n"
 "Enter stock per unit"
@@ -1169,7 +1195,7 @@ msgstr ""
 "\n"
 "Introduce el stock por unidad"
 
-#: gui/ProductosFrame/StockDialog/StockDialog.cpp:38
+#: gui/ProductosFrame/StockDialog/StockDialog.cpp:39
 msgid ""
 "Product stock.\n"
 "Please note that it decreases as purchases are made."
@@ -1186,6 +1212,7 @@ msgid ""
 "Total: $288\n"
 "Paid: $300\n"
 "Change: $12\n"
+"Payment method: Cash\n"
 "Attended by: Jose"
 msgstr ""
 "Domingo, 9/noviembre/2025\n"
@@ -1195,6 +1222,7 @@ msgstr ""
 "Total: $288\n"
 "Pagado: $300\n"
 "Cambio: $12\n"
+"Método de pago: Efectivo\n"
 "Atendido por: Jose"
 
 #: gui/TicketFrame/Canvas/Canvas.cpp:102
@@ -1213,7 +1241,7 @@ msgstr ""
 msgid "The ticket file could not be created"
 msgstr "No se pudo crear el archivo del ticket"
 
-#: gui/TicketFrame/Canvas/Canvas.cpp:152 gui/TicketFrame/TicketFrame.cpp:371
+#: gui/TicketFrame/Canvas/Canvas.cpp:152 gui/TicketFrame/TicketFrame.cpp:372
 msgid "Error saving image in memory"
 msgstr "Error al guardar la imagen en memoria"
 
@@ -1295,7 +1323,7 @@ msgstr ""
 "Ya que la información de la compra tiene un tamaño variable."
 
 #: gui/TicketFrame/Canvas/InputTextModal/InputTextModal.hpp:6
-#: gui/TicketFrame/TicketFrame.cpp:41 gui/TicketFrame/TicketFrame.cpp:158
+#: gui/TicketFrame/TicketFrame.cpp:42 gui/TicketFrame/TicketFrame.cpp:159
 msgid "Add text"
 msgstr "Añadir texto"
 
@@ -1307,24 +1335,24 @@ msgstr "No se encontraron ítems en el ticket"
 msgid "There are no elements to print on the ticket."
 msgstr "No hay elementos para imprimir en el ticket."
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:30
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:88
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:31
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:89
 msgid "No printers were detected"
 msgstr "No se detectaron impresoras"
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:33
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:34
 msgid "Select a printer where the tickets will be printed:"
 msgstr "Seleccione una impresora donde se imprimirán los tickets:"
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:52
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:53
 msgid "Print receipt when making purchase"
 msgstr "Imprimir recibo al realizar la compra"
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:59
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:60
 msgid "Test print"
 msgstr "Impresión de prueba"
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:66
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:67
 msgid ""
 "If the ticket is not being printed, maybe you need\n"
 "to enable your user to use line printers on terminal.\n"
@@ -1334,15 +1362,15 @@ msgstr ""
 "habilitar tu usuario para usar la línea de impresoras en terminal.\n"
 "Intenta este comando: "
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:69
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:70
 msgid "Copy command"
 msgstr "Copiar comando"
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:92
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:93
 msgid "Please select a valid printer."
 msgstr "Por favor seleccione una impresora válida."
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:92
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:93
 msgid "Selection Error"
 msgstr "Error de selección"
 
@@ -1350,23 +1378,23 @@ msgstr "Error de selección"
 msgid "Ticket Settings"
 msgstr "Configuración de tickets"
 
-#: gui/TicketFrame/TicketFrame.cpp:22
+#: gui/TicketFrame/TicketFrame.cpp:23
 msgid "Error saving canvas ticket"
 msgstr "Error al guardar el ticket en el lienzo"
 
-#: gui/TicketFrame/TicketFrame.cpp:27 gui/TicketFrame/TicketFrame.cpp:251
+#: gui/TicketFrame/TicketFrame.cpp:28 gui/TicketFrame/TicketFrame.cpp:252
 msgid "Error saving EscPos ticket"
 msgstr "Error al guardar el ticket en formato EscPos"
 
-#: gui/TicketFrame/TicketFrame.cpp:45
+#: gui/TicketFrame/TicketFrame.cpp:46
 msgid "Add image"
 msgstr "Agregar imagen"
 
-#: gui/TicketFrame/TicketFrame.cpp:49
+#: gui/TicketFrame/TicketFrame.cpp:50
 msgid "Add purchase info"
 msgstr "Agregar información de la compra"
 
-#: gui/TicketFrame/TicketFrame.cpp:53
+#: gui/TicketFrame/TicketFrame.cpp:54
 msgid ""
 "Add purchase information.\n"
 "This can only be added once."
@@ -1374,38 +1402,38 @@ msgstr ""
 "Agregar información de la compra.\n"
 "Esto solo puede agregarse una vez."
 
-#: gui/TicketFrame/TicketFrame.cpp:54
+#: gui/TicketFrame/TicketFrame.cpp:55
 msgid "Save"
 msgstr "Guardar"
 
-#: gui/TicketFrame/TicketFrame.cpp:62 gui/TicketFrame/TicketFrame.cpp:295
+#: gui/TicketFrame/TicketFrame.cpp:63 gui/TicketFrame/TicketFrame.cpp:296
 msgid "Change to EscPos"
 msgstr "Cambiar a EscPos"
 
-#: gui/TicketFrame/TicketFrame.cpp:68
+#: gui/TicketFrame/TicketFrame.cpp:69
 msgid "Width (mm):"
 msgstr "Ancho (mm):"
 
-#: gui/TicketFrame/TicketFrame.cpp:74
+#: gui/TicketFrame/TicketFrame.cpp:75
 msgid "Height (mm):"
 msgstr "Alto (mm):"
 
-#: gui/TicketFrame/TicketFrame.cpp:170
+#: gui/TicketFrame/TicketFrame.cpp:171
 msgid "Select Image"
 msgstr "Seleccionar imagen"
 
-#: gui/TicketFrame/TicketFrame.cpp:170
+#: gui/TicketFrame/TicketFrame.cpp:171
 msgid ""
 "Image files (*.png;*.jpg;*.jpeg;*.bmp;*.webp)|*.png;*.jpg;*.jpeg;*.bmp;*.webp"
 msgstr ""
 "Archivos de imagen (*.png;*.jpg;*.jpeg;*.bmp;*.webp)|*.png;*.jpg;*.jpeg;*."
 "bmp;*.webp"
 
-#: gui/TicketFrame/TicketFrame.cpp:175
+#: gui/TicketFrame/TicketFrame.cpp:176
 msgid "Image could not be loaded."
 msgstr "No se pudo cargar la imagen."
 
-#: gui/TicketFrame/TicketFrame.cpp:196
+#: gui/TicketFrame/TicketFrame.cpp:197
 msgid ""
 "Purchase information is already on the receipt.\n"
 "It can only be added once."
@@ -1413,7 +1441,7 @@ msgstr ""
 "La información de la compra ya está en el recibo.\n"
 "Solo puede agregarse una vez."
 
-#: gui/TicketFrame/TicketFrame.cpp:203
+#: gui/TicketFrame/TicketFrame.cpp:204
 msgid ""
 "\n"
 "[PURCHASE_INFO_STARTS]\n"
@@ -1424,6 +1452,7 @@ msgid ""
 "Total: $288\n"
 "Paid: $300\n"
 "Change: $12\n"
+"Payment method: Cash\n"
 "Attended by: Jose\n"
 "[PURCHASE_INFO_FINISHES]\n"
 msgstr ""
@@ -1436,10 +1465,11 @@ msgstr ""
 "Total: $288\n"
 "Pagado: $300\n"
 "Cambio: $12\n"
+"Método de pago: Efectivo\n"
 "Atendido por: Jose\n"
 "[PURCHASE_INFO_FINISHES]\n"
 
-#: gui/TicketFrame/TicketFrame.cpp:211
+#: gui/TicketFrame/TicketFrame.cpp:212
 msgid ""
 "Purchase information is already on the receipt.\n"
 "It can only be added once.."
@@ -1447,7 +1477,7 @@ msgstr ""
 "La información de la compra ya está en el recibo.\n"
 "Solo puede agregarse una vez."
 
-#: gui/TicketFrame/TicketFrame.cpp:215
+#: gui/TicketFrame/TicketFrame.cpp:216
 msgid ""
 "The purchase information has been added to the receipt.\n"
 "Please note that this is just a preview of how it will look, as the actual "
@@ -1459,7 +1489,7 @@ msgstr ""
 "recibo real puede ser más largo cuando la compra incluya muchos productos, "
 "por lo que el tamaño real puede ser mayor al que está editando actualmente."
 
-#: gui/TicketFrame/TicketFrame.cpp:254
+#: gui/TicketFrame/TicketFrame.cpp:255
 msgid ""
 "Ticket saved successfully.\n"
 "If you want to test the ticket, click the \"Settings\" > \"Test print\" "
@@ -1469,29 +1499,29 @@ msgstr ""
 "Si desea probar el ticket, haga clic en \"Configuración\" > \"Impresión de "
 "prueba\"."
 
-#: gui/TicketFrame/TicketFrame.cpp:254
+#: gui/TicketFrame/TicketFrame.cpp:255
 #: gui/UsuariosFrame/UsuariosFrame_DB.cpp:104
 #: gui/UsuariosFrame/UsuariosFrame_DB.cpp:154
 msgid "Success"
 msgstr "Éxito"
 
-#: gui/TicketFrame/TicketFrame.cpp:258
+#: gui/TicketFrame/TicketFrame.cpp:259
 msgid "Error loading ticket"
 msgstr "Error al cargar el ticket"
 
-#: gui/TicketFrame/TicketFrame.cpp:288
+#: gui/TicketFrame/TicketFrame.cpp:289
 msgid "Change Canvas"
 msgstr "Cambiar lienzo"
 
-#: gui/TicketFrame/TicketFrame.cpp:312
+#: gui/TicketFrame/TicketFrame.cpp:313
 msgid "Ticket file could not be opened"
 msgstr "No se pudo abrir el archivo del ticket"
 
-#: gui/TicketFrame/TicketFrame.cpp:345
+#: gui/TicketFrame/TicketFrame.cpp:346
 msgid "No data.json found in file"
 msgstr "No se encontró data.json en el archivo"
 
-#: gui/TicketFrame/TicketFrame.cpp:406
+#: gui/TicketFrame/TicketFrame.cpp:407
 msgid "The ticket file could not be written"
 msgstr "No se pudo escribir el archivo del ticket"
 
@@ -1499,29 +1529,29 @@ msgstr "No se pudo escribir el archivo del ticket"
 msgid "Usuarios"
 msgstr "Usuarios"
 
-#: gui/UsuariosFrame/UsuariosFrame.cpp:23
-#: gui/UsuariosFrame/UsuariosFrame.cpp:31
+#: gui/UsuariosFrame/UsuariosFrame.cpp:24
+#: gui/UsuariosFrame/UsuariosFrame.cpp:32
 msgid "ADD"
 msgstr "AGREGAR"
 
-#: gui/UsuariosFrame/UsuariosFrame.cpp:37
+#: gui/UsuariosFrame/UsuariosFrame.cpp:38
 msgid "DELETE"
 msgstr "ELIMINAR"
 
-#: gui/UsuariosFrame/UsuariosFrame.cpp:46
+#: gui/UsuariosFrame/UsuariosFrame.cpp:47
 msgid "User"
 msgstr "Usuario"
 
-#: gui/UsuariosFrame/UsuariosFrame.cpp:67
+#: gui/UsuariosFrame/UsuariosFrame.cpp:68
 #: gui/UsuariosFrame/UsuariosFrame_Sesion.cpp:113
 msgid "SESSION: "
 msgstr "SESIÓN: "
 
-#: gui/UsuariosFrame/UsuariosFrame.cpp:71
+#: gui/UsuariosFrame/UsuariosFrame.cpp:72
 msgid "LOG IN"
 msgstr "INICIAR SESIÓN"
 
-#: gui/UsuariosFrame/UsuariosFrame.cpp:76
+#: gui/UsuariosFrame/UsuariosFrame.cpp:77
 msgid "LOG OUT OF ALL SESSIONS"
 msgstr "CERRAR TODAS LAS SESIONES"
 
@@ -1669,6 +1699,14 @@ msgstr "Error al abrir la impresora:"
 #, c-format
 msgid "Error sending RAW data to the printer. Bytes written: %lu"
 msgstr "Error al enviar datos RAW a la impresora. Bytes escritos: %lu"
+
+#, c-format
+#~ msgid ""
+#~ "Total: %s\n"
+#~ "Attended by: %s"
+#~ msgstr ""
+#~ "Total: %s\n"
+#~ "Atendido por: %s"
 
 #~ msgid "Nombre"
 #~ msgstr "Name"

@@ -57,22 +57,23 @@ std::string SpecificPurchaseInfoMenu:: GetBarcodeIfExists(sqlite::database& db, 
     return barcode;
 }
 
-std::tuple<wxString, double, std::string> SpecificPurchaseInfoMenu::GetWorkerTotalDateTimePurchaseID() {
+std::tuple<wxString, double, std::string, std::string> SpecificPurchaseInfoMenu::GetWorkerTotalDateTimePurchaseID() {
     std::string workerPurchaseID = "";
     double total = -1.0;
 	std::string dateTime = "";
+    std::string method = "";
 
     try {
         sqlite::database db(GetDBPath());
-        auto query = db << "SELECT total, worker, date FROM purchases WHERE id = ?;" << m_purchaseId;
+        auto query = db << "SELECT total, worker, date, method FROM purchases WHERE id = ?;" << m_purchaseId;
 
         for (auto&& row : query) {
-			row >> total >> workerPurchaseID >> dateTime;
+			row >> total >> workerPurchaseID >> dateTime >> method;
         }
     }
     catch (const std::exception& e) {
         // Si falla, igual devolvemos lo que tengamos
     }
 
-    return { wxString::FromUTF8(workerPurchaseID), total, dateTime};
+    return { wxString::FromUTF8(workerPurchaseID), total, dateTime, method };
 }

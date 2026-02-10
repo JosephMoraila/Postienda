@@ -97,8 +97,12 @@ void SpecificPurchaseInfoMenu::PrintCanvasPurchaseWindows(std::vector<PurchaseIt
 
 
 wxString SpecificPurchaseInfoMenu::CreateInfoPurchaseStringToPrint(std::vector<PurchaseItem>& PurchaseItems) {
-    auto [worker, total, dateTime] = GetWorkerTotalDateTimePurchaseID();
+    auto [worker, total, dateTime, method] = GetWorkerTotalDateTimePurchaseID();
     auto [fechaFormateada, hora] = DateTimeUtils::FormatDateTimeLocalized(dateTime);
+    wxString translatedText;
+    if (method == "Cash") translatedText = _("Cash");
+    else if (method == "Card") translatedText = _("Card");
+    else translatedText = method; // fallback
     //Append the products info by row
     wxString mensaje;
     mensaje += wxString::Format("%s\n%s\n", fechaFormateada.wc_str(), hora.wc_str());
@@ -112,8 +116,10 @@ wxString SpecificPurchaseInfoMenu::CreateInfoPurchaseStringToPrint(std::vector<P
     }
     mensaje += wxString::Format(
         _("Total: %s\n"
+		"Payment method: %s\n"
 		"Attended by: %s"),
         FormatFloatWithCommas(total).wc_str(),
+		translatedText.wc_str(),
 		worker.wc_str()
     );
 	return mensaje;

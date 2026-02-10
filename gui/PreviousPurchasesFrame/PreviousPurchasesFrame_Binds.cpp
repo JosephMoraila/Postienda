@@ -15,6 +15,12 @@ void PreviousPurchaseFrame::OnSearch(wxCommandEvent& event) {
     double maxAmount = GetMaxAmount();
     wxString Worker = GetWorker();
 
+	PaymentMethod method = PAYMENT_ANY;
+    int selection = methodChoice->GetSelection();
+    if (selection != wxNOT_FOUND) {
+        method = (PaymentMethod)(intptr_t)methodChoice->GetClientData(selection);
+    }
+
     std::string worker = std::string(Worker.mb_str(wxConvUTF8));
     std::string start = StartDateTime.ToStdString();
     std::string end = EndDateTime.ToStdString();
@@ -31,22 +37,22 @@ void PreviousPurchaseFrame::OnSearch(wxCommandEvent& event) {
     else { 
         currentOffset = 0; //Start a new searching
         //Save the data to instance members so when OnLoadPrev or OnLoadNext are called keep searching the same data but with differente given pages from DB
-        this->startDateTime = start; this->endDateTime = end; this->minAmount = minAmount; this->maxAmount = maxAmount; this->worker = worker;
-        GetPurchases(start, end, minAmount, maxAmount, worker); 
-        GetTotalByFilter(start, end, minAmount, maxAmount, worker);
+		this->startDateTime = start; this->endDateTime = end; this->minAmount = minAmount; this->maxAmount = maxAmount; this->worker = worker; this->lastPaymentMethod = method;
+        GetPurchases(start, end, minAmount, maxAmount, worker, method); 
+        GetTotalByFilter(start, end, minAmount, maxAmount, worker, method);
     }
 }
 
 void PreviousPurchaseFrame::OnLoadPrev(wxCommandEvent&) {
     if (currentOffset >= PAGE_SIZE) {
         currentOffset -= PAGE_SIZE;
-        GetPurchases(startDateTime, endDateTime, minAmount, maxAmount, worker, currentOffset);
+        GetPurchases(startDateTime, endDateTime, minAmount, maxAmount, worker, lastPaymentMethod, currentOffset);
     }
 }
 
 void PreviousPurchaseFrame::OnLoadNext(wxCommandEvent&) {
     currentOffset += PAGE_SIZE;
-    GetPurchases(startDateTime, endDateTime, minAmount, maxAmount, worker, currentOffset);
+    GetPurchases(startDateTime, endDateTime, minAmount, maxAmount, worker, lastPaymentMethod, currentOffset);
 }
 
 

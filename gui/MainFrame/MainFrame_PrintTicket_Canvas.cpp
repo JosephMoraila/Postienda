@@ -8,6 +8,7 @@
 #include "constants/DB/DB.h"
 #include "gui/MainFrame/Purchase_Item.hpp"
 #include "utils/MathUtils.hpp"
+#include "utils/translate/Translate_Utils.hpp"
 #include "utils/GetFromFile.h"
 #include "utils/DateTimeUtils.hpp"
 #include "constants/MESSAGES_ADVICE/ERROR/PRINTING/PRINTING_ERRORS.hpp"
@@ -129,8 +130,10 @@ wxString MainFrame::GetInfoPurchaseToPrint(double& pagoCliente, bool& cashPaymen
 
 		//Get date and time of purchase
         std::string dateTimeString;
-        db << "SELECT date FROM purchases WHERE id = ?" << lastPurchaseID >> [&](std::string dateTime) {
+        std::string method;
+        db << "SELECT date, method FROM purchases WHERE id = ?" << lastPurchaseID >> [&](std::string dateTime, std::string metodo) {
 			dateTimeString = dateTime;
+            method = metodo;
 			};
 
         std::vector<PurchaseItem> items;
@@ -171,6 +174,8 @@ wxString MainFrame::GetInfoPurchaseToPrint(double& pagoCliente, bool& cashPaymen
 
         auto [fechaFormateada, hora] = DateTimeUtils::FormatDateTimeLocalized(dateTimeString);
 
+        wxString wxMethod = Translate_Utils::GetTranslatedPaymentMethod(method);
+
         //Append the products info by row
         wxString mensaje;
 
@@ -190,10 +195,12 @@ wxString MainFrame::GetInfoPurchaseToPrint(double& pagoCliente, bool& cashPaymen
             _("Total: $%s\n"
             "Paid: $%s\n"
             "Change: $%s\n"
+            "Payment method: %s\n"
             "Attended by: %s"),
             FormatFloatWithCommas(total).wc_str(),
             FormatFloatWithCommas(pagoCliente).wc_str(),
             FormatFloatWithCommas(change).wc_str(),
+            wxMethod,
             user
         );
         return mensaje;

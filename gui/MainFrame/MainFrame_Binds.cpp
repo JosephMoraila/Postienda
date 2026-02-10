@@ -255,7 +255,7 @@ void MainFrame::OnRealizarCompra(wxCommandEvent& event) {
         bool esEfectivo = (seleccion == EFECTIVO);
 
         // Registrar compra y calcular total
-        double total = AddCompraToDB();
+        double total = AddCompraToDB(esEfectivo);
         double cambio = 0.0;
         double pagoCliente = 0.0;
 

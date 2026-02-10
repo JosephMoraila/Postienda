@@ -546,7 +546,8 @@ void MainFrame::CreateComprasTable() {
             "id INTEGER PRIMARY KEY AUTOINCREMENT, "
             "date TEXT NOT NULL, "
             "total REAL NOT NULL CHECK(total = ROUND(total, 2)),"
-            "worker TEXT"
+            "worker TEXT,"
+			"method TEXT NOT NULL DEFAULT 'Cash'"
             ");";
 
         //Tabla para compra especÃÂÃÂ­fica
@@ -566,7 +567,7 @@ void MainFrame::CreateComprasTable() {
 	}
 }
 
-double MainFrame::AddCompraToDB() {
+double MainFrame::AddCompraToDB(bool esEfectivo) {
     try {
         sqlite::database db(GetDBPath());
         db << "PRAGMA foreign_keys = ON;";
@@ -578,17 +579,20 @@ double MainFrame::AddCompraToDB() {
         )" >> total;
         wxString currentDate = wxDateTime::Now().FormatISOCombined(' ');
         std::string actualUser = getUserFromJSON<std::string>();
+		std::string paymentMethod = esEfectivo ? "Cash" : "Card";
         if (actualUser == "Ninguno") actualUser = "";
         if (actualUser.empty()) {
-            db << "INSERT INTO purchases (date, total, worker) VALUES (?, ?, NULL);"
-                << std::string(currentDate.mb_str())
-                << total;
-        }
-        else {
-            db << "INSERT INTO purchases (date, total, worker) VALUES (?, ?, ?);"
+            db << "INSERT INTO purchases (date, total, worker, method) VALUES (?, ?, NULL, ?);"
                 << std::string(currentDate.mb_str())
                 << total
-                << actualUser;
+				<< paymentMethod;
+        }
+        else {
+            db << "INSERT INTO purchases (date, total, worker, method) VALUES (?, ?, ?, ?);"
+                << std::string(currentDate.mb_str())
+                << total
+                << actualUser
+				<< paymentMethod;
         }
 
         int purchaseId = 0;

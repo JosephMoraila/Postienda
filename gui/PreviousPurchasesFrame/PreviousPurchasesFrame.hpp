@@ -30,12 +30,20 @@ private:
     wxTextCtrl* minAmountInput;
     wxTextCtrl* maxAmountInput;
     wxTextCtrl* workerInput;
+	wxChoice* methodChoice;
     wxStaticText* totalByFilter;
     wxPanel* mainPanel;
     wxButton* prevButton;
     wxButton* nextButton;
     wxStaticText* pageLabel;
     void Widgets();
+    enum PaymentMethod{
+        PAYMENT_ANY,
+        PAYMENT_CASH,
+        PAYMENT_CARD
+    };
+	PaymentMethod lastPaymentMethod = PAYMENT_ANY; ///Used to pass it to GetPurchases when showing more pages from the same searching done in OnSearch when OnLoadPrev or OnLoadNext is called, so keep the same data but showing more pages of a searching
+
     /**
     @brief Adjust the width of the columns of the control list when the windows changes its size
     **/
@@ -151,7 +159,7 @@ private:
         @param worker - Worker to display
         @param found  - (Optional). Increases the given parameter adding 1
     **/
-    void AddToListFromDB(unsigned long long& ide, std::string& date, double& total, std::string& worker, size_t* found = nullptr);
+    void AddToListFromDB(unsigned long long& ide, std::string& date, double& total, std::string& worker, std::string& method,size_t* found = nullptr);
     /**
         @brief Searchs in table the record that matches the ID, calls AddToListFromDB to show the record on the list widget
         @param id - Id to search
@@ -164,10 +172,11 @@ private:
         @param minAmount     - If it's -1 it doesn't consider searching minAmount
         @param maxAmount     - If it's -1 it doesn't consider searching maxAmount
         @param worker        - If it's empty it doesn't consider searching worker
+		@param method        - If it's PAYMENT_ANY it doesn't consider searching method
         @param offset        - From that offset number record start searching
         @param limit         - Records limit to show
     **/
-    void GetPurchases(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string worker, size_t offset = 0, size_t limit = 50);
+    void GetPurchases(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string worker, PaymentMethod method, size_t offset = 0, size_t limit = 50);
 
     /**
     @brief Updates totalByFilter label to show the total matched with filters
@@ -175,8 +184,10 @@ private:
     @param endDateTime   - End time to search
     @param minAmount     - If it's -1 it doesn't consider searching minAmount
     @param maxAmount     - If it's -1 it doesn't consider searching maxAmount
+	@param worker        - If it's empty it doesn't consider searching worker
+	@param method 	  - If it's PAYMENT_ANY it doesn't consider searching method
     **/
-    void GetTotalByFilter(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string worker);
+    void GetTotalByFilter(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string worker, PaymentMethod method);
 
     ///@}
 };

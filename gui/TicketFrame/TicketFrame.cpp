@@ -204,7 +204,7 @@ void TicketFrame::OnAddPurchaseInfo(wxCommandEvent&) {
         wxString purchaseInfo = _("\n[PURCHASE_INFO_STARTS]\n"
             "Sunday, 9/noviembre/2025\n16:14:30\n"
             "Bread 1234 $99\nMeat 4321 $199\n"
-                "Total: $288\nPaid: $300\nChange: $12\nAttended by: Jose\n[PURCHASE_INFO_FINISHES]\n");
+                "Total: $288\nPaid: $300\nChange: $12\nPayment method: Cash\nAttended by: Jose\n[PURCHASE_INFO_FINISHES]\n");
         wxString contenido = richInput->GetValue();
         bool existWord = contenido.Contains(purchaseInfo);
         if (existWord) alreadyExistsPurchaseInfoTextInut = true;

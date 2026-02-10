@@ -45,6 +45,13 @@ void PreviousPurchaseFrame::Widgets() {
     wxStaticText* workerLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Worker:"));
     workerInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(120, -1));
 
+    wxStaticText* methodLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Method:"));
+	methodChoice = new wxChoice(scrollWidgets, wxID_ANY, wxDefaultPosition, wxSize(120, -1));
+    methodChoice->Append(_("Any"), (void*)PAYMENT_ANY);
+    methodChoice->Append(_("Cash"), (void*)PAYMENT_CASH);
+    methodChoice->Append(_("Card"), (void*)PAYMENT_CARD);
+    methodChoice->SetSelection(0);  // Selecciona "Any" por defecto
+
     wxButton* searchButton = new wxButton(scrollWidgets, wxID_ANY, _("Search"), wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
     searchButton->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent& event) {OnWidgetEnter(event, temaOscuro); });
     searchButton->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {OnWidgetLeave(event, temaOscuro); });
@@ -69,6 +76,8 @@ void PreviousPurchaseFrame::Widgets() {
     topSizer->Add(maxAmountInput, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(workerLabel, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(workerInput, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
+    topSizer->Add(methodLabel, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
+	topSizer->Add(methodChoice, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(searchButton, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
 
     // ---- Ajustar scroll solo dentro de su panel ----
@@ -78,11 +87,12 @@ void PreviousPurchaseFrame::Widgets() {
     // ---- Tabla (fuera del scroll totalmente) ----
     list = new wxListCtrl(mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxLC_SINGLE_SEL);
     list->Bind(wxEVT_LIST_ITEM_RIGHT_CLICK, &PreviousPurchaseFrame::OnRightClick, this);
-    list->InsertColumn(0, "ID", wxLIST_FORMAT_LEFT, 200);
+    list->InsertColumn(0, "ID", wxLIST_FORMAT_LEFT, 100);
     list->InsertColumn(1, _("Date"), wxLIST_FORMAT_LEFT, 150);
     list->InsertColumn(2, _("Time"), wxLIST_FORMAT_LEFT, 150);
     list->InsertColumn(3, _("Total"), wxLIST_FORMAT_LEFT, 150);
     list->InsertColumn(4, _("Worker"), wxLIST_FORMAT_LEFT, 200);
+    list->InsertColumn(5, _("Method"), wxLIST_FORMAT_LEFT, 200);
 
 
     // ---- Panel de botones de paginaciÃÂ³n ----
@@ -140,6 +150,7 @@ void PreviousPurchaseFrame::AjustarColumnasListCtrl() {
             int timeWidth = 0;
             int totalMoneyWidth = 0;
             int workerWidth = 0;
+			int methodWidth = 0;
 
             // Restar ancho del scrollbar si existe
             wxSize virtualSize = list->GetVirtualSize();
@@ -148,27 +159,30 @@ void PreviousPurchaseFrame::AjustarColumnasListCtrl() {
 
             if (!IsMaximized()) {
                 // DistribuciÃÂ³n en modo normal
-                idWidth = static_cast<int>(totalWidth * 0.30);
+                idWidth = static_cast<int>(totalWidth * 0.15);
                 dateWidth = static_cast<int>(totalWidth * 0.18);
                 timeWidth = static_cast<int>(totalWidth * 0.12);
                 totalMoneyWidth = static_cast<int>(totalWidth * 0.20);
-                workerWidth = totalWidth - idWidth - dateWidth - timeWidth - totalMoneyWidth;
+                workerWidth = static_cast<int>(totalWidth * 0.20);
+                methodWidth = totalWidth - idWidth - dateWidth - timeWidth - totalMoneyWidth - workerWidth;
             }
             else {
                 // DistribuciÃÂ³n en modo maximizado
-                idWidth = static_cast<int>(totalWidth * 0.25);
+                idWidth = static_cast<int>(totalWidth * 0.15);
                 dateWidth = static_cast<int>(totalWidth * 0.18);
                 timeWidth = static_cast<int>(totalWidth * 0.12);
                 totalMoneyWidth = static_cast<int>(totalWidth * 0.20);
-                workerWidth = totalWidth - idWidth - dateWidth - timeWidth - totalMoneyWidth;
+                workerWidth = static_cast<int>(totalWidth * 0.19);
+                methodWidth = totalWidth - idWidth - dateWidth - timeWidth - totalMoneyWidth - workerWidth;
             }
 
             // Anchos mÃÂ­nimos
-            idWidth = wxMax(200, idWidth);
+            idWidth = wxMax(130, idWidth);
             dateWidth = wxMax(150, dateWidth);
             timeWidth = wxMax(120, timeWidth);
             totalMoneyWidth = wxMax(150, totalMoneyWidth);
             workerWidth = wxMax(150, workerWidth);
+			methodWidth = wxMax(150, methodWidth);
 
             // Asignar a columnas (ajusta el ÃÂ­ndice si el orden es diferente)
             list->SetColumnWidth(0, idWidth);
@@ -176,6 +190,7 @@ void PreviousPurchaseFrame::AjustarColumnasListCtrl() {
             list->SetColumnWidth(2, timeWidth);
             list->SetColumnWidth(3, totalMoneyWidth);
             list->SetColumnWidth(4, workerWidth);
+			list->SetColumnWidth(5, methodWidth);
         }
     }
 }

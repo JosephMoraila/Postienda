@@ -403,9 +403,10 @@ private:
 	void CreateComprasTable();
     /**
 	 @brief Adds the current cart products to the "purchases" and "purchase_items" tables in the database,updates the stock, then clears the cart.
+     @param esEfectivo - Indicates whether the purchase was made with cash (true) or card (false).
 	 @retval - Returns the total price of the purchase if successful, -1.0 on error.
     **/
-	double AddCompraToDB();
+	double AddCompraToDB(bool esEfectivo);
 
     /** @} */ // cierra Funciones de productos
 

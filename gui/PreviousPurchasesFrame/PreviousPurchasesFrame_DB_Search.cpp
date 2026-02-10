@@ -9,9 +9,16 @@
 #include <sstream>
 #include "utils/DateTimeUtils.hpp"
 
-void PreviousPurchaseFrame::AddToListFromDB(unsigned long long& ide, std::string& date, double& total, std::string& worker, size_t* found) {
+void PreviousPurchaseFrame::AddToListFromDB(unsigned long long& ide, std::string& date, double& total, std::string& worker, std::string& method, size_t* found) {
     if (found) (*found)++;
 	auto [fechaFormateada, hora] = DateTimeUtils::FormatDateTimeLocalized(date);
+
+    //Translate method
+    wxString translatedText;
+    if (method == "Cash") translatedText = _("Cash");
+    else if (method == "Card") translatedText = _("Card");
+    else translatedText = method; // fallback
+    
     
     // Insertar en la tabla
     long index = list->InsertItem(list->GetItemCount(), wxString::Format("%llu", ide));
@@ -19,6 +26,7 @@ void PreviousPurchaseFrame::AddToListFromDB(unsigned long long& ide, std::string
     list->SetItem(index, 2, hora);
     list->SetItem(index, 3, FormatFloatWithCommas(total));
     list->SetItem(index, 4, wxString::FromUTF8(worker));
+    list->SetItem(index, 5, wxString::FromUTF8(translatedText));
 }
 
 void PreviousPurchaseFrame::GetPurchaseById(unsigned long long& id) {
@@ -44,8 +52,8 @@ void PreviousPurchaseFrame::GetPurchaseById(unsigned long long& id) {
         size_t found = 0;
         list->DeleteAllItems();
         pageLabel->SetLabelText(_("Page: -"));
-        db << "SELECT id, date, total, worker FROM purchases WHERE id = ?;" << id >> [&](unsigned long long ide, std::string date, double total, std::string worker) {
-            AddToListFromDB(ide, date, total, worker, &found);
+        db << "SELECT id, date, total, worker, method FROM purchases WHERE id = ?;" << id >> [&](unsigned long long ide, std::string date, double total, std::string worker, std::string method) {
+            AddToListFromDB(ide, date, total, worker, method, &found);
             totalAppliedFilter = total;
             totalByFilter->SetLabel(wxString::Format("Total: $%s", FormatFloatWithCommas(total)));
 
@@ -62,13 +70,12 @@ void PreviousPurchaseFrame::GetPurchaseById(unsigned long long& id) {
 }
 
 
-void PreviousPurchaseFrame::GetPurchases(std::string startDateTime, std::string endDateTime,double minAmount, double maxAmount, std::string worker, size_t offset, size_t limit)
+void PreviousPurchaseFrame::GetPurchases(std::string startDateTime, std::string endDateTime,double minAmount, double maxAmount, std::string worker, PaymentMethod method,size_t offset, size_t limit)
 {
     try {
         wxString dbPath = GetDBPath();
         if (!wxFileExists(dbPath)) {
-            wxMessageBox(_("The database was not found at:\n") + dbPath,
-                _("Database error"), wxOK | wxICON_ERROR, this);
+            wxMessageBox(_("The database was not found at:\n") + dbPath, _("Database error"), wxOK | wxICON_ERROR, this);
             return;
         }
 
@@ -90,12 +97,17 @@ void PreviousPurchaseFrame::GetPurchases(std::string startDateTime, std::string 
             if (minAmount != -1.0) countQuery += " AND total >= ?";
             if (maxAmount != -1.0) countQuery += " AND total <= ?";
             if (!worker.empty()) countQuery += " AND worker LIKE ?";
+            if (method != PAYMENT_ANY) {
+                if (method == PAYMENT_CASH) countQuery += " AND method = 'Cash'";
+                else if (method == PAYMENT_CARD) countQuery += " AND method = 'Card'";
+            }
 
             auto countStmt = db << countQuery;
             countStmt << startDateTime << endDateTime;
             if (minAmount != -1.0) countStmt << minAmount;
             if (maxAmount != -1.0) countStmt << maxAmount;
             if (!worker.empty()) countStmt << ("%" + worker + "%");
+			// No need of method parameter because it is already added in the query string
 
             countStmt >> [&](size_t count) {
                 totalRecords = count;
@@ -106,11 +118,15 @@ void PreviousPurchaseFrame::GetPurchases(std::string startDateTime, std::string 
         size_t found = 0; //AddToListFromDB modifica su valor sumandole 1 cada vez que se llama
 
         // --- Construir consulta dinÃÂÃÂ¡micamente ---
-        std::string query = "SELECT id, date, total, worker FROM purchases WHERE 1=1";
+        std::string query = "SELECT id, date, total, worker, method FROM purchases WHERE 1=1";
         query += " AND date BETWEEN ? AND ?";
         if (minAmount != -1.0) query += " AND total >= ?";
         if (maxAmount != -1.0) query += " AND total <= ?";
         if (!worker.empty()) query += " AND worker LIKE ?";
+        if (method != PAYMENT_ANY) {
+            if (method == PAYMENT_CASH) query += " AND method = 'Cash'";
+            else if (method == PAYMENT_CARD) query += " AND method = 'Card'";
+		}
         query += " ORDER BY id ASC LIMIT ? OFFSET ?;";
 
         auto stmt = db << query;
@@ -120,8 +136,8 @@ void PreviousPurchaseFrame::GetPurchases(std::string startDateTime, std::string 
         if (!worker.empty()) stmt << ("%" + worker + "%");
 
         stmt << (int)limit << (int)offset
-            >> [&](unsigned long long ide, std::string date, double total, std::string workerName) {
-            AddToListFromDB(ide, date, total, workerName, &found);
+            >> [&](unsigned long long ide, std::string date, double total, std::string workerName, std::string method) {
+            AddToListFromDB(ide, date, total, workerName, method, &found);
             };
 
         if (found > 0) {
@@ -168,7 +184,7 @@ void PreviousPurchaseFrame::GetPurchases(std::string startDateTime, std::string 
     }
 }
 
-void PreviousPurchaseFrame::GetTotalByFilter(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string worker){
+void PreviousPurchaseFrame::GetTotalByFilter(std::string startDateTime, std::string endDateTime, double minAmount, double maxAmount, std::string worker, PaymentMethod method){
     wxString dbPath = GetDBPath();
     // Verificar si existe el archivo de base de datos
     if (!wxFileExists(dbPath)) {
@@ -191,6 +207,10 @@ void PreviousPurchaseFrame::GetTotalByFilter(std::string startDateTime, std::str
     if (minAmount != -1.0) countQuery += " AND total >= ?";
     if (maxAmount != -1.0) countQuery += " AND total <= ?";
     if (!worker.empty()) countQuery += " AND worker LIKE ?";
+    if (method != PAYMENT_ANY) {
+        if (method == PAYMENT_CASH) countQuery += " AND method = 'Cash'";
+        else if (method == PAYMENT_CARD) countQuery += " AND method = 'Card'";
+	}
 
     auto countStmt = db << countQuery;
     countStmt << startDateTime << endDateTime;

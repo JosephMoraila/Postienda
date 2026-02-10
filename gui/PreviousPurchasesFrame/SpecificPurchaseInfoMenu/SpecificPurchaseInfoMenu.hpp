@@ -66,7 +66,7 @@ private:
 	 @brief Retrieves the worker's name and total purchase ID associated with the current purchase.
 	 @retval  - A tuple containing the worker's name, total purchase ID as a double and the purchase datetime
 	 **/
-	std::tuple<wxString, double, std::string> GetWorkerTotalDateTimePurchaseID();
+	std::tuple<wxString, double, std::string, std::string> GetWorkerTotalDateTimePurchaseID();
 
 	///@}
 
