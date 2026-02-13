@@ -2,11 +2,12 @@
 #include "gui/ProductosFrame/ProductoDialog/ProductoDialog.h"
 #include <wx/wx.h>
 #include "utils/window/WindowUtils.h"
-#include "constants/MESSAGES_ADVICE/WARNING/WARNING_MESSAGES.hpp"
+#include "gui/ProductosFrame/ProductosFrame.h"
+
 using namespace WARNING_MESSAGES;
 
-ProductoDialog::ProductoDialog(wxWindow* parent)
-    : wxDialog(parent, wxID_ANY, _("New product"), wxDefaultPosition, wxSize(350, 300)) {
+ProductoDialog::ProductoDialog(wxWindow* parent, const wxTreeItemId& parentId, ProductosFrame* parentFrame)
+    : wxDialog(parent, wxID_ANY, _("New product"), wxDefaultPosition, wxSize(350, 300)), m_parentId(parentId), m_parentFrame(parentFrame) {
     AplicarIconoPrincipal(this);
     Widgets();
 }
@@ -129,16 +130,16 @@ bool ProductoDialog::EsPorPeso() const {
 
 void ProductoDialog::OnAceptar(wxCommandEvent& event) {
     // Validar nombre
-    wxString nombre = txtNombre->GetValue().Trim(true).Trim(false);
-	nombre.Replace("\t", " ");// Reemplazar tabulaciones (Espacios grandes) por un espacio
-    while (nombre.Replace("  ", " ")) {}
+    std::string nombreProducto = GetNombre().ToUTF8().data();
+    std::string nombreLimpiado = LimpiarCaracteresInvalidosOnAddProduct(nombreProducto);
+    std::string nombreLimpio = LimpiarYValidarNombre(nombreLimpiado);
 
-    if (nombre.IsEmpty()) {
+    if (nombreLimpio.empty()) {
         wxMessageBox(_("The product name cannot be empty or contain only spaces."), WARNING, wxOK | wxICON_WARNING);
         return;
     }
 
-    txtNombre->SetValue(nombre);
+    txtNombre->SetValue(nombreLimpio);
 
     // Validar precio
     wxString raw = txtPrecio->GetValue();
@@ -156,37 +157,61 @@ void ProductoDialog::OnAceptar(wxCommandEvent& event) {
         wxMessageBox(_("The price must be a number greater than or equal to zero."), WARNING, wxOK | wxICON_WARNING);
         return;
     }
+	txtPrecio->SetValue(wxString::Format("%.2f", precio)); // Formatear a 2 decimales
 
 
-    wxString codigoBarras = txtCodigoBarras->GetValue().Trim().Trim(false);
+    wxString codigoBarrasWx = GetCodigoBarras();
+    std::string codigoBarras;
 
-    if (!codigoBarras.IsEmpty()) {
-        // Limpiar cÃÂ³digo de barras (solo nÃÂºmeros y letras)
-        wxString codigoLimpio;
-        for (size_t i = 0; i < codigoBarras.length(); i++) {
-           // Extrae el carÃÂ¡cter actual de la vuelta
-            wxChar c = codigoBarras[i];
-			// Verifica si el carÃÂ¡cter es alfanumÃÂ©rico
-            if (wxIsalnum(c)) {
-                codigoLimpio += c;
-            }
-        }
+    if (!codigoBarrasWx.IsEmpty()) {
+        codigoBarras = LimpiarCodigoBarras(codigoBarrasWx.ToStdString());
+
+		txtCodigoBarras->SetValue(wxString::FromUTF8(codigoBarras));
 
         // Validar longitud
-        if (codigoLimpio.length() > 20) {
+        if (codigoBarras.length() > 20) {
             wxMessageBox(_("The barcode cannot have more than 20 characters."), INVALID_CODEBAR, wxOK | wxICON_WARNING);
             return;
         }
 
         // Validar que no estÃÂ© vacÃÂ­o despuÃÂ©s de limpiar
-        if (codigoLimpio.IsEmpty()) {
+        if (codigoBarras.empty()) {
             wxMessageBox(_("The barcode must contain at least one number or letter."), INVALID_CODEBAR, wxOK | wxICON_WARNING);
             return;
         }
 
         // Actualizar el campo con el cÃÂ³digo limpio
-        txtCodigoBarras->SetValue(codigoLimpio);
+        txtCodigoBarras->SetValue(wxString::FromUTF8(codigoBarras));
     }
+
+    Producto nuevo;
+    if (nombreLimpiado.empty() && nombreLimpio.length() <= 0) {
+        wxMessageBox(_("Invalid name. The product was not created."), "Error");
+        return;
+    }
+    nombreLimpio = TruncarNombre(nombreLimpio, 80);
+    wxString nombreFinal = wxString::FromUTF8(nombreLimpio);
+    std::shared_ptr<Categoria> parentCategory = m_parentFrame->treeItemId_Category_Map[m_parentId];
+    size_t parentCategoryId = parentCategory->idCategoria;
+    if (m_parentFrame->ExistsProductNameInSameCategory(nombreFinal, parentCategoryId)) {
+        wxMessageBox(wxString::Format(_("There is already a product called '%s' in this category."), nombreFinal), "Error", wxOK | wxICON_WARNING, this);
+        return;
+    }
+
+    if (!codigoBarras.empty()) {
+        if (!codigoBarras.empty() && m_parentFrame->ExistsCodebarGlobal(codigoBarras)) {
+            wxMessageBox(wxString::Format(_("The barcode '%s' is already in use by another product."), wxString::FromUTF8(codigoBarras)), _("Duplicated barcode"), wxOK | wxICON_WARNING);
+            return;
+        }
+    }
+    bool isByWeight = EsPorPeso();
+    nuevo.nombre = nombreLimpio;
+    double price = GetPrecio();
+    double roundPrice = round2(price); // Redondear a dos decimales para evitar problemas en SQL
+    nuevo.precio = roundPrice;
+    nuevo.codigoBarras = codigoBarras;
+    nuevo.porPeso = isByWeight;
+    m_parentFrame->AddProduct(nuevo, m_parentId);
 
 	//EndModal y wxID_OK para cerrar el diÃÂ¡logo y devolver el resultado
     EndModal(wxID_OK);

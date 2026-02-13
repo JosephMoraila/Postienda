@@ -2,17 +2,29 @@
 #pragma once
 #include <wx/wx.h>
 #include "utils/MathUtils.hpp"
-
+#include <map>
+#include <wx/treectrl.h>
+#include "utils/ValidateStringInput.h"
+#include "include/models.hpp"
+#include <functional>
+#include "constants/MESSAGES_ADVICE/WARNING/WARNING_MESSAGES.hpp"
+class ProductosFrame;
 
 /**
  * @class ProductoDialog
  * @brief DiÃÂÃÂ¡logo personalizado para agregar un nuevo producto.
  * @details Permite ingresar el nombre, precio, cÃÂÃÂ³digo de barras (opcional) y si es por peso.
  * @details Incluye validaciones y limpieza de datos antes de aceptar.
+ * @param parent Ventana padre del diÃÂÃÂ¡logo.
+ * @param parentId ID del nodo padre en el ÃÂÃÂÃÂÃÂ¡rbol donde se agregarÃÂÃÂÃÂÃÂ¡ el producto.
+ * @param parentFrame Referencia al frame principal para llamar a sus funciones de validacion y actualizacion
  */
 class ProductoDialog : public wxDialog {
 public:
-	ProductoDialog(wxWindow* parent);///< Constructor que inicializa el diÃÂÃÂ¡logo con el padre dado.
+	ProductoDialog(wxWindow* parent, const wxTreeItemId& parentId, ProductosFrame* parentFrame);///< Constructor que inicializa el diÃÂÃÂ¡logo con el padre dado.
+
+	const wxTreeItemId& m_parentId;
+	ProductosFrame* m_parentFrame;
 
     /**
 	 * @brief Retorna el nombre del producto ingresado.
@@ -56,7 +68,7 @@ protected:
 	 * @details Valida y limpia los datos ingresados (nombre, precio, cÃÂÃÂ³digo de barras).
 	 * @param event Evento de comando estÃÂÃÂ¡ndar de wxWidgets.
      */
-    void OnAceptar(wxCommandEvent& event);
+	virtual void OnAceptar(wxCommandEvent& event);
     /**
 	 * @brief Evento llamado al entrar el mouse sobre un botÃÂÃÂ³n.
 	 * @param event Evento de mouse estÃÂÃÂ¡ndar de wxWidgets.

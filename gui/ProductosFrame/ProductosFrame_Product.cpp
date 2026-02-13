@@ -95,58 +95,10 @@ void ProductosFrame::ChangeProductInfo(const std::shared_ptr<Categoria>& fatherC
     for (std::shared_ptr<Producto>& prod : fatherCategory->productos) {
         if (prod->nombre == nombreProductoLimpio) {
             // Crear el diÃÂ¡logo pasando la referencia
-            ChangeProductDialog dialog(this, *prod);
+            ChangeProductDialog dialog(this, *prod, item, this, fatherCategory, prod);
             dialog.AplicarTema(temaOscuro); // Aplicar tema al diÃÂ¡logo
             if (dialog.ShowModal() == wxID_OK) {
-                std::string nombreProducto = dialog.GetNombre().ToUTF8().data();
-                wxString codigoBarrasWx = dialog.GetCodigoBarras();
-                double precioWithoutRound = dialog.GetPrecio();
-                double precio = round2(precioWithoutRound);
-                bool esPorPeso = dialog.EsPorPeso();
-                size_t idCategoriaPadre = fatherCategory->idCategoria; //Nesesario para la base de datos para indicar que categorÃÂ­a es padre del producto
-                
-                std::string nombreLimpiado = LimpiarCaracteresInvalidosOnAddProduct(nombreProducto);
-                std::string nombreLimpio = LimpiarYValidarNombre(nombreLimpiado);
-                if (!EsNombreValido(nombreLimpio)) {
-                    wxMessageBox(_("The product name is invalid. It must contain at least one valid character."),_("Invalid name"), wxOK | wxICON_WARNING);
-                    return;
-                }
-                nombreLimpio = TruncarNombre(nombreLimpio, 80);
-                wxString nombreFinal = wxString::FromUTF8(nombreLimpio);
-                // Validar si ya existe un producto con el mismo nombre en esta categorÃÂ­a
-                wxTreeItemId CategoriaSeleccionada = arbolCategorias->GetItemParent(item);
-
-
-                //La compraciÃÂ³n de prod.nombre != nombreLimpio es para evitar que se marque como duplicado si el nombre no ha cambiado
-                if (ExistsProductNameInSameCategory(nombreFinal, idCategoriaPadre) && prod->nombre != nombreLimpio) {
-                    wxMessageBox(_("There is already a product with that name in this category."), _("Duplicate Product"), wxOK | wxICON_WARNING);
-                    return;
-                }
-
-                std::string codigoBarras;
-                if (!codigoBarrasWx.IsEmpty()) {
-                    codigoBarras = LimpiarCodigoBarras(codigoBarrasWx.ToStdString());
-
-                    // Validar que el cÃÂ³digo de barras sea ÃÂºnico globalmente
-                    if (!codigoBarras.empty() && ExistsCodebarGlobal(codigoBarras) && prod->codigoBarras != codigoBarras) {
-                        wxMessageBox(wxString::Format(_("The barcode '%s' is already in use by another product."), wxString::FromUTF8(codigoBarras)), _("Duplicate Product"), wxOK | wxICON_WARNING);
-                        return;
-                    }
-                }
-
-                Producto oldProductoInfo = *prod;
-
-                //Asiganar los valores al producto
-                prod->nombre = nombreLimpio;
-                prod->codigoBarras = codigoBarras;
-                prod->precio = precio;
-                prod->porPeso = esPorPeso;
-                // Actualizar en la base de datos 
-				UpdateProductInDB(oldProductoInfo, prod, idCategoriaPadre);
-
-				wxString showFormatUpdatedProduct = wxString::Format("- %s (%s)", wxString::FromUTF8(prod->nombre), FormatFloatWithCommas(prod->precio));
-				if (!prod->codigoBarras.empty()) showFormatUpdatedProduct += wxString::Format(" [%s]", wxString::FromUTF8(prod->codigoBarras));
-				arbolCategorias->SetItemText(item, showFormatUpdatedProduct);
+				wxMessageBox(_("Product updated successfully."), _("Success"), wxOK | wxICON_INFORMATION);
             }
             break; // salir del loop
         }

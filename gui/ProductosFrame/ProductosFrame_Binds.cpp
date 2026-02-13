@@ -38,45 +38,13 @@ void ProductosFrame::OnAgregarProducto(wxCommandEvent& event) {
 		wxMessageBox(_("You cannot add a product inside another product."), "Error");
 		return;
 	}
-	ProductoDialog dlg(this);
+	ProductoDialog dlg(this, parentId, this);
 	// Aplicar tema oscuro si estÃÂÃÂ¡ activado
 	dlg.AplicarTema(temaOscuro);
 
 	//Solo procede si el usuario presiona "OK"
 	if (dlg.ShowModal() == wxID_OK) {
-		Producto nuevo;
-		std::string nombreProducto = dlg.GetNombre().ToUTF8().data();
-		std::string nombreLimpiado = LimpiarCaracteresInvalidosOnAddProduct(nombreProducto);
-		std::string nombreLimpio = LimpiarYValidarNombre(nombreLimpiado);
-		if(nombreLimpiado.empty() && nombreLimpio.length() <= 0) {
-			wxMessageBox(_("Invalid name. The product was not created."), "Error");
-			return;
-		}
-		nombreLimpio = TruncarNombre(nombreLimpio, 80);
-		wxString nombreFinal = wxString::FromUTF8(nombreLimpio);
-		std::shared_ptr<Categoria> parentCategory = treeItemId_Category_Map[parentId];
-		size_t parentCategoryId = parentCategory->idCategoria;
-		if(ExistsProductNameInSameCategory(nombreFinal, parentCategoryId)) {
-			wxMessageBox(wxString::Format(_("There is already a product called '%s' in this category."), nombreFinal), "Error", wxOK | wxICON_WARNING, this);
-			return;
-		}
-		wxString codigoBarrasWx = dlg.GetCodigoBarras();
-		std::string codigoBarras;
-		if (!codigoBarrasWx.IsEmpty()) {
-			codigoBarras = LimpiarCodigoBarras(codigoBarrasWx.ToStdString());
-			if (!codigoBarras.empty() && ExistsCodebarGlobal(codigoBarras)) {
-				wxMessageBox(wxString::Format(_("The barcode '%s' is already in use by another product."),wxString::FromUTF8(codigoBarras)), _("Duplicated barcode"), wxOK | wxICON_WARNING);
-				return;
-			}
-		}
-		bool isByWeight = dlg.EsPorPeso();
-		nuevo.nombre = nombreLimpio;
-		double price = dlg.GetPrecio();
-		double roundPrice = round2(price); // Redondear a dos decimales para evitar problemas en SQL
-		nuevo.precio = roundPrice;
-		nuevo.codigoBarras = codigoBarras;
-		nuevo.porPeso = isByWeight;
-		AddProduct(nuevo, parentId);
+		wxMessageBox(_("Product added successfully."), _("Success"), wxOK | wxICON_INFORMATION);
 	}
 }
 

@@ -11,6 +11,7 @@
 #include "include/models.hpp"
 #include "gui/ProductosFrame/ProductoDialog/ProductoDialog.h"
 #include <memory>
+class ProductosFrame;
 
 /**
  * @class ChangeProductDialog
@@ -27,8 +28,12 @@ public:
      * @brief Constructor del diÃÂÃÂ¡logo de ediciÃÂÃÂ³n de producto.
      * @param parent Ventana padre que contendrÃÂÃÂ¡ el diÃÂÃÂ¡logo.
      * @param product Referencia al producto a editar. Los cambios se aplican directamente sobre este objeto.
+	 * @param parentId Nombre simbolico ya que realmente no representa el nodo padre sino del producto a modificar
+	 * @param parentFrame Referencia al frame principal para llamar a sus funciones de validacion y actualizacion
+	 * @param fatherCategory Referencia a la categoria padre del producto, necesaria para validaciones de nombre y codigo de barras.
+	 * @param prod Referencia al producto original, necesaria para validaciones de nombre y codigo de barras.
      */
-    ChangeProductDialog(wxWindow* parent, Producto& product);
+    ChangeProductDialog(wxWindow* parent, Producto& product, const wxTreeItemId& parentId, ProductosFrame* parentFrame, const std::shared_ptr<Categoria>& fatherCategory, std::shared_ptr<Producto>& prod);
 
 private:
     /**
@@ -37,9 +42,19 @@ private:
      */
     Producto& m_product;
 
+    const std::shared_ptr<Categoria>& m_fatherCategory;
+
+    ProductosFrame* m_parentFrame;
+
+    const wxTreeItemId& m_item;
+
+    std::shared_ptr<Producto>& m_prod;
+
     /**
      * @brief Inicializa los campos del diÃÂÃÂ¡logo con los datos actuales del producto.
      * @details Se llama en el constructor para mostrar los valores actuales en los controles de ediciÃÂÃÂ³n.
      */
     void EstablecerDatos();
+
+    void OnAceptar(wxCommandEvent& event) override;
 };

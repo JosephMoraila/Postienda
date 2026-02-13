@@ -45,6 +45,35 @@ public:
      * @param oscuro true para tema oscuro, false para tema claro.
      */
     void AplicarTema(bool oscuro);
+    /**
+        @brief Checks if a product name already exists within the same category.
+        @param  newProductName - Name of the new product to check.
+        @param  categoryId - Category Id to check
+        @retval - True if the product name exists in the same category, false otherwise.
+    **/
+    bool ExistsProductNameInSameCategory(wxString& newProductName, size_t& categoryId);
+    /**
+        @brief Checks if a barcode already exists globally across all products.
+        @param  codebar - Barcode to check
+        @retval - True if the barcode exists globally, false otherwise.
+    **/
+    bool ExistsCodebarGlobal(const std::string& codebar);
+    /**
+        @brief Adds a new product under the specified parent category in the tree control.
+        @param product  - Product object to add.
+        @param parentId - ID of the parent category where the product will be added.
+    **/
+    void AddProduct(Producto& product, const wxTreeItemId& parentId);
+    /**
+        @brief Updates a product's information in the database.
+        @param oldProductInfo - Old product information
+        @param newProductInfo   - Shared pointer to the new product information
+        @param idCategoriaPadre - ID of the parent category
+    **/
+    void UpdateProductInDB(const Producto& oldProductInfo, const std::shared_ptr<Producto>& newProductInfo, size_t idCategoriaPadre);
+
+    std::map<wxTreeItemId, std::shared_ptr<Categoria>> treeItemId_Category_Map; ///!< Map to link tree items to categories
+    wxTreeCtrl* arbolCategorias = nullptr; ///< ÃÂÃÂÃÂÃÂrbol visual de categorÃÂÃÂÃÂÃÂ­as y productos.
 
 private:
 
@@ -52,7 +81,6 @@ private:
     /// @{
     wxPanel* mainPanel = nullptr;       ///< Panel principal contenedor de widgets.
     wxBoxSizer* vSizer = nullptr;       ///< Contenedor vertical para organizar widgets.
-    wxTreeCtrl* arbolCategorias = nullptr; ///< ÃÂÃÂÃÂÃÂrbol visual de categorÃÂÃÂÃÂÃÂ­as y productos.
     wxButton* btnAgregarCategoria = nullptr; ///< BotÃÂÃÂÃÂÃÂ³n para agregar categorÃÂÃÂÃÂÃÂ­a.
     wxButton* btnAgregarProducto = nullptr; ///< BotÃÂÃÂÃÂÃÂ³n para agregar producto.
     wxButton* btnEliminar = nullptr;    ///< BotÃÂÃÂÃÂÃÂ³n para eliminar elementos seleccionados.
@@ -97,7 +125,7 @@ private:
      **/
 	void LoadProductsFromDB();
 
-	std::map<wxTreeItemId, std::shared_ptr<Categoria>> treeItemId_Category_Map; //!< Map to link tree items to categories
+	
 	std::map<wxTreeItemId, std::shared_ptr<Producto>> treeItemId_Product_Map;  //!< Map to link tree items to products
     /**
 		@brief Finds the tree item ID corresponding to a given category.
@@ -115,19 +143,6 @@ private:
 		 @retval - True if the category name exists at the same level, false otherwise.
      **/
 	bool ExistsCategoryNameInSameLevel(wxString& newCategoryName, size_t& categoryId);
-     /**
-		 @brief Checks if a product name already exists within the same category.
-		 @param  newProductName - Name of the new product to check.
-		 @param  categoryId - Category Id to check
-		 @retval - True if the product name exists in the same category, false otherwise.
-     **/
-	bool ExistsProductNameInSameCategory(wxString& newProductName, size_t& categoryId);
-     /**
-		 @brief Checks if a barcode already exists globally across all products.
-		 @param  codebar - Barcode to check
-		 @retval - True if the barcode exists globally, false otherwise.
-     **/
-	bool ExistsCodebarGlobal(const std::string& codebar);
      /**
 		 @brief Adjusts stock values when a product's type changes from weighted to unit-based or vice. Example: 2.55 kg to 2.0 units.
 		 @param productId - ID of the product whose type has changed.
@@ -171,13 +186,6 @@ private:
 		 @param oldName     - Old name of the category
      **/
 	void UpdateCategoryNameInDB(std::string newName, size_t idCategoria, std::string oldName);
-     /**
-		 @brief Updates a product's information in the database.
-		 @param oldProductInfo - Old product information
-		 @param newProductInfo   - Shared pointer to the new product information
-		 @param idCategoriaPadre - ID of the parent category
-     **/
-	void UpdateProductInDB(const Producto& oldProductInfo, const std::shared_ptr<Producto>& newProductInfo, size_t idCategoriaPadre);
 
      /**
 		 @brief Inserts a stock record for a product into the database.
@@ -268,12 +276,6 @@ private:
 	/** @Product related functionss */
 	/// @{
 
-    /**
-		@brief Adds a new product under the specified parent category in the tree control.
-		@param product  - Product object to add.
-		@param parentId - ID of the parent category where the product will be added.
-    **/
-    void AddProduct(Producto& product, const wxTreeItemId& parentId);
      /**
 		 @brief Deletes a product from the tree control and memory.
 		 @param productId - ID of the product to delete.
