@@ -55,7 +55,7 @@ void ProductosFrame::InsertProductToDB(Producto& product, size_t& categoryId) {
 
         // Obtener el ID generado automÃÂ¡ticamente
         product.Id = db.last_insert_rowid();
-        InsertStockProductToDB(product.Id);
+        InsertStockProductToDB(product);
     }
     catch (const std::exception& e) {
         wxString wxError = wxString::FromUTF8(e.what());
@@ -67,15 +67,18 @@ void ProductosFrame::InsertProductToDB(Producto& product, size_t& categoryId) {
 
 
 //Insert Stock Product:
-void ProductosFrame::InsertStockProductToDB(size_t productId) {
+void ProductosFrame::InsertStockProductToDB(Producto& product) {
     try {
         sqlite::database db(GetDBPath());
         db << "PRAGMA encoding = 'UTF-8';";
-        db << R"(
-            INSERT INTO stock (product_id, quantity)
-            VALUES (?, 0.000);
-        )"
-            << productId;
+
+        std::visit([&](auto&& quantity) {
+            db << R"(
+                INSERT INTO stock (product_id, quantity)
+                VALUES (?, ?);
+            )"
+                << product.Id << quantity;
+            }, product.stock);
     }
     catch (const std::exception& e) {
         wxString wxError = wxString::FromUTF8(e.what());

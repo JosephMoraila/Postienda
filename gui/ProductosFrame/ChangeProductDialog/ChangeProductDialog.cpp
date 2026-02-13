@@ -10,8 +10,16 @@ ChangeProductDialog::ChangeProductDialog(wxWindow* parent,Producto& product, con
 	AplicarIconoPrincipal(this);
 	SetTitle(_("Edit Product"));
 	//Widgets(); No hace falta llamar a Widgets porque ya se llama en el constructor de ProductoDialog
+    // Ocultar el campo de Stock que no se usa en edición
+    if (txtStockInicial && stockLabel) {
+        txtStockInicial->Hide();
+        stockLabel->Hide();
+        Layout();
+        Fit();
+    }
 	EstablecerDatos();
 }
+
 
 void ChangeProductDialog::EstablecerDatos() {
 	wxString nombreProducto = wxString::FromUTF8(m_product.nombre);

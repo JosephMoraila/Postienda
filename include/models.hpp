@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <variant>
 
  /**
   * @struct Producto
@@ -36,6 +37,8 @@ struct Producto {
 
     /** CÃ³digo de barras asociado al producto. */
     std::string codigoBarras;
+
+	std::variant<unsigned long long, double> stock; ///< Cantidad en stock, puede ser por unidad (unsigned long long) o por peso (double).
 
     /**
      * Indica si el producto se vende por peso.

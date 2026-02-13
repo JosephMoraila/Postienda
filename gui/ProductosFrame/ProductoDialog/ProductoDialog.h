@@ -8,6 +8,7 @@
 #include "include/models.hpp"
 #include <functional>
 #include "constants/MESSAGES_ADVICE/WARNING/WARNING_MESSAGES.hpp"
+#include <variant>
 class ProductosFrame;
 
 /**
@@ -52,15 +53,19 @@ public:
      */
 	void AplicarTema(bool oscuro);
 
+	std::variant<unsigned long long, double> GetStockInicial() const;
+
 protected:
 	void Widgets(); ///< Crea y organiza los widgets en el diÃÂÃÂ¡logo.
 	wxTextCtrl* txtNombre; ///< Campo de texto para el nombre del producto.
 	wxTextCtrl* txtPrecio; ///< Campo de texto para el precio del producto.
 	wxTextCtrl* txtCodigoBarras;  ///< Campo de texto para el cÃÂÃÂ³digo de barras (opcional).
+	wxTextCtrl* txtStockInicial; ///< Campo de texto para el stock inicial del producto.
 	wxCheckBox* chkPorPeso; ///< Checkbox para indicar si es por peso.
 	wxButton* btnOk; ///< BotÃÂÃÂ³n para aceptar y guardar.
 	wxButton* btnCancel; ///< BotÃÂÃÂ³n para cancelar y cerrar.
 	wxStaticText* precioLabel; ///< Etiqueta para el campo de precio (cambia si es por peso).
+	wxStaticText* stockLabel; ///< Etiqueta para el campo de stock (cambia si es por peso).
 	bool temaOscuro = false; ///< Indica si el tema oscuro estÃÂÃÂ¡ activo.
 
     /**

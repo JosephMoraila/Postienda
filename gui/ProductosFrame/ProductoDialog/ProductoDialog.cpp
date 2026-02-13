@@ -44,6 +44,14 @@ void ProductoDialog::Widgets() {
     helpText->SetForegroundColour(wxColour(100, 100, 100));
     mainSizer->Add(helpText, 0, wxALL | wxEXPAND, 5);
 
+    //Texto de stock inicial
+    stockLabel = new wxStaticText(this, wxID_ANY, _("Stock:"));
+    mainSizer->Add(stockLabel, 0, wxALL, 5);
+    txtStockInicial = new wxTextCtrl(this, wxID_ANY);
+	txtStockInicial->SetValue("0"); // Valor inicial de stock
+    txtStockInicial->Bind(wxEVT_TEXT, [this](wxCommandEvent&) {FormatTextCtrlWithCommas(txtStockInicial);});
+    mainSizer->Add(txtStockInicial, 0, wxEXPAND | wxALL, 5);
+
     // Checkbox para indicar si es por peso
     chkPorPeso = new wxCheckBox(this, wxID_ANY, _("Product by weight?"));
     chkPorPeso->SetValue(false); // Por defecto no es por peso
@@ -67,12 +75,18 @@ void ProductoDialog::Widgets() {
             wxFont font = precioLabel->GetFont();
             font.SetWeight(wxFONTWEIGHT_BOLD);
             precioLabel->SetFont(font);
+
+			stockLabel->SetLabel(_("Stock (kg):"));
+            stockLabel->SetFont(font);
         }
         else {
             precioLabel->SetLabel(_("Price:"));
             wxFont font = precioLabel->GetFont();
             font.SetWeight(wxFONTWEIGHT_NORMAL);  // quita la negrita
             precioLabel->SetFont(font);
+
+            stockLabel->SetLabel(_("Stock:"));
+            stockLabel->SetFont(font);
         }
 
 
@@ -126,6 +140,35 @@ wxString ProductoDialog::GetCodigoBarras() const {
 
 bool ProductoDialog::EsPorPeso() const {
     return chkPorPeso->IsChecked();
+}
+
+std::variant<unsigned long long, double> ProductoDialog::GetStockInicial() const {
+    wxString raw = txtStockInicial->GetValue();
+    raw.Replace(",", ""); // quitar separadores de miles
+    std::string s = raw.ToStdString();
+
+    if (EsPorPeso()) {
+		double stock = 0.0;
+        // Si es por peso, devolver como double
+        try {
+            stock = std::stod(s);
+        }
+        catch (...) {
+			return 0.0;
+        }
+        return stock;
+    }
+    else {
+        // Si es por unidad, devolver como unsigned long long
+        unsigned long long stock = 0;
+        try {
+            stock = std::stoull(raw.ToStdString());
+        }
+        catch (...) {
+            stock = 0;
+        }
+        return stock;
+    }
 }
 
 void ProductoDialog::OnAceptar(wxCommandEvent& event) {
@@ -184,6 +227,20 @@ void ProductoDialog::OnAceptar(wxCommandEvent& event) {
         txtCodigoBarras->SetValue(wxString::FromUTF8(codigoBarras));
     }
 
+    auto stockVariant = GetStockInicial();
+    if (EsPorPeso()) {
+        double stock = std::get<double>(stockVariant);
+        wxString str = wxString::Format("%.3f", stock); 
+		txtStockInicial->SetValue(str);
+    }
+    else {
+        unsigned long long stock = std::get<unsigned long long>(stockVariant);
+        wxString str = wxString::Format("%llu", stock);
+        txtStockInicial->SetValue(str);
+    }
+
+    //Otras verificaciones
+
     Producto nuevo;
     if (nombreLimpiado.empty() && nombreLimpio.length() <= 0) {
         wxMessageBox(_("Invalid name. The product was not created."), "Error");
@@ -211,6 +268,7 @@ void ProductoDialog::OnAceptar(wxCommandEvent& event) {
     nuevo.precio = roundPrice;
     nuevo.codigoBarras = codigoBarras;
     nuevo.porPeso = isByWeight;
+    nuevo.stock = stockVariant;
     m_parentFrame->AddProduct(nuevo, m_parentId);
 
 	//EndModal y wxID_OK para cerrar el diÃÂ¡logo y devolver el resultado

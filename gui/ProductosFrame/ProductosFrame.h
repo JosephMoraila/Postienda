@@ -189,9 +189,9 @@ private:
 
      /**
 		 @brief Inserts a stock record for a product into the database.
-		 @param productId - ID of the product to insert stock for.
+		 @param product - Product to insert stock for.
      **/
-	void InsertStockProductToDB(size_t productId);
+	void InsertStockProductToDB(Producto& product);
     /**
 		@brief Retrieves the stock of a product from the database.
 		@param  idProducto - ID of the product to retrieve stock for.
