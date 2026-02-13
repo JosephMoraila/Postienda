@@ -8,11 +8,12 @@ void ProductosFrame::StockProduct(const wxTreeItemId& item) {
     if (!producto) return;
     size_t idProducto = producto->Id;
     bool byWeight = producto->porPeso;
+    std::string productName = producto->nombre;
 
     std::variant<unsigned long long, double> stock = GetStockFromDB(idProducto, byWeight);
 
     // ÃÂ¡NO convertir a double! Pasar directamente el variant
-    StockDialog dlg(this, stock);  // Pasar el variant directamente
+    StockDialog dlg(this, stock, productName);  // Pasar el variant directamente
     dlg.AplicarTema(temaOscuro);
 
     if (dlg.ShowModal() == wxID_OK) {

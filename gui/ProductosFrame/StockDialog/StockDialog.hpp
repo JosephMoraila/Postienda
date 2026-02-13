@@ -11,12 +11,12 @@
  */
 class StockDialog : public wxDialog {
 public:
-	StockDialog(wxWindow* parent, std::variant<unsigned long long, double> availableStock); ///< Constructor que inicializa el diÃ¡logo con el stock disponible.
+	StockDialog(wxWindow* parent, std::variant<unsigned long long, double> availableStock, const std::string& productName); ///< Constructor que inicializa el diÃ¡logo con el stock disponible.
 	std::variant<unsigned long long, double> GetStock() const; ///< Retorna la cantidad de stock ingresada.
 	void AplicarTema(bool oscuro); ///< Aplica el tema claro u oscuro a la ventana y todos sus widgets hijos.
 
 private:
-	void Widgets(); ///< Crea y organiza los widgets en la ventana.
+	void Widgets(const std::string& productName); ///< Crea y organiza los widgets en la ventana.
 	bool temaOscuro = false; ///< Indica si el tema oscuro estÃ¡ activo.
 	bool m_productByWeight; ///< Indica si el producto es por peso (double) o por unidad (unsigned long long).
 	std::variant<unsigned long long, double> m_availableStock; ///< Stock disponible del producto.

@@ -2,7 +2,7 @@
 #include "utils/window/WindowUtils.h"
 #include "utils/MathUtils.hpp"
 
-StockDialog::StockDialog(wxWindow* parent, std::variant<unsigned long long, double> availableStock)
+StockDialog::StockDialog(wxWindow* parent, std::variant<unsigned long long, double> availableStock, const std::string& productName)
     : wxDialog(parent, wxID_ANY, "Stock", wxDefaultPosition, wxSize(350, 300)),
     m_availableStock(std::move(availableStock))   // guardamos en el miembro
 {
@@ -21,7 +21,7 @@ StockDialog::StockDialog(wxWindow* parent, std::variant<unsigned long long, doub
         }
     }, m_availableStock);
 
-    Widgets();
+    Widgets(productName);
 
     // Mostrar el stock disponible
     CallAfter([this]() {
@@ -32,11 +32,13 @@ StockDialog::StockDialog(wxWindow* parent, std::variant<unsigned long long, doub
 }
 
 
-void StockDialog::Widgets() {
+void StockDialog::Widgets(const std::string& productName) {
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 	wxString ifByWeight = m_productByWeight ? _("\nEnter stock per kilo.") : _("\nEnter stock per unit");
     // Etiqueta
-    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Product stock.\nPlease note that it decreases as purchases are made.") + ifByWeight), 0, wxALL, 5);
+	wxString productLabel = wxString::Format("%s", wxString::FromUTF8(productName));
+    wxString labelText = wxString::Format(_("Product stock: \"%s\".\nPlease note that it decreases as purchases are made. %s"), productLabel, ifByWeight);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, labelText), 0, wxALL, 5);
 
     // Horizontal: TextCtrl + SpinButton
     wxBoxSizer* stockSizer = new wxBoxSizer(wxHORIZONTAL);
