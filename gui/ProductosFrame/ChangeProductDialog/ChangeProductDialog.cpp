@@ -105,14 +105,15 @@ void ChangeProductDialog::OnAceptar(wxCommandEvent& event) {
         txtCodigoBarras->SetValue(wxString::FromUTF8(codigoBarras));
     }
 
-    nombreProducto = GetNombre().ToUTF8().data();
+    //Otras verificaciones
+
     codigoBarrasWx = GetCodigoBarras();
     double precioWithoutRound = GetPrecio();
     precio = round2(precioWithoutRound);
     bool esPorPeso = EsPorPeso();
     size_t idCategoriaPadre = m_fatherCategory->idCategoria; //Nesesario para la base de datos para indicar que categorÃÂ­a es padre del producto
 
-    nombreLimpiado = LimpiarCaracteresInvalidosOnAddProduct(nombreProducto);
+    nombreLimpiado = LimpiarCaracteresInvalidosOnAddProduct(nombreLimpio);
     nombreLimpio = LimpiarYValidarNombre(nombreLimpiado);
     if (!EsNombreValido(nombreLimpio)) {
         wxMessageBox(_("The product name is invalid. It must contain at least one valid character."), _("Invalid name"), wxOK | wxICON_WARNING);
