@@ -142,12 +142,21 @@ void ProductoDialog::OnAceptar(wxCommandEvent& event) {
 
     // Validar precio
     wxString raw = txtPrecio->GetValue();
-    raw.Replace(",", "");  // quitar comas
+    raw.Replace(",", "");   // quitar separadores de miles
+    std::string s = raw.ToStdString();
     double precio = 0.0;
-    if (!raw.ToDouble(&precio) || precio < 0) {
+    try {
+        precio = std::stod(s);
+    }
+    catch (...) {
         wxMessageBox(_("The price must be a number greater than or equal to zero."), WARNING, wxOK | wxICON_WARNING);
         return;
     }
+    if (precio < 0) {
+        wxMessageBox(_("The price must be a number greater than or equal to zero."), WARNING, wxOK | wxICON_WARNING);
+        return;
+    }
+
 
     wxString codigoBarras = txtCodigoBarras->GetValue().Trim().Trim(false);
 
