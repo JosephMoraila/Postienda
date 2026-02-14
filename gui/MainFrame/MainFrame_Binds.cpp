@@ -233,8 +233,6 @@ void MainFrame::OnRealizarCompra(wxCommandEvent& event) {
         // Enum para la lÃÂ³gica interna (no traducible)
         enum MetodoPago { EFECTIVO, TARJETA };
 
-        CreateComprasTable();
-
         // Opciones traducidas para mostrar al usuario
         wxArrayString opciones;
         opciones.Add(_("Cash"));
@@ -290,6 +288,33 @@ void MainFrame::OnRealizarCompra(wxCommandEvent& event) {
     totalUI = 0.0;
     productsIdsStock.clear(); //Limpiamos los ids de producto y su stock temporal
     labelTotal->SetLabel(wxString::Format(_("Total: %.2f"), totalUI));
+}
+
+//DRAWER LABEL:
+
+void MainFrame::OnLeftClickDrawerLabel(wxMouseEvent& event) {
+    OpenDrawerManagement();
+    event.Skip();
+}
+
+void MainFrame::OnCkeyDownDrawerLabel(wxKeyEvent& event) {
+	//Si se pica a la letra C y el input para poner productos en carrito no tiene el foco porque si el usuario esta escribiendo el nombre de un producto no queremos que se abra el drawer
+    if ((event.GetKeyCode() == 'C' || event.GetKeyCode() == 'c') && !input->HasFocus()){
+        OpenDrawerManagement();
+    }
+    event.Skip();  // Importante para que otras teclas funcionen
+}
+
+void MainFrame::OpenDrawerManagement() {
+    enum MetodoPago { WITHDRAW, ADD };
+    wxArrayString opciones;
+    opciones.Add(_("Withdraw"));
+    opciones.Add(_("Add"));
+    wxSingleChoiceDialog metodoDrawerDialog(this,_("Select drawer method:"),_("Drawer method"),opciones);
+
+    if (metodoDrawerDialog.ShowModal() != wxID_OK) return; // Cancelado
+
+    int seleccion = metodoDrawerDialog.GetSelection();
 }
 
 

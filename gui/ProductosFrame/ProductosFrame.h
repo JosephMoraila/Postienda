@@ -112,10 +112,6 @@ private:
     /** @DB functionss */
     /// @{
 
-    /**
-		@brief Creates the database and the necessary tables and triggers if they do not exist.
-    **/
-    void CrearConexionBD();
      /**
 		 @brief Loads categories from the database into memory and the tree control.
      **/

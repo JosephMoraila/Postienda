@@ -5,6 +5,8 @@
 #include "constants/MESSAGES_ADVICE/WARNING/ATENCION.hpp"
 #include "constants/MESSAGES_ADVICE/INFO/NO_PRODUCT.hpp"
 #include "constants/FOLDERS/SETTINGS/SETTINGS_FOLDER.hpp"
+#include "constants/MESSAGES_ADVICE/ERROR/DB/DB_ERRORS.hpp"
+using namespace DB_ERROR_MESSAGES;
 
 void MainFrame::CheckInputLogic(wxCommandEvent& event) {
     if (productosVentana != nullptr) {
@@ -618,5 +620,120 @@ double MainFrame::AddCompraToDB(bool esEfectivo) {
     catch (const std::exception& e) {
         wxMessageBox(wxString::Format(_("Error registering purchase: %s"), e.what()), "Error", wxOK | wxICON_ERROR);
         return -1.0;
+    }
+}
+
+//CREATE TABLES:
+void MainFrame::CreateTables() {
+    CreateProductsCategoriesTable();
+    CreateComprasTable();
+    CreateDrawerTable();
+}
+
+//PRODUCTS AND CATEGORIES TABLES:
+
+void MainFrame::CreateProductsCategoriesTable() {
+    try {
+        sqlite::database db(GetDBPath());
+
+        // Configurar SQLite para UTF-8
+        db << "PRAGMA foreign_keys = ON;";
+        db << "PRAGMA encoding = 'UTF-8';";
+
+        // --- Crear tablas normales ---
+        db << "CREATE TABLE IF NOT EXISTS categories ("
+            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "name TEXT NOT NULL COLLATE NOCASE,"
+            "parent_id INTEGER,"
+            "FOREIGN KEY(parent_id) REFERENCES categories(id) ON DELETE CASCADE,"
+            "UNIQUE(name, parent_id)"
+            ");";
+
+        db << "CREATE TABLE IF NOT EXISTS products ("
+            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "name TEXT NOT NULL COLLATE NOCASE,"
+            "price REAL NOT NULL DEFAULT 0.00 CHECK(price = ROUND(price, 2)),"
+            "barcode TEXT UNIQUE,"
+            "byWeight INTEGER NOT NULL DEFAULT 0,"
+            "category_id INTEGER,"
+            "FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE CASCADE,"
+            "UNIQUE(name, category_id)"
+            ");";
+
+        // --- Crear tabla de stock que tendrÃÂÃÂ¡ la cantidad de cada producto ---
+        db << "CREATE TABLE IF NOT EXISTS stock ("
+            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "product_id INTEGER NOT NULL UNIQUE,"   // RelaciÃÂÃÂ³n 1:1 con products
+            "quantity REAL NOT NULL DEFAULT 0.000 CHECK (quantity >= 0 AND quantity = ROUND(quantity, 3)),"
+            "FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE"
+            ");";
+
+        //Trigger para eliminar productos al eliminar una categorÃÂÃÂ­a
+        db << "CREATE TRIGGER IF NOT EXISTS delete_products_on_category_delete "
+            "AFTER DELETE ON categories "
+            "FOR EACH ROW "
+            "BEGIN "
+            "DELETE FROM products WHERE category_id = OLD.id; "
+            "END;";
+
+        //Trigger para eliminar categorias hijas al eliminar una categorÃÂÃÂ­a padre
+        db << "CREATE TRIGGER IF NOT EXISTS delete_child_categories "
+            "AFTER DELETE ON categories "
+            "FOR EACH ROW "
+            "BEGIN "
+            "DELETE FROM categories WHERE parent_id = OLD.id; "
+            "END;";
+
+        // --- Crear el TRIGGER para eliminar stock asociado ---
+        db << "CREATE TRIGGER IF NOT EXISTS delete_product_stock "
+            "AFTER DELETE ON products "
+            "FOR EACH ROW "
+            "BEGIN "
+            "DELETE FROM stock WHERE product_id = OLD.id; "
+            "END;";
+
+
+        db << "PRAGMA foreign_keys = ON;";
+
+        // --- Asegurar categorÃÂÃÂ­a raÃÂÃÂ­z "Productos" en permanentes ya que siempre serÃÂÃÂ¡ 1---
+        int root_count = 0;
+        db << "SELECT COUNT(*) FROM categories WHERE id = 1;" >> root_count;
+        if (root_count == 0) db << "INSERT INTO categories (name, parent_id) VALUES ('Products', NULL);";
+
+
+    }
+    catch (const std::exception& e) {
+        wxString wxError = wxString::FromUTF8(e.what());
+        wxString wxFile = wxString::FromUTF8(__FILE__);
+        wxString msg = wxString::Format(DB_ERROR_LINE_MESSAGE,wxFile,__LINE__,wxError);
+        wxMessageBox(msg, "Error SQLite", wxOK | wxICON_ERROR, this);
+    }
+}
+
+
+//DRAWER TABLE:
+
+void MainFrame::CreateDrawerTable() {
+    try {
+        sqlite::database db(GetDBPath());
+        db << "PRAGMA encoding = 'UTF-8';";
+        db << "PRAGMA foreign_keys = ON;";
+        db << "CREATE TABLE IF NOT EXISTS drawer ("
+            "amount REAL NOT NULL CHECK(amount = ROUND(amount, 2)) DEFAULT 0.00 )";
+
+        db << "CREATE TABLE IF NOT EXISTS drawer_history ("
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+            "date TEXT NOT NULL, "
+            "amount REAL NOT NULL CHECK(amount = ROUND(amount, 2)),"
+            "is_addition INTEGER NOT NULL CHECK(is_addition IN (0, 1))," //0 para sustraccion y 1 para adicion
+            "worker TEXT,"
+            "reason TEXT,"
+            "purchase_id INTEGER,"
+            "drawer_at_moment REAL NOT NULL CHECK(drawer_at_moment = ROUND(drawer_at_moment, 2)),"
+            "FOREIGN KEY(purchase_id) REFERENCES purchases(id) ON DELETE SET NULL"
+            ");";
+    }
+    catch (const sqlite::sqlite_exception& e) {
+        wxMessageBox(_("Error creating the drawer table:") + wxString::FromUTF8(e.what()), "Error", wxOK | wxICON_ERROR);
     }
 }

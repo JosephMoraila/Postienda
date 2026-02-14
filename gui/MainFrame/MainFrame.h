@@ -240,6 +240,12 @@ private:
     **/
     void OnRealizarCompra(wxCommandEvent& event);
 
+    void OnLeftClickDrawerLabel(wxMouseEvent& event);
+
+	void OnCkeyDownDrawerLabel(wxKeyEvent& event);
+
+	void OpenDrawerManagement();
+
     ///@}
 
 
@@ -277,6 +283,9 @@ private:
 
 	wxStaticText* labelTotal = nullptr; ///Label that shows total price
 	double totalUI = 0.0; ///> Total price shown in labelTotal
+
+	wxStaticText* labelDrawer = nullptr; ///Label that shows the drawer amount
+	double drawerAmount = 0.0; ///> Drawer amount shown in labelDrawer
 
     /// Estado del tema: false = claro, true = oscuro
     bool temaOscuro = false;
@@ -408,9 +417,15 @@ private:
     **/
 	double AddCompraToDB(bool esEfectivo);
 
+    void CreateTables();
+
+	void CreateProductsCategoriesTable();
+
+	void CreateDrawerTable();
+
     /** @} */ // cierra Funciones de productos
 
-        /**
+    /**
     * @name PrintTicket Functions
     * @{
     */

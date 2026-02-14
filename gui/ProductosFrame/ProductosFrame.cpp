@@ -15,7 +15,6 @@ ProductosFrame::ProductosFrame(wxWindow* parent): wxFrame(parent, wxID_ANY, _("P
 {
 	AplicarIconoPrincipal(this);
 	Widgets();  // Inicializa los widgets de la ventana
-    CrearConexionBD();
 	LoadCategoriesFromDB();
 	LoadProductsFromDB();
 }

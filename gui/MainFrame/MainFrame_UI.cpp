@@ -1,5 +1,6 @@
 ﻿#include "gui/MainFrame/MainFrame.h"
 #include "utils/window/WindowUtils.h"
+#include <wx/statline.h>
 
 void MainFrame::MenuBar() {
     wxMenuBar* menuBar = new wxMenuBar;
@@ -90,7 +91,16 @@ void MainFrame::Widgets() {
     buttonRealizarCompra->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {OnButtonLeave(event, temaOscuro); });
     hSizerBotones->Add(buttonRealizarCompra, 0, wxALL, 5);
     labelTotal = new wxStaticText(mainPanel, wxID_ANY, wxString::Format("Total: %.2f", totalUI), wxDefaultPosition, wxDefaultSize);
-	hSizerBotones->Add(labelTotal, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    hSizerBotones->Add(labelTotal, 1, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+
+    hSizerBotones->AddStretchSpacer(1);
+    hSizerBotones->Add(new wxStaticLine(mainPanel, wxID_ANY, wxDefaultPosition, wxSize(2, 30), wxLI_VERTICAL),0, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT, 10);
+    labelDrawer = new wxStaticText(mainPanel, wxID_ANY, wxString::Format(_("Drawer: %.2f"), drawerAmount));
+    labelDrawer->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent& event) {labelDrawer->SetCursor(wxCursor(wxCURSOR_HAND)); });
+    labelDrawer->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {labelDrawer->SetCursor(wxCursor(wxCURSOR_ARROW)); });
+    labelDrawer->Bind(wxEVT_LEFT_DOWN, &MainFrame::OnLeftClickDrawerLabel, this, wxID_ANY);
+    this->Bind(wxEVT_CHAR_HOOK, &MainFrame::OnCkeyDownDrawerLabel, this, wxID_ANY); //Enlazar tecla C presionado en ventana para igual abrir el drawer mangament
+    hSizerBotones->Add(labelDrawer, 1, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     input = new wxTextCtrl(mainPanel, ID_INPUT, wxEmptyString, wxDefaultPosition, wxSize(-1, 30), wxTE_PROCESS_ENTER);
     input->SetToolTip(_("Enter name or barcode"));

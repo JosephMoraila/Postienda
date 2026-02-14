@@ -30,6 +30,7 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title)
     GetActualUserFromJSON();
     AjustarColumnasListCtrl();
     CartHasProducts();
+    CreateTables();
     Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
 }
 
