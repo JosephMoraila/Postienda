@@ -208,6 +208,10 @@ private:
     template<typename T>
     void UpdateStockInDB(size_t idProducto, T stock);
 
+    void UpdateCategoryParentInDB(size_t categoriaId, size_t nuevoPadreId);
+
+    void UpdateProductCategoryInDB(size_t productoId, size_t categoriaAnteriorId, size_t nuevaCategoriaId);
+
     /// @}
 
 
@@ -345,6 +349,36 @@ private:
     **/
     void AddProductToFilteredTree(const std::shared_ptr<Producto>& product, size_t category_id);
 
+    /// @}
+    
+
+    /** @Drag and drop functionss */
+    /// @{
+
+    wxArrayTreeItemIds m_draggedItems;  /// Items siendo arrastrados
+
+    void OnBeginDrag(wxTreeEvent& event);
+    void OnEndDrag(wxTreeEvent& event);
+    /**
+	 * @brief Mueve un item (categoría o producto) a una nueva categoría en el árbol, actualizando la base de datos y la estructura en memoria.
+	 * \param item Es el item (categoría o producto) que se desea mover.
+	 * \param nuevaCategoria Es la categoría destino a la que se desea mover el item. Se asume que el item no es una categoría ancestro de la nueva categoría para evitar movimientos inválidos.
+     */
+    void MoverItemACategoria(const wxTreeItemId& item, const wxTreeItemId& nuevaCategoria);
+    /**
+	 * @brief Verifica si un item es descendiente de otro para evitar movimientos inválidos en el árbol. Ejemplo: Se quiere mover Categoria Padre a Catgeoria Hijo
+     * \param posibleDescendiente Es el item destino
+     * \param ancestro Es el item siendo movido
+	 * \return True si el item destino es descendiente del item siendo movido, false en caso contrario.
+     */
+    bool EsDescendiente(const wxTreeItemId& posibleDescendiente, const wxTreeItemId& ancestro);
+    /**
+	 * @brief Copia recursivamente los hijos de un item a otro en el árbol, utilizado para mantener la estructura al mover categorías. Ejemplo: Se mueve Categoria Padre a Categoria Tio, se copian todos los hijos de Categoria Padre a Categoria Tio.
+	 * \param src Es el item origen del cual se copiarán los hijos.
+	 * \param ds t Es el item destino al cual se copiarán los hijos.
+     */
+    void CopiarHijosRecursivo(const wxTreeItemId& src, const wxTreeItemId& dst);
+    
     /// @}
 
     enum {

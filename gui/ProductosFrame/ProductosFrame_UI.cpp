@@ -29,6 +29,8 @@ void ProductosFrame::Widgets() {
     vSizer->Add(panelBusqueda, 0, wxEXPAND | wxALL, 5);
 
     arbolCategorias = new wxTreeCtrl(mainPanel, ID_ARBOL, wxDefaultPosition, wxDefaultSize, wxTR_DEFAULT_STYLE | wxTR_MULTIPLE | wxTR_HAS_BUTTONS);
+    arbolCategorias->Bind(wxEVT_TREE_BEGIN_DRAG, &ProductosFrame::OnBeginDrag, this);
+    arbolCategorias->Bind(wxEVT_TREE_END_DRAG, &ProductosFrame::OnEndDrag, this);
     vSizer->Add(arbolCategorias, 1, wxEXPAND | wxALL, 10);
 
     

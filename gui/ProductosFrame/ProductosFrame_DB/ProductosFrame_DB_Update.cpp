@@ -87,3 +87,26 @@ void ProductosFrame::UpdateStockInDB(size_t idProducto, T stock) {
 // Instanciaciones explÃÂ­citas
 template void ProductosFrame::UpdateStockInDB<unsigned long long>(size_t, unsigned long long);
 template void ProductosFrame::UpdateStockInDB<double>(size_t, double);
+
+
+void ProductosFrame::UpdateCategoryParentInDB(size_t categoriaId, size_t nuevoPadreId) {
+    try {
+        sqlite::database db(GetDBPath());
+        db << "UPDATE categories SET parent_id = ? WHERE id = ?"
+            << nuevoPadreId << categoriaId;
+    }
+    catch (const std::exception& e) {
+        wxMessageBox(wxString::Format(_("Error updating category: %s"), e.what()), "Error", wxOK | wxICON_ERROR);
+    }
+}
+
+void ProductosFrame::UpdateProductCategoryInDB(size_t productoId, size_t categoriaAnteriorId, size_t nuevaCategoriaId) {
+    try {
+        sqlite::database db(GetDBPath());
+        db << "UPDATE products SET category_id = ? WHERE id = ?"
+            << nuevaCategoriaId << productoId;
+    }
+    catch (const std::exception& e) {
+        wxMessageBox(wxString::Format(_("Error updating product: %s"), e.what()), "Error", wxOK | wxICON_ERROR);
+    }
+}
