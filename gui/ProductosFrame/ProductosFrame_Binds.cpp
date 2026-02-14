@@ -3,7 +3,9 @@
 #include "gui/ProductosFrame/ProductoDialog/ProductoDialog.h"
 
 void ProductosFrame::OnAgregarCategoria(wxCommandEvent& event) {
-	wxTreeItemId parentId = arbolCategorias->GetSelection();
+    wxArrayTreeItemIds selections;
+    arbolCategorias->GetSelections(selections);
+	wxTreeItemId parentId = selections[0]; //Tomamos el primer elemento seleccionado como padre
 	// Si no hay selecciÃÂÃÂ³n, se usa el nodo raÃÂÃÂ­z
 	if (!parentId.IsOk()) parentId = arbolCategorias->GetRootItem();
 	if (treeItemId_Category_Map.find(parentId) == treeItemId_Category_Map.end()) {
@@ -31,7 +33,9 @@ void ProductosFrame::OnAgregarCategoria(wxCommandEvent& event) {
 }
 
 void ProductosFrame::OnAgregarProducto(wxCommandEvent& event) {
-	wxTreeItemId parentId = arbolCategorias->GetSelection();
+    wxArrayTreeItemIds selections;
+    arbolCategorias->GetSelections(selections);
+    wxTreeItemId parentId = selections[0]; //Tomamos el primer elemento seleccionado como padre
 	// Si no hay selecciÃÂÃÂ³n, se usa el nodo raÃÂÃÂ­z
 	if (!parentId.IsOk()) parentId = arbolCategorias->GetRootItem();
 	if (treeItemId_Product_Map.find(parentId) != treeItemId_Product_Map.end()) {
@@ -49,31 +53,110 @@ void ProductosFrame::OnAgregarProducto(wxCommandEvent& event) {
 }
 
 void ProductosFrame::OnEliminar(wxCommandEvent& event) {
-	wxTreeItemId selectedId = arbolCategorias->GetSelection();
-	if (!selectedId.IsOk()) {
-		wxMessageBox(_("There are no items selected to delete."), "Error");
-		return;
-	}
+    wxArrayTreeItemIds selections;
+    arbolCategorias->GetSelections(selections);
 
-	bool esCategoria = (treeItemId_Category_Map.find(selectedId) != treeItemId_Category_Map.end());
-	bool esProducto = (treeItemId_Product_Map.find(selectedId) != treeItemId_Product_Map.end());
+    if (selections.IsEmpty()) {
+        wxMessageBox(_("There are no items selected to delete."), "Error");
+        return;
+    }
 
-	if (!esCategoria && !esProducto) {
-		wxMessageBox(_("Selected item is not valid."), "Error");
-		return;
-	}
+    // Filtrar la categoría raíz de las selecciones
+    wxTreeItemId rootId = arbolCategorias->GetRootItem();
+    wxArrayTreeItemIds selectionsFiltered;
 
-	if (esCategoria) {
-		auto categoriaAEliminar = treeItemId_Category_Map[selectedId];
-		int respuesta = wxMessageBox(wxString::Format(_("Are you sure you want to delete the '%s' category?"), wxString::FromUTF8(categoriaAEliminar->nombre.c_str())), _("Confirm Deletion"), wxYES_NO | wxICON_QUESTION);
-		if (respuesta != wxYES) return; // El usuario cancelÃÂÃÂ³ la eliminaciÃÂÃÂ³n
-		else DeleteCategory(selectedId);
-		
-	}
-	else if (esProducto) DeleteProduct(selectedId);
+    for (size_t i = 0; i < selections.GetCount(); i++) {
+        if (selections[i] != rootId) {
+            selectionsFiltered.Add(selections[i]);
+        }
+    }
 
+    // Verificar si quedaron items válidos después de filtrar
+    if (selectionsFiltered.IsEmpty()) {
+        return;
+    }
+
+    // Usar selectionsFiltered en lugar de selections desde aquí
+    if (selectionsFiltered.size() == 1) {
+        wxTreeItemId selectedId = selectionsFiltered[0];
+        bool esCategoria = (treeItemId_Category_Map.find(selectedId) != treeItemId_Category_Map.end());
+        bool esProducto = (treeItemId_Product_Map.find(selectedId) != treeItemId_Product_Map.end());
+
+        if (!esCategoria && !esProducto) {
+            wxMessageBox(_("Selected item is not valid."), "Error");
+            return;
+        }
+
+        if (esCategoria) {
+            auto categoriaAEliminar = treeItemId_Category_Map[selectedId];
+            int respuesta = wxMessageBox(
+                wxString::Format(_("Are you sure you want to delete the '%s' category?"),
+                    wxString::FromUTF8(categoriaAEliminar->nombre.c_str())),
+                _("Confirm Deletion"),
+                wxYES_NO | wxICON_QUESTION
+            );
+            if (respuesta != wxYES) return;
+
+            wxTreeItemId parentId = arbolCategorias->GetItemParent(selectedId);
+            DeleteCategory(selectedId);
+
+            if (parentId.IsOk()) {
+                LimpiarCategoriasVaciasRecursivo(parentId);
+            }
+        }
+        else if (esProducto) {
+            wxTreeItemId categoriaId = arbolCategorias->GetItemParent(selectedId);
+            wxString nombreProductoVisual = arbolCategorias->GetItemText(selectedId);
+            wxString nombreCategoriaVisual = arbolCategorias->GetItemText(categoriaId);
+            wxString nombreProductoLimpioWX = ObtenerNombreProductoLimpioWX(nombreProductoVisual);
+
+            int respuesta = wxMessageBox(
+                _("Are you sure you want to delete the product '") + nombreProductoLimpioWX +
+                _("' from the category '") + nombreCategoriaVisual + "'?",
+                _("Confirm deletion"),
+                wxYES_NO | wxICON_QUESTION,
+                this
+            );
+            if (respuesta != wxYES) return;
+
+            DeleteProduct(selectedId);
+        }
+    }
+    else {
+        // Eliminación múltiple
+        int respuesta = wxMessageBox(
+            _("Are you sure you want to delete the selected items?"),
+            _("Confirm Deletion"),
+            wxYES_NO | wxICON_QUESTION
+        );
+        if (respuesta != wxYES) return;
+
+        std::set<wxTreeItemId> categoriasAVerificar;
+
+        for (const auto& selectedId : selectionsFiltered) {  // ✅ Usar selectionsFiltered
+            bool esCategoria = (treeItemId_Category_Map.find(selectedId) != treeItemId_Category_Map.end());
+            bool esProducto = (treeItemId_Product_Map.find(selectedId) != treeItemId_Product_Map.end());
+
+            wxTreeItemId parentId = arbolCategorias->GetItemParent(selectedId);
+
+            if (esCategoria) {
+                DeleteCategory(selectedId);
+                if (parentId.IsOk()) {
+                    categoriasAVerificar.insert(parentId);
+                }
+            }
+            else if (esProducto) {
+                DeleteProduct(selectedId);
+            }
+        }
+
+        for (const auto& catId : categoriasAVerificar) {
+            if (catId.IsOk()) {
+                LimpiarCategoriasVaciasRecursivo(catId);
+            }
+        }
+    }
 }
-
 
 //Buscar:
 

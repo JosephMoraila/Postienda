@@ -270,6 +270,8 @@ private:
     **/
     void ChangeCategoryInfo(const wxTreeItemId& item, const wxTreeItemId& parentId);
 
+    void LimpiarCategoriasVaciasRecursivo(const wxTreeItemId& categoryId);
+
     /// @}
 
 

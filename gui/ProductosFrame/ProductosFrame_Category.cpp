@@ -87,3 +87,40 @@ void ProductosFrame::ChangeCategoryInfo(const wxTreeItemId& item, const wxTreeIt
 	UpdateCategoryNameInDB(nombreFinal.ToUTF8().data(), categoria->idCategoria, nombreCategoria);
 	arbolCategorias->SetItemText(item, nombreFinal);
 }
+
+void ProductosFrame::LimpiarCategoriasVaciasRecursivo(const wxTreeItemId& categoryId) {
+	if (!categoryId.IsOk()) return;
+
+	wxTreeItemId rootId = arbolCategorias->GetRootItem();
+	wxTreeItemId parentId = arbolCategorias->GetItemParent(categoryId);
+
+	// Protecciones: NO eliminar si es raíz O si no tiene padre válido
+	if (categoryId == rootId || !parentId.IsOk()) {
+		return;
+	}
+
+	// Verificar si la categoría está vacía (sin hijos)
+	if (!arbolCategorias->ItemHasChildren(categoryId)) {
+		auto it = treeItemId_Category_Map.find(categoryId);
+		if (it == treeItemId_Category_Map.end()) {
+			return;  // Categoría no encontrada en el mapa
+		}
+
+		auto categoria = it->second;
+
+		// Eliminar de la base de datos
+		DeleteCategoryFromDB(categoria);
+
+		// Eliminar referencias del padre
+		DeleteReferencesCategory(categoryId);
+
+		// Eliminar del mapa
+		treeItemId_Category_Map.erase(categoryId);
+
+		// Eliminar del árbol visual
+		arbolCategorias->Delete(categoryId);
+
+		// Verificar recursivamente el padre
+		LimpiarCategoriasVaciasRecursivo(parentId);
+	}
+}
