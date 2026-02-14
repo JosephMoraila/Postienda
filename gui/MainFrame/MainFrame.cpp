@@ -31,6 +31,7 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title)
     AjustarColumnasListCtrl();
     CartHasProducts();
     CreateTables();
+    setLabelDrawer();
     Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
 }
 

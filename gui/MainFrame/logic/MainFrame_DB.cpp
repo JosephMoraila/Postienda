@@ -719,7 +719,11 @@ void MainFrame::CreateDrawerTable() {
         db << "PRAGMA encoding = 'UTF-8';";
         db << "PRAGMA foreign_keys = ON;";
         db << "CREATE TABLE IF NOT EXISTS drawer ("
-            "amount REAL NOT NULL CHECK(amount = ROUND(amount, 2)) DEFAULT 0.00 )";
+            "amount REAL NOT NULL DEFAULT 0.00 CHECK(amount = ROUND(amount, 2))  )";
+
+        int count = 0;
+        db << "SELECT COUNT(*) FROM drawer" >> count;
+        if (count == 0) db << "INSERT INTO drawer (amount) VALUES (0.00)";
 
         db << "CREATE TABLE IF NOT EXISTS drawer_history ("
             "id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -729,7 +733,7 @@ void MainFrame::CreateDrawerTable() {
             "worker TEXT,"
             "reason TEXT,"
             "purchase_id INTEGER,"
-            "drawer_at_moment REAL NOT NULL CHECK(drawer_at_moment = ROUND(drawer_at_moment, 2)),"
+            "drawer_after_insertion REAL NOT NULL CHECK(drawer_after_insertion = ROUND(drawer_after_insertion, 2)),"
             "FOREIGN KEY(purchase_id) REFERENCES purchases(id) ON DELETE SET NULL"
             ");";
     }

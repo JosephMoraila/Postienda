@@ -6,6 +6,7 @@
 #include "gui/AskEnterPasswordFrame/AskEnterPasswordFrame.hpp"
 #include <filesystem>
 #include "constants/PASSWORD/PASSWORD_FILE.hpp"
+#include "db_functions/DB_Functions.hpp"
 
 //MENU APARIENCIA
 
@@ -315,6 +316,36 @@ void MainFrame::OpenDrawerManagement() {
     if (metodoDrawerDialog.ShowModal() != wxID_OK) return; // Cancelado
 
     int seleccion = metodoDrawerDialog.GetSelection();
+
+    bool isAdd = (seleccion == ADD);
+
+	//Preguntar al user la cantidad a agregar o retirar:
+    bool valido = false;
+    double cantidad = 0.0;
+    wxString accionStr = isAdd ? _("add to") : _("withdraw from");
+
+    do {
+        wxString cantidadStr = wxGetTextFromUser(wxString::Format(_("Enter amount to %s:"), accionStr), _("Amount"));
+
+        if (cantidadStr.IsEmpty()) return; // Si presiona cancelar
+
+        // Intentar convertir a double
+        if (cantidadStr.ToDouble(&cantidad)) {
+            // Validar que sea positivo y mayor que 0
+            if (cantidad > 0) valido = true;
+            else wxMessageBox(_("The amount must be greater than zero."),_("Error"), wxOK | wxICON_ERROR);
+        }
+        else wxMessageBox(_("Invalid amount, please try again."),_("Error"), wxOK | wxICON_ERROR);
+        
+    } while (!valido);
+
+	wxString reaseon = wxGetTextFromUser(wxString::Format(_("Enter reason for %s:"), accionStr), _("Reason"));
+    std::string cleanReason = LimpiarYValidarNombre(reaseon);
+
+    bool success = DB_Functions::Drawer_DB_Functions::Insert_Drawer_History(cantidad, isAdd, cleanReason);
+    wxString successMessage = isAdd ? _("Successful deposit of funds") : _("Successful withdrawal of funds");
+    setLabelDrawer();
+	wxMessageBox(successMessage, _("Drawer updated"), wxOK | wxICON_INFORMATION);
 }
 
 

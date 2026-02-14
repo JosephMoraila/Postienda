@@ -135,6 +135,7 @@ add_subdirectory(print)
 add_subdirectory(constants)
 add_subdirectory(gui)
 add_subdirectory(src)
+add_subdirectory(db_functions)
 
 if(WIN32)
     set(OPENSSL_ROOT_DIR "C:/openssl-static")

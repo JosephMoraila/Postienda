@@ -26,4 +26,5 @@ target_link_libraries(gui_lib PUBLIC
     constants_lib
     nlohmann_json
     sqlite3
+    db_functions
 )

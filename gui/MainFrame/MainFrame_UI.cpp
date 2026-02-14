@@ -1,5 +1,7 @@
 ﻿#include "gui/MainFrame/MainFrame.h"
 #include "utils/window/WindowUtils.h"
+#include "utils/MathUtils.hpp"
+#include "db_functions/DB_Functions.hpp"
 #include <wx/statline.h>
 
 void MainFrame::MenuBar() {
@@ -205,4 +207,10 @@ void MainFrame::AjustarColumnasListCtrl() {
             listaProductos->SetColumnWidth(2, codigoWidth);
         }
     }
+}
+
+void MainFrame::setLabelDrawer() {
+    double amount = DB_Functions::Drawer_DB_Functions::GetCurrentDrawerAmount();
+	drawerAmount = amount;
+	labelDrawer->SetLabel(wxString::Format(_("Drawer: %s"), FormatFloatWithCommas(drawerAmount, 2)));
 }

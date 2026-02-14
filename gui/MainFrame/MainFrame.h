@@ -286,6 +286,7 @@ private:
 
 	wxStaticText* labelDrawer = nullptr; ///Label that shows the drawer amount
 	double drawerAmount = 0.0; ///> Drawer amount shown in labelDrawer
+	void setLabelDrawer();
 
     /// Estado del tema: false = claro, true = oscuro
     bool temaOscuro = false;
