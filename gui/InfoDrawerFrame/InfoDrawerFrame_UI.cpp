@@ -1,6 +1,7 @@
 ﻿#include "gui/InfoDrawerFrame/InfoDrawerFrame.hpp"
 #include "utils/window/WindowUtils.h"
 #include "utils/MathUtils.hpp"
+#include <wx/statline.h>
 
 void InfoDrawerFrame::Widgets() {
     mainPanel = new wxPanel(this);
@@ -19,11 +20,12 @@ void InfoDrawerFrame::Widgets() {
     wxButton* searchButton = new wxButton(scrollWidgets, wxID_ANY, _("Search"), wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
     searchButton->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent& event) {OnWidgetEnter(event, temaOscuro); });
     searchButton->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {OnWidgetLeave(event, temaOscuro); });
-    //searchButton->Bind(wxEVT_BUTTON, &InfoDrawerFrame::OnSearch, this);
+    searchButton->Bind(wxEVT_BUTTON, &InfoDrawerFrame::OnSearch, this);
 
     wxStaticText* idLabel = new wxStaticText(scrollWidgets, wxID_ANY, "ID:");
     idLabel->SetToolTip(_("Searching only for the ID cancels all other filters"));
     IdInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(80, -1));
+    IdInput->SetToolTip(_("Searching only for the ID cancels all other filters"));
 
     wxStaticText* startDateLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Start date:"));
     startDatePicker = new wxDatePickerCtrl(scrollWidgets, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
@@ -54,7 +56,7 @@ void InfoDrawerFrame::Widgets() {
     actionChoice = new wxChoice(scrollWidgets, wxID_ANY, wxDefaultPosition, wxSize(120, -1));
     actionChoice->Append(_("Any"), (void*)DRAWER_ANY);
     actionChoice->Append(_("Withdrawal"), (void*)DRAWER_WITHDRAWL);
-    actionChoice->Append(_("Addition"), (void*)DRAWER_ADDITION);
+    actionChoice->Append(_("Income"), (void*)DRAWER_ADDITION);
     actionChoice->SetSelection(0);  // Selecciona "Any" por defecto
 
     wxStaticText* reasonLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Reason:"));
@@ -62,6 +64,7 @@ void InfoDrawerFrame::Widgets() {
 
     wxStaticText* purchaseIdLabel = new wxStaticText(scrollWidgets, wxID_ANY, "Purchase ID:");
     purchaseIdInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(80, -1));
+    purchaseIdInput->SetToolTip(_("Searching only for the ID cancels all other filters"));
 
     wxStaticText* drawerAfterMinLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Drawer after minimum amount:"));
     drawerAfterMinAmountInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(80, -1));
@@ -70,6 +73,31 @@ void InfoDrawerFrame::Widgets() {
     wxStaticText* drawerAfterMaxLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Drawer after maximum amount:"));
     drawerAfterMaxAmountInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(80, -1));
     drawerAfterMaxAmountInput->Bind(wxEVT_TEXT, [this](wxCommandEvent&) {FormatTextCtrlWithCommas(drawerAfterMaxAmountInput); });
+
+    totalIncomeByFilterLabel = new wxStaticText(mainPanel, wxID_ANY, wxString::Format("Income: %.2f", totalIncomeByFilter));
+    totalWithdrawalByFilterLabel = new wxStaticText(mainPanel, wxID_ANY, wxString::Format("Withawals: %.2f", totalWithdrawalByFilter));
+    totalOnDrawerByFilterLabel = new wxStaticText(mainPanel, wxID_ANY, wxString::Format("Total: %.2f", totalOnDrawerByFilter));
+
+    wxBoxSizer* totalsSizer = new wxBoxSizer(wxHORIZONTAL);
+    int spacing = FromDIP(40);   // Espacio adaptable
+    int lineHeight = FromDIP(28);
+    int lineWidth = FromDIP(2);
+
+    // ---- Income ----
+    totalsSizer->Add(totalIncomeByFilterLabel, 0,wxRIGHT | wxALIGN_CENTER_VERTICAL,spacing);
+
+    // Línea separadora
+    totalsSizer->Add(new wxStaticLine(mainPanel, wxID_ANY,wxDefaultPosition,wxSize(lineWidth, lineHeight),wxLI_VERTICAL), 0,wxALIGN_CENTER_VERTICAL | wxRIGHT,spacing);
+
+    // ---- Withdrawals ----
+    totalsSizer->Add(totalWithdrawalByFilterLabel, 0,wxRIGHT | wxALIGN_CENTER_VERTICAL,spacing);
+
+    // Línea separadora
+    totalsSizer->Add(new wxStaticLine(mainPanel, wxID_ANY,wxDefaultPosition,wxSize(lineWidth, lineHeight),wxLI_VERTICAL),0,wxALIGN_CENTER_VERTICAL | wxRIGHT,spacing);
+
+    // ---- Total ----
+    totalsSizer->Add(totalOnDrawerByFilterLabel, 0, wxALIGN_CENTER_VERTICAL);
+
 
 	//----- Add widgets to sizers -----
     topSizer->Add(searchButton, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
@@ -107,13 +135,14 @@ void InfoDrawerFrame::Widgets() {
     // ---- Tabla (fuera del scroll totalmente) ----
     list = new wxListCtrl(mainPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxLC_SINGLE_SEL);
     list->InsertColumn(0, "ID", wxLIST_FORMAT_LEFT, 50);
-    list->InsertColumn(1, _("Date"), wxLIST_FORMAT_LEFT, 100);
-    list->InsertColumn(2, _("Time"), wxLIST_FORMAT_LEFT, 150);
-    list->InsertColumn(3, _("Reason"), wxLIST_FORMAT_LEFT, 150);
-    list->InsertColumn(4, _("Worker"), wxLIST_FORMAT_LEFT, 100);
-    list->InsertColumn(5, _("Method"), wxLIST_FORMAT_LEFT, 150);
-    list->InsertColumn(6, _("Purchase ID"), wxLIST_FORMAT_LEFT, 150);
-    list->InsertColumn(7, _("Drawer after"), wxLIST_FORMAT_LEFT, 150);
+    list->InsertColumn(1, _("Date"), wxLIST_FORMAT_LEFT, 70);
+    list->InsertColumn(2, _("Time"), wxLIST_FORMAT_LEFT, 100);
+    list->InsertColumn(3, _("Amount"), wxLIST_FORMAT_LEFT, 150);
+    list->InsertColumn(4, _("Reason"), wxLIST_FORMAT_LEFT, 150);
+    list->InsertColumn(5, _("Worker"), wxLIST_FORMAT_LEFT, 100);
+    list->InsertColumn(6, _("Action"), wxLIST_FORMAT_LEFT, 150);
+    list->InsertColumn(7, _("Purchase ID"), wxLIST_FORMAT_LEFT, 150);
+    list->InsertColumn(8, _("Drawer after"), wxLIST_FORMAT_LEFT, 150);
 
     // ---- Panel de botones de paginaciÃÂ³n ----
     bottomPanel = new wxPanel(mainPanel);
@@ -137,8 +166,8 @@ void InfoDrawerFrame::Widgets() {
     nextButton->Disable();
 
     // opcional: asignar eventos
-    //prevButton->Bind(wxEVT_BUTTON, &PreviousPurchaseFrame::OnLoadPrev, this);
-    //nextButton->Bind(wxEVT_BUTTON, &PreviousPurchaseFrame::OnLoadNext, this);
+    prevButton->Bind(wxEVT_BUTTON, &InfoDrawerFrame::OnLoadPrev, this);
+    nextButton->Bind(wxEVT_BUTTON, &InfoDrawerFrame::OnLoadNext, this);
 
     bottomSizer->AddStretchSpacer(1);
     bottomSizer->Add(prevButton, 0, wxALL, 5);
@@ -149,12 +178,20 @@ void InfoDrawerFrame::Widgets() {
 
     // ---- Agregar todo al sizer principal ----
     mainSizer->Add(filtersPanel, 0, wxEXPAND | wxALL, 5);
-    //mainSizer->Add(totalByFilter, 0, wxEXPAND | wxALL, 5);
+    mainSizer->Add(totalsSizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, FromDIP(5));
     mainSizer->Add(list, 1, wxEXPAND | wxALL, 5);
     mainSizer->Add(bottomPanel, 0, wxALIGN_CENTER | wxBOTTOM, 5);
 
     mainPanel->SetSizer(mainSizer);
     mainSizer->SetSizeHints(this);
+}
+
+void InfoDrawerFrame::UpdateTotalLabels() {
+    totalIncomeByFilterLabel->SetLabel(wxString::Format(_("Income: %s"), FormatFloatWithCommas(totalIncomeByFilter)));
+    totalWithdrawalByFilterLabel->SetLabel(wxString::Format(_("Withdrawals: %s"), FormatFloatWithCommas(totalWithdrawalByFilter)));
+	totalOnDrawerByFilter = totalIncomeByFilter - totalWithdrawalByFilter;
+    totalOnDrawerByFilterLabel->SetLabel(wxString::Format(_("Total: %s"), FormatFloatWithCommas(totalOnDrawerByFilter)));
+
 }
 
 
@@ -167,6 +204,7 @@ void InfoDrawerFrame::AjustarColumnasListCtrl() {
             int idWidth = 0;
             int dateWidth = 0;
             int timeWidth = 0;
+			int amountWidth = 0;
             int reasonMoneyWidth = 0;
             int workerWidth = 0;
             int methodWidth = 0;
@@ -181,31 +219,34 @@ void InfoDrawerFrame::AjustarColumnasListCtrl() {
             if (!IsMaximized()) {
                 // DistribuciÃÂ³n en modo normal
                 idWidth = static_cast<int>(totalWidth * 0.10);
-                dateWidth = static_cast<int>(totalWidth * 0.10);
-                timeWidth = static_cast<int>(totalWidth * 0.12);
+                dateWidth = static_cast<int>(totalWidth * 0.15);
+                timeWidth = static_cast<int>(totalWidth * 0.07);
+				amountWidth = static_cast<int>(totalWidth * 0.10);
                 reasonMoneyWidth = static_cast<int>(totalWidth * 0.20);
                 workerWidth = static_cast<int>(totalWidth * 0.10);
-				methodWidth = static_cast<int>(totalWidth * 0.12);
-				purchaseIdWidth = static_cast<int>(totalWidth * 0.15);
-                drawerAfterWidth = totalWidth - idWidth - dateWidth - timeWidth - reasonMoneyWidth - workerWidth - methodWidth - purchaseIdWidth;
+				methodWidth = static_cast<int>(totalWidth * 0.07);
+				purchaseIdWidth = static_cast<int>(totalWidth * 0.10);
+                drawerAfterWidth = totalWidth - idWidth - dateWidth - timeWidth - amountWidth - reasonMoneyWidth - workerWidth - methodWidth - purchaseIdWidth;
             }
             else {
                 // DistribuciÃÂ³n en modo maximizado
                 idWidth = static_cast<int>(totalWidth * 0.10);
-                dateWidth = static_cast<int>(totalWidth * 0.10);
-                timeWidth = static_cast<int>(totalWidth * 0.12);
+                dateWidth = static_cast<int>(totalWidth * 0.15);
+                timeWidth = static_cast<int>(totalWidth * 0.07);
+                amountWidth = static_cast<int>(totalWidth * 0.10);
                 reasonMoneyWidth = static_cast<int>(totalWidth * 0.20);
                 workerWidth = static_cast<int>(totalWidth * 0.10);
-                methodWidth = static_cast<int>(totalWidth * 0.12);
-                purchaseIdWidth = static_cast<int>(totalWidth * 0.15);
-                drawerAfterWidth = totalWidth - idWidth - dateWidth - timeWidth - reasonMoneyWidth - workerWidth - methodWidth - purchaseIdWidth;
+                methodWidth = static_cast<int>(totalWidth * 0.07);
+                purchaseIdWidth = static_cast<int>(totalWidth * 0.10);
+                drawerAfterWidth = totalWidth - idWidth - dateWidth - timeWidth - amountWidth - reasonMoneyWidth - workerWidth - methodWidth - purchaseIdWidth;
             }
 
             // Anchos mÃÂ­nimos
             idWidth = wxMax(100, idWidth);
-            dateWidth = wxMax(100, dateWidth);
+            dateWidth = wxMax(120, dateWidth);
             timeWidth = wxMax(100, timeWidth);
-            reasonMoneyWidth = wxMax(150, reasonMoneyWidth);
+			amountWidth = wxMax(100, amountWidth);
+            reasonMoneyWidth = wxMax(200, reasonMoneyWidth);
             workerWidth = wxMax(100, workerWidth);
             methodWidth = wxMax(100, methodWidth);
             purchaseIdWidth = wxMax(100, purchaseIdWidth);
@@ -215,11 +256,12 @@ void InfoDrawerFrame::AjustarColumnasListCtrl() {
             list->SetColumnWidth(0, idWidth);
             list->SetColumnWidth(1, dateWidth);
             list->SetColumnWidth(2, timeWidth);
-            list->SetColumnWidth(3, reasonMoneyWidth);
-            list->SetColumnWidth(4, workerWidth);
-            list->SetColumnWidth(5, methodWidth);
-			list->SetColumnWidth(6, purchaseIdWidth);
-			list->SetColumnWidth(7, drawerAfterWidth);
+			list->SetColumnWidth(3, amountWidth);
+            list->SetColumnWidth(4, reasonMoneyWidth);
+            list->SetColumnWidth(5, workerWidth);
+            list->SetColumnWidth(6, methodWidth);
+			list->SetColumnWidth(7, purchaseIdWidth);
+			list->SetColumnWidth(8, drawerAfterWidth);
 
         }
     }

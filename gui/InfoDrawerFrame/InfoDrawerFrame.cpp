@@ -3,7 +3,7 @@
 #include "utils/window/WindowUtils.h"
 #include "utils/ValidateStringInput.h"
 
-InfoDrawerFrame::InfoDrawerFrame(wxWindow* parent) : wxFrame(parent, wxID_ANY, _("Info products"), wxDefaultPosition, wxDefaultSize) {
+InfoDrawerFrame::InfoDrawerFrame(wxWindow* parent) : wxFrame(parent, wxID_ANY, _("Info Drawer"), wxDefaultPosition, wxDefaultSize) {
     AplicarIconoPrincipal(this);
     Widgets();
     wxRect screenRect = wxDisplay(wxDisplay::GetFromWindow(this)).GetClientArea();
