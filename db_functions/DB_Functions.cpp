@@ -11,7 +11,9 @@ namespace DB_Functions {
 				sqlite::database db(GetDBPath());
 				db << "PRAGMA foreign_keys = ON;";
 				db << "PRAGMA encoding = 'UTF-8';";
+
 				wxString currentDate = wxDateTime::Now().FormatISOCombined(' ');
+				std::string dateStr = std::string(currentDate.mb_str());
 				std::string actualUser = getUserFromJSON<std::string>();
 
 				// Obtener el saldo actual del drawer
@@ -21,35 +23,48 @@ namespace DB_Functions {
 				// Actualizar el saldo
 				if (isAddition) drawer_after_insertion += amount;
 				else drawer_after_insertion -= amount;
-				
+
+				// Definir condiciones UNA VEZ
+				bool hasUser = !actualUser.empty() && actualUser != "Ninguno";
+				bool hasReason = !reason.empty();
+				bool hasPurchase = (purchaseId != nullptr);
+
+				//  Construir query con las mismas condiciones
 				std::string dbQuery = "INSERT INTO drawer_history (date, amount, is_addition, drawer_after_insertion";
-				if (purchaseId != nullptr) dbQuery += ", purchase_id";
-				if (actualUser != "Ninguno" || actualUser != "") dbQuery += ", worker";
-				if(!reason.empty()) dbQuery += ", reason";
-				dbQuery += ") VALUES(?, ?, ?, ?";
-				if (purchaseId != nullptr) dbQuery += ", ?";
-				if (actualUser != "Ninguno" || actualUser != "") dbQuery += ", ?";
-				if (!reason.empty()) dbQuery += ", ?";
+
+				if (hasPurchase) dbQuery += ", purchase_id";
+				if (hasUser) dbQuery += ", worker";
+				if (hasReason) dbQuery += ", reason";
+
+				dbQuery += ") VALUES (?, ?, ?, ?";
+
+				if (hasPurchase) dbQuery += ", ?";
+				if (hasUser) dbQuery += ", ?";
+				if (hasReason) dbQuery += ", ?";
+
 				dbQuery += ");";
 
-				//Insertar datos
+				// Insertar datos
 				auto statement = db << dbQuery;
 
 				// Valores obligatorios
-				statement << std::string(currentDate.mb_str()) << amount << (isAddition ? 1 : 0) << drawer_after_insertion;
+				statement << dateStr << amount << (isAddition ? 1 : 0) << drawer_after_insertion;
 
-				// Valores opcionales (en el mismo orden que los agregamos al query)
-				if (purchaseId != nullptr) statement << *purchaseId;
-				if (!actualUser.empty() && actualUser != "Ninguno") statement << actualUser;	
-				if (!reason.empty()) statement << reason;
+				// Valores opcionales (usando LAS MISMAS condiciones)
+				if (hasPurchase) statement << *purchaseId;
+				if (hasUser) statement << actualUser;
+				if (hasReason) statement << reason;
 
 				// Actualizar el drawer
 				db << "UPDATE drawer SET amount = ?;" << drawer_after_insertion;
-				return true; //Significa que hubo exito
+
+				return true;
+
 			}
 			catch (const sqlite::sqlite_exception& e) {
-				wxMessageBox(_("Error making operation in drawer:") + wxString::FromUTF8(e.what()), "Error", wxOK | wxICON_ERROR);
-				return false; //Hubo algun problema, no se pudo insertar el registro
+				wxMessageBox(_("Error making operation in drawer: ") + wxString::FromUTF8(e.what()),
+					"Error", wxOK | wxICON_ERROR);
+				return false;
 			}
 		}
 

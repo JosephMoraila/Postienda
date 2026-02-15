@@ -16,6 +16,7 @@
 #include "gui/MainFrame/logic/MainFrame_models.hpp"
 #include "gui/LanguageFrame/LanguageFrame.hpp"
 #include "utils/MathUtils.hpp"
+#include <utility>
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -414,9 +415,9 @@ private:
     /**
 	 @brief Adds the current cart products to the "purchases" and "purchase_items" tables in the database,updates the stock, then clears the cart.
      @param esEfectivo - Indicates whether the purchase was made with cash (true) or card (false).
-	 @retval - Returns the total price of the purchase if successful, -1.0 on error.
+	 @retval - Returns the total price of the purchase if successful, -1.0 on error. And the ID of the new purchase, if error returns 0
     **/
-	double AddCompraToDB(bool esEfectivo);
+	std::pair<double, size_t> AddCompraToDB(bool esEfectivo);
 
     void CreateTables();
 

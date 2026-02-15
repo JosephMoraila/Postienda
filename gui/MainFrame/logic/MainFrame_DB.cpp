@@ -569,7 +569,7 @@ void MainFrame::CreateComprasTable() {
 	}
 }
 
-double MainFrame::AddCompraToDB(bool esEfectivo) {
+std::pair<double, size_t> MainFrame::AddCompraToDB(bool esEfectivo) {
     try {
         sqlite::database db(GetDBPath());
         db << "PRAGMA foreign_keys = ON;";
@@ -615,11 +615,11 @@ double MainFrame::AddCompraToDB(bool esEfectivo) {
             WHERE product_id IN (SELECT product_id FROM cart);
         )";
         DeleteCartProducts();
-        return total;
+        return { total,purchaseId };
     }
     catch (const std::exception& e) {
         wxMessageBox(wxString::Format(_("Error registering purchase: %s"), e.what()), "Error", wxOK | wxICON_ERROR);
-        return -1.0;
+        return { -1.0,0 };
     }
 }
 

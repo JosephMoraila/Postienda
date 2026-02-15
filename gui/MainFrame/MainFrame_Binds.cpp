@@ -254,29 +254,33 @@ void MainFrame::OnRealizarCompra(wxCommandEvent& event) {
         bool esEfectivo = (seleccion == EFECTIVO);
 
         // Registrar compra y calcular total
-        double total = AddCompraToDB(esEfectivo);
+        auto resultInsertionPurchase = AddCompraToDB(esEfectivo);
         double cambio = 0.0;
         double pagoCliente = 0.0;
 
         if (esEfectivo) {
             bool valido = false;
             do {
-                wxString pagoStr = wxGetTextFromUser(wxString::Format(_("Total: $%.2f\n\nEnter amount received:"), total), _("Cash payment"));
+                wxString pagoStr = wxGetTextFromUser(wxString::Format(_("Total: $%.2f\n\nEnter amount received:"), resultInsertionPurchase.first), _("Cash payment"));
                 if (pagoStr.IsEmpty()) return; // Si presiona cancelar
                 if (pagoStr.ToDouble(&pagoCliente))valido = true;
                 else wxMessageBox(_("Invalid amount, please try again."), _("Error"), wxOK | wxICON_ERROR);
 
             } while (!valido);
 
-            cambio = pagoCliente - total; // puede ser negativo si paga parcialmente
+            cambio = pagoCliente - resultInsertionPurchase.first; // puede ser negativo si paga parcialmente
         }
 
         // Mensaje de confirmaciÃÂ³n traducible
         wxString mensaje;
-        if (esEfectivo) mensaje = wxString::Format(_("Purchase registered successfully.\nTotal: $%.2f\nPaid: $%.2f\nChange: $%.2f"),total, pagoCliente, cambio);
-        else mensaje = wxString::Format(_("Purchase registered successfully.\nTotal: $%.2f\nPaid with card."),total);
+        if (esEfectivo) mensaje = wxString::Format(_("Purchase registered successfully.\nTotal: $%.2f\nPaid: $%.2f\nChange: $%.2f"), resultInsertionPurchase.first, pagoCliente, cambio);
+        else mensaje = wxString::Format(_("Purchase registered successfully.\nTotal: $%.2f\nPaid with card."), resultInsertionPurchase.first);
 
-        // Imprimir ticket y mostrar resultado
+        // Imprimir ticket y mostrar resultado, asi como actualizar el label de drawer
+		bool isAdd = true; //Agregamos que se agrega dinero al drawer porque se hizo una compra, esto es para el historial del drawer
+        wxString reasonWx = wxString::Format(_("Purchase ID: %zu"), resultInsertionPurchase.second);
+        std::string reason = reasonWx.ToStdString();
+        bool success = DB_Functions::Drawer_DB_Functions::Insert_Drawer_History(resultInsertionPurchase.first, isAdd, reason, &resultInsertionPurchase.second);
         PrintTicket(pagoCliente, esEfectivo);
         wxMessageBox(mensaje, _("Purchase completed"), wxOK | wxICON_INFORMATION);
     }
@@ -289,6 +293,7 @@ void MainFrame::OnRealizarCompra(wxCommandEvent& event) {
     totalUI = 0.0;
     productsIdsStock.clear(); //Limpiamos los ids de producto y su stock temporal
     labelTotal->SetLabel(wxString::Format(_("Total: %.2f"), totalUI));
+    setLabelDrawer();
 }
 
 //DRAWER LABEL:
