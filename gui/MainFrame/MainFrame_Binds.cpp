@@ -211,6 +211,26 @@ void MainFrame::onInfoProductsClicked(wxCommandEvent& event) {
     }
 }
 
+void MainFrame::onInfoDrawerClicked(wxCommandEvent& event) {
+    if (infoDrawerVentana && infoDrawerVentana->IsShown()) {
+        if (infoDrawerVentana->IsIconized()) {
+            infoDrawerVentana->Iconize(false);
+        }
+        infoDrawerVentana->Show();
+        infoDrawerVentana->Raise();
+        infoDrawerVentana->SetFocus();
+    }
+    else {
+        infoDrawerVentana = new InfoDrawerFrame(this);
+        infoDrawerVentana->AplicarTema(temaOscuro);
+        infoDrawerVentana->Show();
+        infoDrawerVentana->Bind(wxEVT_CLOSE_WINDOW, [this](wxCloseEvent& evt) {
+            infoDrawerVentana = nullptr;
+            evt.Skip();
+            });
+    }
+}
+
 //TABLE PRODUCTS
 
 void MainFrame::OnListaKeyDown(wxKeyEvent& event) {
