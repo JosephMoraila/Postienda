@@ -62,7 +62,7 @@ void InfoDrawerFrame::Widgets() {
     wxStaticText* reasonLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Reason:"));
     reasonInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(120, -1));
 
-    wxStaticText* purchaseIdLabel = new wxStaticText(scrollWidgets, wxID_ANY, "Purchase ID:");
+    wxStaticText* purchaseIdLabel = new wxStaticText(scrollWidgets, wxID_ANY, _("Purchase ID:"));
     purchaseIdInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(80, -1));
     purchaseIdInput->SetToolTip(_("Searching only for the ID cancels all other filters"));
 
@@ -74,9 +74,9 @@ void InfoDrawerFrame::Widgets() {
     drawerAfterMaxAmountInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(80, -1));
     drawerAfterMaxAmountInput->Bind(wxEVT_TEXT, [this](wxCommandEvent&) {FormatTextCtrlWithCommas(drawerAfterMaxAmountInput); });
 
-    totalIncomeByFilterLabel = new wxStaticText(mainPanel, wxID_ANY, wxString::Format("Income: %.2f", totalIncomeByFilter));
-    totalWithdrawalByFilterLabel = new wxStaticText(mainPanel, wxID_ANY, wxString::Format("Withawals: %.2f", totalWithdrawalByFilter));
-    totalOnDrawerByFilterLabel = new wxStaticText(mainPanel, wxID_ANY, wxString::Format("Total: %.2f", totalOnDrawerByFilter));
+    totalIncomeByFilterLabel = new wxStaticText(mainPanel, wxID_ANY, wxString::Format(_("Income: %.2f"), totalIncomeByFilter));
+    totalWithdrawalByFilterLabel = new wxStaticText(mainPanel, wxID_ANY, wxString::Format(_("Withawals: %.2f"), totalWithdrawalByFilter));
+    totalOnDrawerByFilterLabel = new wxStaticText(mainPanel, wxID_ANY, wxString::Format(_("Total: %.2f"), totalOnDrawerByFilter));
 
     wxBoxSizer* totalsSizer = new wxBoxSizer(wxHORIZONTAL);
     int spacing = FromDIP(40);   // Espacio adaptable
