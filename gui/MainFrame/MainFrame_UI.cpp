@@ -41,6 +41,9 @@ void MainFrame::MenuBar() {
     watchMenu->Append(ID_MENU_INFO_DRAWER, _("Info Drawer"));
     Bind(wxEVT_MENU, &MainFrame::onInfoDrawerClicked, this, ID_MENU_INFO_DRAWER);
 
+    watchMenu->Append(ID_MENU_INFO_RETURNS, _("Info Returns"));
+    Bind(wxEVT_MENU, &MainFrame::onInfoReturnsClicked, this, ID_MENU_INFO_RETURNS);
+
     // Apariencia
     wxMenu* menuApariencia = new wxMenu;
     menuBar->Append(menuApariencia, _("Appearance"));
