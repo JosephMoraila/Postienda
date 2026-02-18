@@ -4,6 +4,7 @@
 #include "utils/MathUtils.hpp"
 #include "db_functions/DB_Functions.hpp"
 #include "gui/MainFrame/MainFrame.h"
+#include "utils/GetFromFile.h"
 
 void ReturnsFrame::ValidatePurchaseId() {
 	unsigned long long purchaseId = GetPurchaseID();
@@ -150,9 +151,17 @@ void ReturnsFrame::ReturnProductStock(unsigned long long& productId, double& qua
         db << "SELECT price_at_purchase FROM purchase_items WHERE id = ?" << purchaseItemId >> priceAtPurchase;
         wxString currentDate = wxDateTime::Now().FormatISOCombined(' ');
         std::string dateStr = std::string(currentDate.mb_str());
-        db << "INSERT INTO returned_products (purchase_id, product_id, purchase_item_id, price_at_return, quantity, return_date) "
-              "VALUES (?, ?, ?, ?, ?, ?);"
-			<< this->purchaseID << productId << purchaseItemId << priceAtPurchase << quantity << dateStr;
+        std::string worker = getUserFromJSON<std::string>();
+        bool noWorker = worker == "Ninguno" || worker == "";
+
+        std::string query = "INSERT INTO returned_products (purchase_id, product_id, purchase_item_id, price_at_return, quantity, return_date, worker) ";
+        query += "VALUES (?, ?, ?, ?, ?, ?, ";
+        if (noWorker) query += " NULL);";
+        else query += " ?);";
+
+        auto stmt = db << query;
+        stmt << this->purchaseID << productId << purchaseItemId << priceAtPurchase << quantity << dateStr;
+        if (!noWorker) stmt << worker;
 		db << "UPDATE stock SET quantity = quantity + ? WHERE product_id = ?;" << quantity << productId;
 
         bool isAdd = false; //No se suma sino que quitamos dinero del cajon para devolver el dinero
@@ -198,6 +207,7 @@ void ReturnsFrame::CreateTableReturns() {
 			"purchase_item_id INTEGER NOT NULL,"
             "price_at_return REAL NOT NULL CHECK(price_at_return = ROUND(price_at_return, 2)),"
               "quantity REAL NOT NULL,"
+            "worker TEXT,"
               "return_date TEXT NOT NULL,"
               "FOREIGN KEY(purchase_id) REFERENCES purchases(id),"
               "FOREIGN KEY(product_id) REFERENCES products(id)"
