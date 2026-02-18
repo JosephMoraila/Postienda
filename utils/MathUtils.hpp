@@ -5,6 +5,7 @@
 
 #pragma once
 #include <cmath>
+#include <variant>
 
 /**
 @brief Redondea un numero decimal a dos decimales. Ejemplo: 12.34567 -> 12.35
@@ -196,4 +197,19 @@ inline void FormatTextCtrlWithCommas(wxTextCtrl* ctrl, int decimals = 2) {
         long diff = formatted.Length() - raw.Length();
         ctrl->SetInsertionPoint(pos + diff);
     }
+}
+
+/**
+ * @brief Convierte un numero decimal a un std::variant que puede contener un size_t si el número es entero, o un double si tiene decimales.
+ * \param value Numero decimal a convertir.
+ * \return Si el numero es entero (ej: 12.0), retorna un std::variant con size_t (12). Si tiene decimales (ej: 12.34), retorna un std::variant con double (12.34).
+ */
+inline std::variant<size_t, double> DoubleToVariant(double value) {
+    // Verificar si el valor tiene decimales
+    if (value == std::floor(value)) {
+        // No tiene decimales, retornar size_t
+        return static_cast<size_t>(value);
+    }
+    // Si tiene decimales, retornar double
+    return value;
 }

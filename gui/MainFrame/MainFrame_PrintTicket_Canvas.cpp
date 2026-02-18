@@ -120,7 +120,7 @@ wxString MainFrame::GetInfoPurchaseToPrint(double& pagoCliente, bool& cashPaymen
         sqlite::database db(GetDBPath());
 
         // Obtener el ÃÂÃÂºltimo ID de purchases
-        int lastPurchaseID = 0;
+        size_t lastPurchaseID = 0;
         db << "SELECT COALESCE(MAX(id), 0) FROM purchases" >> lastPurchaseID;
 
         if (lastPurchaseID == 0) {
@@ -196,12 +196,14 @@ wxString MainFrame::GetInfoPurchaseToPrint(double& pagoCliente, bool& cashPaymen
             "Paid: $%s\n"
             "Change: $%s\n"
             "Payment method: %s\n"
-            "Attended by: %s"),
+            "Attended by: %s\n"
+            "%zu"),
             FormatFloatWithCommas(total).wc_str(),
             FormatFloatWithCommas(pagoCliente).wc_str(),
             FormatFloatWithCommas(change).wc_str(),
             wxMethod,
-            user
+            user,
+            lastPurchaseID
         );
         return mensaje;
 

@@ -117,10 +117,12 @@ wxString SpecificPurchaseInfoMenu::CreateInfoPurchaseStringToPrint(std::vector<P
     mensaje += wxString::Format(
         _("Total: %s\n"
 		"Payment method: %s\n"
-		"Attended by: %s"),
+		"Attended by: %s\n"
+        "%llu"),
         FormatFloatWithCommas(total).wc_str(),
 		translatedText.wc_str(),
-		worker.wc_str()
+		worker.wc_str(),
+        this->m_purchaseId
     );
 	return mensaje;
 }

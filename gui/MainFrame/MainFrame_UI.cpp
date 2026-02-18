@@ -11,8 +11,13 @@ void MainFrame::MenuBar() {
     // ConfiguraciÃÂ³n
     wxMenu* menuConfiguracion = new wxMenu;
     menuBar->Append(menuConfiguracion, _("Settings"));
-    menuConfiguracion->Append(ID_MENU_PRODUCTOS, _("Products"));
+    // Crear submenú para Productos
+    wxMenu* menuProductos = new wxMenu;
+    menuConfiguracion->AppendSubMenu(menuProductos, _("Products")); //Enlazar el submenu al menu de configuracion
+    menuProductos->Append(ID_MENU_PRODUCTOS, _("Register/Modify Products/Stock"));
     Bind(wxEVT_MENU, &MainFrame::OnProductosClicked, this, ID_MENU_PRODUCTOS);
+    menuProductos->Append(ID_MENU_PRODUCTOS_DEVOLUCIONES, _("Returns"));
+    Bind(wxEVT_MENU, &MainFrame::OnReturnsClicked, this, ID_MENU_PRODUCTOS_DEVOLUCIONES);
 
     menuConfiguracion->Append(ID_MENU_USERS, _("Users"));
     Bind(wxEVT_MENU, &MainFrame::OnUsersClicked, this, ID_MENU_USERS);
@@ -60,7 +65,7 @@ void MainFrame::ActualizarMenuApariencia()
     wxMenuBar* bar = GetMenuBar(); // Obtener la barra de menÃÂºs del frame
     if (!bar) return;
 
-    wxMenu* menuApariencia = bar->GetMenu(2); // "Apariencia" es el tercer menÃÂº
+    wxMenu* menuApariencia = bar->GetMenu(2); // "Apariencia" es el TERCER menu
     if (!menuApariencia) return;
 
     wxString labelClaro = _("Light");

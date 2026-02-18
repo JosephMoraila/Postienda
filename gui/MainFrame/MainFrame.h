@@ -10,6 +10,7 @@
 #include <wx/grid.h>
 #include <wx/listctrl.h>
 #include "gui/ProductosFrame/ProductosFrame.h"
+#include "gui/ReturnsFrame/ReturnsFrame.hpp"
 #include "gui/TicketFrame/TicketFrame.hpp"
 #include "gui/PreviousPurchasesFrame/PreviousPurchasesFrame.hpp"
 #include "gui//InfoProductsFrame/InfoProductsFrame.hpp"
@@ -47,6 +48,8 @@ public:
      * @brief Obtiene el usuario actual desde un archivo JSON.
      */
     void GetActualUserFromJSON();
+
+    void setLabelDrawer();
 
 protected:
 #ifdef _WIN32
@@ -121,6 +124,8 @@ private:
      * @param event Evento de comando de wxWidgets.
      */
     void OnProductosClicked(wxCommandEvent& event);
+
+	void OnReturnsClicked(wxCommandEvent& event);
 
     /**
      * * @brief Abre la ventana de contraseña para crearla o ingresarla.
@@ -259,6 +264,8 @@ private:
     /// Ventana de productos (nullptr si no estÃÂÃÂ¡ abierta)
     ProductosFrame* productosVentana = nullptr;
 
+    ReturnsFrame* returnsVentana = nullptr; ///Ventana de devoluciones (nullptr si no esta abierta)
+
     /// Ventana de usuarios (nullptr si no estÃÂÃÂ¡ abierta)
     UsuariosFrame* usuariosVentana = nullptr;
 
@@ -292,7 +299,6 @@ private:
 
 	wxStaticText* labelDrawer = nullptr; ///Label that shows the drawer amount
 	double drawerAmount = 0.0; ///> Drawer amount shown in labelDrawer
-	void setLabelDrawer();
 
     /// Estado del tema: false = claro, true = oscuro
     bool temaOscuro = false;
@@ -469,6 +475,7 @@ private:
 
     enum IDs {
         ID_MENU_PRODUCTOS = 1001,
+        ID_MENU_PRODUCTOS_DEVOLUCIONES,
         ID_MENU_USERS,
         ID_MENU_TICKET,
 		ID_MENU_LANGUAGE,

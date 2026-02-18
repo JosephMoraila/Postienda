@@ -110,6 +110,27 @@ bool MainFrame::PasswordWindow() {
 }
 
 
+void MainFrame::OnReturnsClicked(wxCommandEvent& event){
+    if (returnsVentana && returnsVentana->IsShown()) {
+        if (returnsVentana->IsIconized()) {
+            returnsVentana->Iconize(false);
+        }
+        returnsVentana->Show();
+        returnsVentana->Raise();
+        returnsVentana->SetFocus();
+    }
+    else {
+        returnsVentana = new ReturnsFrame(this, this);
+        returnsVentana->AplicarTema(temaOscuro);
+        returnsVentana->Show();
+        returnsVentana->Bind(wxEVT_CLOSE_WINDOW, [this](wxCloseEvent& evt) {
+            returnsVentana = nullptr;
+            evt.Skip();
+            });
+    }
+}
+
+
 void MainFrame::OnUsersClicked(wxCommandEvent& event) {
     if (usuariosVentana && usuariosVentana->IsShown()) {
         if (usuariosVentana->IsIconized()) {

@@ -16,6 +16,11 @@ void PreviousPurchaseFrame::Widgets() {
     scrollWidgets->SetSizer(topSizer);
 
     // ---- Tus widgets ----
+    wxButton* searchButton = new wxButton(scrollWidgets, wxID_ANY, _("Search"), wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
+    searchButton->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent& event) {OnWidgetEnter(event, temaOscuro); });
+    searchButton->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {OnWidgetLeave(event, temaOscuro); });
+    searchButton->Bind(wxEVT_BUTTON, &PreviousPurchaseFrame::OnSearch, this);
+
     wxStaticText* idLabel = new wxStaticText(scrollWidgets, wxID_ANY, "ID:");
     idLabel->SetToolTip(_("Searching only for the ID cancels all other filters"));
     IdInput = new wxTextCtrl(scrollWidgets, wxID_ANY, "", wxDefaultPosition, wxSize(80, -1));
@@ -52,14 +57,10 @@ void PreviousPurchaseFrame::Widgets() {
     methodChoice->Append(_("Card"), (void*)PAYMENT_CARD);
     methodChoice->SetSelection(0);  // Selecciona "Any" por defecto
 
-    wxButton* searchButton = new wxButton(scrollWidgets, wxID_ANY, _("Search"), wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
-    searchButton->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent& event) {OnWidgetEnter(event, temaOscuro); });
-    searchButton->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {OnWidgetLeave(event, temaOscuro); });
-    searchButton->Bind(wxEVT_BUTTON, &PreviousPurchaseFrame::OnSearch, this);
-
     totalByFilter = new wxStaticText(mainPanel, wxID_ANY, wxString::Format("Total: %.2f", totalAppliedFilter));
 
     // ---- AÃÂ±adir al topSizer ----
+    topSizer->Add(searchButton, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(idLabel, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(IdInput, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(startDateLabel, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
@@ -78,7 +79,6 @@ void PreviousPurchaseFrame::Widgets() {
     topSizer->Add(workerInput, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
     topSizer->Add(methodLabel, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
 	topSizer->Add(methodChoice, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
-    topSizer->Add(searchButton, 0, wxALL | wxALIGN_CENTER_VERTICAL, 5);
 
     // ---- Ajustar scroll solo dentro de su panel ----
     filtersSizer->Add(scrollWidgets, 1, wxEXPAND | wxALL, 0);

@@ -62,6 +62,7 @@ void MainFrame::AplicarTema(bool oscuro) {
 
     // Aplicar tema a las ventanas hijas si existen
     if (productosVentana) productosVentana->AplicarTema(oscuro);
+	if (returnsVentana) returnsVentana->AplicarTema(oscuro);
     if (usuariosVentana) usuariosVentana->AplicarTema(oscuro);
     if (ticketVentana) ticketVentana->AplicarTema(oscuro);
     if (infoProductsVentana) infoProductsVentana->AplicarTema(oscuro);
