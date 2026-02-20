@@ -28,82 +28,192 @@ void MainFrame::PrintTicket(double pagoCliente, bool cashPayment) {
 }
 
 #ifdef _WIN32
-void MainFrame::PrintCanvasPurchaseWindows(double& pagoCliente, bool& cashPayment) {
+void MainFrame::PrintCanvasPurchaseWindows(double& pagoCliente, bool& cashPayment)
+{
     wxString printerName = PrintGetters::GetSelectedPrinter();
-    if (printerName.IsEmpty()) {
-        wxMessageBox(PRINTING_ERROR_MESSAGES::INVALID_PRINTER_MESSAGE, PRINTING_ERROR_MESSAGES::PRINT_ERROR, wxICON_ERROR);
+    if (printerName.IsEmpty())
+    {
+        wxMessageBox(
+            PRINTING_ERROR_MESSAGES::INVALID_PRINTER_MESSAGE,
+            PRINTING_ERROR_MESSAGES::PRINT_ERROR,
+            wxICON_ERROR
+        );
         return;
     }
+
     std::wstring wPrinterName = printerName.ToStdWstring();
-    std::optional<HDC> maybeHDC = Print_Ticket_Windows::GetDeviceContextHandler(wPrinterName);
-    if (!maybeHDC.has_value()) return;
+    std::optional<HDC> maybeHDC =
+        Print_Ticket_Windows::GetDeviceContextHandler(wPrinterName);
+
+    if (!maybeHDC.has_value())
+        return;
+
     HDC hDC = maybeHDC.value();
-    std::vector<CanvasItem> items = PrintGetters::LoadCanvasFromFile();
-    if(items.empty()) {
-        wxMessageBox(NO_ITEMS_TICKET_MESSAGE, PRINTING_ERROR_MESSAGES::PRINT_ERROR, wxICON_ERROR);
+
+    std::vector<CanvasItem> items =
+        PrintGetters::LoadCanvasFromFile();
+
+    if (items.empty())
+    {
+        wxMessageBox(
+            NO_ITEMS_TICKET_MESSAGE,
+            PRINTING_ERROR_MESSAGES::PRINT_ERROR,
+            wxICON_ERROR
+        );
+
         EndPage(hDC);
         EndDoc(hDC);
         DeleteDC(hDC);
         return;
-	}
+    }
 
     bool purchaseInfoExists = false;
-    int baseY = 0; // posiciÃÂÃÂ³n Y del PURCHASE_INFO
-    int currentUnderY = 0; // acumulador vertical
+    int baseY = 0;            // posición Y del PURCHASE_INFO
+    int currentUnderY = 0;    // acumulador vertical
 
+    // =========================
     // Primer bucle: detectar PURCHASE_INFO
-    for (CanvasItem& item : items) {
-        if (item.type == CanvasItem::PURCHASE_INFO) {
+    // =========================
+    for (CanvasItem& item : items)
+    {
+        if (item.type == CanvasItem::PURCHASE_INFO)
+        {
             purchaseInfoExists = true;
 
-            wxString products = GetInfoPurchaseToPrint(pagoCliente, cashPayment);
-            if (products.IsEmpty()) {
-                wxMessageBox(_("The products could not be obtained."), "Error", wxICON_ERROR);
+            wxString products =
+                GetInfoPurchaseToPrint(pagoCliente, cashPayment);
+
+            if (products.IsEmpty())
+            {
+                wxMessageBox(
+                    _("The products could not be obtained."),
+                    "Error",
+                    wxICON_ERROR
+                );
+
                 EndPage(hDC);
                 EndDoc(hDC);
                 DeleteDC(hDC);
                 return;
             }
 
-            //Si se aplicÃÂÃÂ³ formato ancho a PURCHASE_INFO se formatea 
+            // Si se aplicó formato ancho a PURCHASE_INFO se formatea
             if (item.textRightWidth > 0) item.textWithFormat = Canvas_Utils::FormatProductsLikeOriginal(products, item);
-            else item.textWithFormat = products; //Si no se mantiene igual con formato estandar
+            else item.textWithFormat = products;
 
-            int textHeight = Canvas_Utils::CalculateTextHeight(item.textWithFormat, item.fontSize);
+            // Calcular altura del texto
+            int textHeight =
+                Canvas_Utils::CalculateTextHeight(
+                    item.textWithFormat,
+                    item.fontSize
+                );
+
             baseY = item.pos.y + textHeight;
             currentUnderY = baseY;
 
-            Print_Ticket_Windows::DrawTextOnHDCWindows(hDC,item.textWithFormat.wc_str(),item.pos.x - 10,item.pos.y,item.fontSize, L"Arial",false,false,false);
-            currentUnderY = baseY;    // posiciÃÂÃÂ³n inicial de los underInfo
-            break; //Salirse del bucle porque ya se encontrÃÂÃÂ³
+            Print_Ticket_Windows::DrawTextOnHDCWindows(
+                hDC,
+                item.textWithFormat.wc_str(),
+                item.pos.x - 10,
+                item.pos.y,
+                item.fontSize,
+                L"Arial",
+                false,
+                false,
+                false
+            );
+
+            currentUnderY = baseY;
+
+            // Salir porque ya se encontró PURCHASE_INFO
+            break;
         }
     }
 
-    for (CanvasItem& item : items) {
-        if (item.type == CanvasItem::TEXT) {
-            if (item.underInfo && purchaseInfoExists) {
-                // Calcular separaciÃÂÃÂ³n adaptativa (basada en fontSize)
-                int dynamicSpacing = static_cast<int>((item.fontSize / 16.0) * 16);
+    // =========================
+    // Segundo bucle: imprimir resto
+    // =========================
+    for (CanvasItem& item : items)
+    {
+        if (item.type == CanvasItem::TEXT)
+        {
+            if (item.underInfo && purchaseInfoExists)
+            {
+                // Crear fuente
+                HFONT hFont = CreateFont(
+                    item.fontSize,
+                    0, 0, 0,
+                    FW_NORMAL,
+                    FALSE,
+                    FALSE,
+                    FALSE,
+                    DEFAULT_CHARSET,
+                    OUT_DEFAULT_PRECIS,
+                    CLIP_DEFAULT_PRECIS,
+                    DEFAULT_QUALITY,
+                    DEFAULT_PITCH | FF_DONTCARE,
+                    L"Arial"
+                );
 
-                // Dibujar debajo del PURCHASE_INFO
-                currentUnderY += dynamicSpacing;
+                SelectObject(hDC, hFont);
 
-                Print_Ticket_Windows::DrawTextOnHDCWindows(hDC, item.textWithFormat.wc_str(), item.pos.x - 15, currentUnderY, item.fontSize, L"Arial", false, false, false);
+                // Obtener altura real
+                TEXTMETRIC tm;
+                GetTextMetrics(hDC, &tm);
+                int textHeight =
+                    tm.tmHeight + tm.tmExternalLeading;
 
-                // Avanzar para el siguiente texto, segÃÂÃÂºn tamaÃÂÃÂ±o del texto actual
-                currentUnderY += item.fontSize + 2;
+                // Dibujar texto underInfo
+                Print_Ticket_Windows::DrawTextOnHDCWindows(
+                    hDC,
+                    item.textWithFormat.wc_str(),
+                    item.pos.x - 15,
+                    currentUnderY - 60,
+                    item.fontSize,
+                    L"Arial",
+                    false,
+                    false,
+                    false
+                );
+
+                // Avanzar verticalmente
+                currentUnderY += textHeight + 5;
+
+                DeleteObject(hFont);
             }
-            else if (!item.underInfo) {
+            else if (!item.underInfo)
+            {
                 // Texto normal
-                Print_Ticket_Windows::DrawTextOnHDCWindows(hDC, item.textWithFormat.wc_str(), item.pos.x - 15, item.pos.y - 10, item.fontSize, L"Arial", false, false, false);
+                Print_Ticket_Windows::DrawTextOnHDCWindows(
+                    hDC,
+                    item.textWithFormat.wc_str(),
+                    item.pos.x - 15,
+                    item.pos.y - 10,
+                    item.fontSize,
+                    L"Arial",
+                    false,
+                    false,
+                    false
+                );
             }
         }
-        else if (item.type == CanvasItem::IMAGE) {
+        else if (item.type == CanvasItem::IMAGE)
+        {
             wxImage imagen = item.originalImage;
-            if (imagen.IsOk()) {
+
+            if (imagen.IsOk())
+            {
                 wxBitmap bmp(imagen);
                 HBITMAP hBmp = (HBITMAP)bmp.GetHBITMAP();
-                Print_Ticket_Windows::DrawImageOnHDCWindows(hDC, hBmp, item.pos.x - 35, item.pos.y, item.imgWidth, item.imgHeight);
+
+                Print_Ticket_Windows::DrawImageOnHDCWindows(
+                    hDC,
+                    hBmp,
+                    item.pos.x - 35,
+                    item.pos.y,
+                    item.imgWidth,
+                    item.imgHeight
+                );
             }
         }
     }
@@ -111,7 +221,6 @@ void MainFrame::PrintCanvasPurchaseWindows(double& pagoCliente, bool& cashPaymen
     EndPage(hDC);
     EndDoc(hDC);
     DeleteDC(hDC);
-
 }
 #endif
 

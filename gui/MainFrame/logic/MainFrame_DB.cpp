@@ -616,7 +616,7 @@ std::pair<double, size_t> MainFrame::AddCompraToDB(bool esEfectivo) {
         db << "SELECT last_insert_rowid();" >> purchaseId;
         db << R"(
             INSERT INTO purchase_items (purchase_id, product_id, product_name, quantity, price_at_purchase)
-            SELECT ?, p.id, p.name, c.quantity, c.price)
+            SELECT ?, p.id, p.name, c.quantity, c.price
             FROM cart c
             JOIN products p ON p.id = c.product_id;
         )" << purchaseId;

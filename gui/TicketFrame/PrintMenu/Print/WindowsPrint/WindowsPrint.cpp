@@ -43,16 +43,41 @@ void PrintMenu::ImprimirCanvasPruebaWindows(const std::wstring& printerName)
     for (CanvasItem& item : items) {
         if (item.type == CanvasItem::TEXT) {
             if (item.underInfo && purchaseInfoExists) {
-                // Calcular separaciÃÂÃÂ³n adaptativa (basada en fontSize)
-                int dynamicSpacing = static_cast<int>((item.fontSize / 16.0) * 6);
+                // Crear fuente
+                HFONT hFont = CreateFont(
+                    item.fontSize, 0, 0, 0, FW_NORMAL,
+                    FALSE, FALSE, FALSE,
+                    DEFAULT_CHARSET,
+                    OUT_DEFAULT_PRECIS,
+                    CLIP_DEFAULT_PRECIS,
+                    DEFAULT_QUALITY,
+                    DEFAULT_PITCH | FF_DONTCARE,
+                    L"Arial"
+                );
 
-                // Dibujar debajo del PURCHASE_INFO
-                currentUnderY += dynamicSpacing;
+                SelectObject(hDC, hFont);
 
-                Print_Ticket_Windows::DrawTextOnHDCWindows(hDC,item.textWithFormat.wc_str(),item.pos.x - 15,currentUnderY,item.fontSize,L"Arial",false, false, false);
+                // Obtener altura real
+                TEXTMETRIC tm;
+                GetTextMetrics(hDC, &tm);
 
-                // Avanzar para el siguiente texto, segÃÂÃÂºn tamaÃÂÃÂ±o del texto actual
-                currentUnderY += item.fontSize + 2;
+                int textHeight = tm.tmHeight + tm.tmExternalLeading;
+
+                // Dibujar
+                Print_Ticket_Windows::DrawTextOnHDCWindows(
+                    hDC,
+                    item.textWithFormat.wc_str(),
+                    item.pos.x - 15,
+                    currentUnderY - 60,
+                    item.fontSize,
+                    L"Arial",
+                    false, false, false
+                );
+
+                // Avanzar correctamente
+                currentUnderY += textHeight + 5;
+
+                DeleteObject(hFont);
             }
             else if (!item.underInfo) {
                 // Texto normal

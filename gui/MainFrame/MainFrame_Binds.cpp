@@ -316,10 +316,11 @@ void MainFrame::OnApplyDiscount() {
     if (!IdsCart.empty()) {
         size_t idProductCart = IdsCart[0];
         wxString productName = GetNameSelectProductCart(idProductCart);
-        wxString cantidadStr = wxGetTextFromUser(wxString::Format(_("Apply discount to %s:"), productName), _("Discount"));
         bool valido = false;
         double cantidad = 0.0;
-        do {
+        wxString cantidadStr = "";
+        do { 
+            cantidadStr = wxGetTextFromUser(wxString::Format(_("Apply discount to %s:"), productName), _("Discount"));
             if (cantidadStr.IsEmpty()) return; // Si presiona cancelar
 
             // Intentar convertir a double
@@ -331,6 +332,7 @@ void MainFrame::OnApplyDiscount() {
             else wxMessageBox(_("Invalid amount, please try again."), _("Error"), wxOK | wxICON_ERROR);
 
         } while (!valido);
+
         double Rounded = round2(cantidad);
         bool sucess = ApplyDiscountToProductInDB(idProductCart, Rounded);
         if (sucess) {
