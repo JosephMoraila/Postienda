@@ -100,6 +100,9 @@ private:
     **/
     void OnListaKeyDown(wxKeyEvent& event);
 
+    /** @brief Opens a modal to insert the discount **/
+    void OnApplyDiscount();
+
     /**
 		@brief Updates the visibility and enabled state of the "Realizar Compra" button based on whether there are items in the list control.
     **/
@@ -399,7 +402,7 @@ private:
 		@param productId - Id of the product to add to the cart.
 		@param qty - Quantity of the product to add to the cart. If the product is already in the cart, this value is added to the existing quantity.
     **/
-    void AddToCart(size_t& productId, double& qty);
+    void AddToCart(size_t& productId, double& qty, double& precioFinal);
     /**
 		@brief Asks the user for confirmation and deletes all products from the cart list control in the GUI.
 		@param  mensaje - Message to display in the confirmation dialog.
@@ -445,6 +448,25 @@ private:
 	void CreateProductsCategoriesTable();
 
 	void CreateDrawerTable();
+
+    //Discount:
+
+    /**
+     * @brief Get the selected product name from cart
+     * \param idProduct Product toi search name for
+     * \return The name of the product
+     */
+    wxString GetNameSelectProductCart(size_t& idProduct);
+
+    double GetProductPrice(size_t& idProduct);
+
+    /**
+     * @brief Updates the product price in cart
+     * \param idProduct Product id to apply discount
+     * \param newPrice New price to apply
+     * \return True if successfull, false if error
+     */
+    bool ApplyDiscountToProductInDB(size_t& idProduct, double& newPrice);
 
     /** @} */ // cierra Funciones de productos
 

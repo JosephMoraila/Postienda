@@ -91,9 +91,8 @@ void MainFrame::AddProductToListCtrl(wxString nombreCompleto, double precioFinal
     long index = listaProductos->InsertItem(listaProductos->GetItemCount(), nombreCompleto);
     listaProductos->SetItem(index, 1, wxString::Format("$%s", FormatFloatWithCommas(precioFinal)));
     listaProductos->SetItem(index, 2, m_lastSelectedProduct->codigoBarras);
-    CreateCartTable();
 	size_t lastIdProduct = m_lastSelectedProduct->id; double lastQuantity = m_lastSelectedProduct->cantidad;
-    AddToCart(lastIdProduct, lastQuantity);
+    AddToCart(lastIdProduct, lastQuantity, precioFinal);
     size_t lastIdRow = m_lastSelectedProduct->id;
 	listaProductos->SetItem(index, 3, wxString::Format("%zu", lastIdRow)); // columna oculta con el id del producto en el carrito
 	totalUI += precioFinal;
@@ -304,27 +303,40 @@ void MainFrame::CreateCartTable() {
     try {
         sqlite::database db(GetDBPath());
         db << "PRAGMA encoding = 'UTF-8';";
-		db << "PRAGMA foreign_keys = ON;";
-        // Crear tabla temporal para el carrito si no existe
-        db << "CREATE TABLE IF NOT EXISTS cart ("
-            "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-            "product_id INTEGER NOT NULL, "   
-            "quantity REAL NOT NULL DEFAULT 1.000 CHECK(quantity = ROUND(quantity, 3)), "
-            "FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE"
-            ");";
+        db << "PRAGMA foreign_keys = ON;";
 
+        bool exists = false;
+        db << "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='cart'" >> exists;
+
+        if (!exists) {
+            db << "CREATE TABLE IF NOT EXISTS cart ("
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                "product_id INTEGER NOT NULL, "
+                "quantity REAL NOT NULL DEFAULT 1.000 CHECK(quantity = ROUND(quantity, 3)), "
+                "price REAL NOT NULL DEFAULT 0.00 CHECK(price = ROUND(price, 2)), "
+                "FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE"
+                ");";
+        }
+        else {
+            bool columnExists = false;
+            db << "SELECT COUNT(*) FROM pragma_table_info('cart') WHERE name='price'" >> columnExists;
+            if (!columnExists)
+                db << "ALTER TABLE cart ADD COLUMN price REAL NOT NULL DEFAULT 0.00 CHECK(price = ROUND(price, 2));";
+        }
     }
     catch (const sqlite::sqlite_exception& e) {
         wxMessageBox(_("Error creating cart table ") + e.what(), "Error", wxOK | wxICON_ERROR);
     }
 }
 
-void MainFrame::AddToCart(size_t& productId, double& qty) {
+
+void MainFrame::AddToCart(size_t& productId, double& qty, double& precioFinal) {
     try {
         sqlite::database db(GetDBPath());
-        db << "INSERT INTO cart (product_id, quantity) VALUES (?, ?); "
+        db << "INSERT INTO cart (product_id, quantity, price) VALUES (?, ?, ?); "
             << productId
-            << qty;
+            << qty
+            << precioFinal;
 
         size_t rowid = 0;
         db << "SELECT last_insert_rowid();" >> rowid;
@@ -473,6 +485,7 @@ double MainFrame::GetItemPriceById(size_t searchId)
 
 void MainFrame::CartHasProducts() {
     try {
+        double totalToShow = 0.0;
         sqlite::database db(GetDBPath());
         // Verifica si la tabla 'cart' existe
         int tableExists = 0;
@@ -495,7 +508,7 @@ void MainFrame::CartHasProducts() {
             else {
                 std::unordered_map<size_t, double> sumaAllevarProductId;// Creamos la suma de la cantidad a llevar de un id de un producto para restarlo a productsIdsStock
                 db << "SELECT c.id, c.product_id, c.quantity, "
-                    "p.name, p.price, p.byWeight, p.barcode, stk.quantity "
+                    "p.name, c.price, p.byWeight, p.barcode, stk.quantity "
                     "FROM cart c "
                     "JOIN products p ON c.product_id = p.id "
                     "JOIN stock stk ON stk.product_id = c.product_id"
@@ -503,12 +516,13 @@ void MainFrame::CartHasProducts() {
 					long index = -1;
                     if (byWeight) {
                         index = listaProductos->InsertItem(listaProductos->GetItemCount(), wxString::FromUTF8(name.c_str()) + wxString::Format(" (%.3f kg)", quantity));
-                        listaProductos->SetItem(index, 1, wxString::Format("$%s", FormatFloatWithCommas(quantity * price)));
+                        listaProductos->SetItem(index, 1, wxString::Format("$%s", FormatFloatWithCommas(price)));
                     }
                     else { 
                         index = listaProductos->InsertItem(listaProductos->GetItemCount(), wxString::FromUTF8(name.c_str()));
                         listaProductos->SetItem(index, 1, wxString::Format("$%s", FormatFloatWithCommas(price)));
                     }
+                    totalToShow += price;
                     listaProductos->SetItem(index, 2, barcode);
                     listaProductos->SetItem(index, 3, wxString::Format("%zu", cartId));
                     //Si esta el producto y su stock lo agregamos
@@ -529,6 +543,8 @@ void MainFrame::CartHasProducts() {
                     productsIdsStock.at(productId) = productStock - totalQuantityProduct;
                 }
             }
+            totalUI += totalToShow;
+            labelTotal->SetLabel(wxString::Format("Total: $%s", FormatFloatWithCommas(totalUI)));
             UpdateButtonRealizarCompra();
 		}
     }
@@ -575,9 +591,8 @@ std::pair<double, size_t> MainFrame::AddCompraToDB(bool esEfectivo) {
         db << "PRAGMA foreign_keys = ON;";
         double total = 0.0;
         db << R"(
-            SELECT SUM(p.price * c.quantity)
-            FROM cart c
-            JOIN products p ON p.id = c.product_id;
+            SELECT SUM(c.price)
+            FROM cart c;
         )" >> total;
         wxString currentDate = wxDateTime::Now().FormatISOCombined(' ');
         std::string actualUser = getUserFromJSON<std::string>();
@@ -601,7 +616,7 @@ std::pair<double, size_t> MainFrame::AddCompraToDB(bool esEfectivo) {
         db << "SELECT last_insert_rowid();" >> purchaseId;
         db << R"(
             INSERT INTO purchase_items (purchase_id, product_id, product_name, quantity, price_at_purchase)
-            SELECT ?, p.id, p.name, c.quantity, ROUND(p.price * c.quantity, 2)
+            SELECT ?, p.id, p.name, c.quantity, c.price)
             FROM cart c
             JOIN products p ON p.id = c.product_id;
         )" << purchaseId;
@@ -628,6 +643,7 @@ void MainFrame::CreateTables() {
     CreateProductsCategoriesTable();
     CreateComprasTable();
     CreateDrawerTable();
+    CreateCartTable();
 }
 
 //PRODUCTS AND CATEGORIES TABLES:
@@ -739,5 +755,51 @@ void MainFrame::CreateDrawerTable() {
     }
     catch (const sqlite::sqlite_exception& e) {
         wxMessageBox(_("Error creating the drawer table:") + wxString::FromUTF8(e.what()), "Error", wxOK | wxICON_ERROR);
+    }
+}
+
+
+//Discount::
+
+wxString MainFrame::GetNameSelectProductCart(size_t& idProduct) {
+    try {
+        std::string productName = "";
+        sqlite::database db(GetDBPath());
+        db << "PRAGMA encoding = 'UTF-8';";
+        db << "SELECT p.name FROM cart c INNER JOIN products p ON c.product_id = p.id WHERE c.id = ?" << idProduct >> productName;
+        wxString wxProductName = wxString::FromUTF8(productName.c_str());
+        return wxProductName;
+    }
+    catch (const sqlite::sqlite_exception& e) {
+        wxMessageBox(_("Error retrieving the namee:") + wxString::FromUTF8(e.what()), "Error", wxOK | wxICON_ERROR);
+        return "";
+    }
+
+}
+
+double MainFrame::GetProductPrice(size_t& idProduct) {
+    try {
+        double productPrice = 0.0;
+        sqlite::database db(GetDBPath());
+        db << "PRAGMA encoding = 'UTF-8';";
+        db << "SELECT p.price FROM cart c INNER JOIN products p ON c.product_id = p.id WHERE c.id = ?" << idProduct >> productPrice;
+        return productPrice;
+    }
+    catch (const sqlite::sqlite_exception& e) {
+        wxMessageBox(_("Error retrieving the namee:") + wxString::FromUTF8(e.what()), "Error", wxOK | wxICON_ERROR);
+        return 0.0;
+    }
+}
+
+bool MainFrame::ApplyDiscountToProductInDB(size_t& idProduct, double& newPrice) {
+    try {
+        sqlite::database db(GetDBPath());
+        db << "PRAGMA encoding = 'UTF-8';";
+        db << "UPDATE cart SET price = ? WHERE id = ?" << newPrice << idProduct;
+        return true;
+    }
+    catch (const sqlite::sqlite_exception& e) {
+        wxMessageBox(_("Error apply discount:") + wxString::FromUTF8(e.what()), "Error", wxOK | wxICON_ERROR);
+        return false;
     }
 }

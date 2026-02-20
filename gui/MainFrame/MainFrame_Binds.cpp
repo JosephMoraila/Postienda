@@ -306,7 +306,69 @@ void MainFrame::OnListaKeyDown(wxKeyEvent& event) {
             }
         }
     }
+    if (event.GetKeyCode() == 'D') OnApplyDiscount();
+
     event.Skip();
+}
+
+void MainFrame::OnApplyDiscount() {
+    std::vector<size_t> IdsCart = ReturnSelectedItemsControlList();
+    if (!IdsCart.empty()) {
+        size_t idProductCart = IdsCart[0];
+        wxString productName = GetNameSelectProductCart(idProductCart);
+        wxString cantidadStr = wxGetTextFromUser(wxString::Format(_("Apply discount to %s:"), productName), _("Discount"));
+        bool valido = false;
+        double cantidad = 0.0;
+        do {
+            if (cantidadStr.IsEmpty()) return; // Si presiona cancelar
+
+            // Intentar convertir a double
+            if (cantidadStr.ToDouble(&cantidad)) {
+                // Validar que sea positivo y mayor que 0
+                if (cantidad > 0) valido = true;
+                else wxMessageBox(_("The amount must be greater than zero."), _("Error"), wxOK | wxICON_ERROR);
+            }
+            else wxMessageBox(_("Invalid amount, please try again."), _("Error"), wxOK | wxICON_ERROR);
+
+        } while (!valido);
+        double Rounded = round2(cantidad);
+        bool sucess = ApplyDiscountToProductInDB(idProductCart, Rounded);
+        if (sucess) {
+            long rowIndex = listaProductos->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+            if (rowIndex == -1) return;
+
+            wxString currentPriceStr = listaProductos->GetItemText(rowIndex, 1);
+
+            // Limpiar formato visual
+            currentPriceStr.Replace(",", "");
+            currentPriceStr.Replace("$", "");
+            currentPriceStr.Trim(true);
+            currentPriceStr.Trim(false);
+
+            double currentPrice = 0.0;
+
+            try {
+                std::string priceStd = std::string(currentPriceStr.mb_str());
+                currentPrice = std::stod(priceStd);
+            }
+            catch (...) {
+                wxMessageBox("Error converting price");
+                return;
+            }
+
+            // Calcular diferencia correctamente
+            double diff = Rounded - currentPrice;
+
+            totalUI += diff;
+            totalUI = round2(totalUI);
+
+            // Actualizar UI
+            listaProductos->SetItem(rowIndex, 1, FormatFloatWithCommas(Rounded));
+
+            labelTotal->SetLabel(wxString::Format("Total: $%s",FormatFloatWithCommas(totalUI)));
+        }
+
+    }
 }
 
 
