@@ -79,9 +79,8 @@ msgid "Invalid barcode"
 msgstr "Código de barras inválido"
 
 #: db_functions/DB_Functions.cpp:65
-#, fuzzy
 msgid "Error making operation in drawer: "
-msgstr "Error al insertar la categoría: %s"
+msgstr "Error haciendo operación en caja"
 
 #: gui/ActionsFrame/ActionsFrame.cpp:6 gui/MainFrame/MainFrame_UI.cpp:47
 #, fuzzy
