@@ -30,7 +30,9 @@ namespace ESC_POS_DIC {
 
 	inline constexpr unsigned char INIT[] = { ESC, AT };/// Inicializa la impresora
 	inline constexpr unsigned char PAGE_MODE[] = { ESC, L }; // Cambia a modo pÃ¡gina
+    inline constexpr unsigned char ALIGN_LEFT[] = { ESC, a, 0x00 };
     inline constexpr unsigned char ALIGN_CENTER[] = { ESC, a, START_HEADING };
+    inline constexpr unsigned char ALIGN_RIGHT[] = { ESC, a, 0x02 };
     inline constexpr unsigned char TOTAL_CUT[] = { GS, V, NUL }; //Agregar salto de lÃ­nea final y corte de papel
     inline constexpr unsigned char LITTLE_FONT[] = {ESC, M, START_HEADING}; /// Little font
 }

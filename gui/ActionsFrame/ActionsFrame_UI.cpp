@@ -27,21 +27,30 @@ void ActionsFrame::Widgets() {
     wxButton* printButton = new wxButton(buttonPanel, wxID_ANY, _("Print"), wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
     printButton->Bind(wxEVT_ENTER_WINDOW, [this](wxMouseEvent& event) {OnWidgetEnter(event, temaOscuro); });
     printButton->Bind(wxEVT_LEAVE_WINDOW, [this](wxMouseEvent& event) {OnWidgetLeave(event, temaOscuro); });
+    printButton->Bind(wxEVT_BUTTON, &ActionsFrame::OnPrintTicket, this);
     buttonSizer->Add(printButton, 0, wxALL, 5);
 
-    incomeLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Income: %s"), FormatFloatWithCommas(income)));
-    withdrawalsLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Withdrawals: %s"), FormatFloatWithCommas(withdrawals)));
+    toatlMoneyCashLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Cash Income: %s"), FormatFloatWithCommas(totalMoneyCash)));
+    totalMoneyCardLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Card Income: %s"), FormatFloatWithCommas(totalMoneyCard)));
+    manalAdditionsLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Manual Income: %s"), FormatFloatWithCommas(manualAdditions)));
+    manalWithdrawalsLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Manual Withdrawals: %s"), FormatFloatWithCommas(manualWithdrawals)));
+    returnsMoneyLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Returned: %s"), FormatFloatWithCommas(returnsMoney)));
     totalLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Total: %s"), FormatFloatWithCommas(total)));
     int spacing = FromDIP(40);   // Espacio adaptable
     int lineHeight = FromDIP(28);
     int lineWidth = FromDIP(2);
-    // ---- Income ----
-    buttonSizer->Add(incomeLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
+
+    buttonSizer->Add(toatlMoneyCashLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
+    buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
+    buttonSizer->Add(totalMoneyCardLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
     // Línea separadora
     buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
-    // ---- Withdrawals ----
-    buttonSizer->Add(withdrawalsLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
+    buttonSizer->Add(manalAdditionsLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
+    buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
+    buttonSizer->Add(manalWithdrawalsLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
     // Línea separadora
+    buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
+    buttonSizer->Add(returnsMoneyLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
     buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
     // ---- Total ----
     buttonSizer->Add(totalLabel, 0, wxALIGN_CENTER_VERTICAL);
@@ -100,8 +109,11 @@ void ActionsFrame::Widgets() {
 
 
 void ActionsFrame::UpdateLabelsMoney() {
-    incomeLabel->SetLabel(wxString::Format(_("Income: %s"), FormatFloatWithCommas(income)));
-    withdrawalsLabel->SetLabel(wxString::Format(_("Withdrawals: %s"), FormatFloatWithCommas(withdrawals)));
+    toatlMoneyCashLabel->SetLabel(wxString::Format(_("Cash Income: %s"), FormatFloatWithCommas(this->totalMoneyCash)));
+    totalMoneyCardLabel->SetLabel(wxString::Format(_("Card Income: %s"), FormatFloatWithCommas(totalMoneyCard)));
+    manalAdditionsLabel->SetLabel(wxString::Format(_("Manual Income: %s"), FormatFloatWithCommas(manualAdditions)));
+    manalWithdrawalsLabel->SetLabel(wxString::Format(_("Manual Withdrawals: %s"), FormatFloatWithCommas(manualWithdrawals)));
+    returnsMoneyLabel->SetLabel(wxString::Format(_("Returned: %s"), FormatFloatWithCommas(returnsMoney)));
     totalLabel->SetLabel(wxString::Format(_("Total: %s"), FormatFloatWithCommas(total)));
 }
 

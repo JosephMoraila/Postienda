@@ -3,7 +3,7 @@
 #include "utils/window/WindowUtils.h"
 #include "utils/ValidateStringInput.h"
 
-ActionsFrame::ActionsFrame(wxWindow* parent) : wxFrame(parent, wxID_ANY, _("Actions"), wxDefaultPosition, wxSize(800, 600)) {
+ActionsFrame::ActionsFrame(wxWindow* parent) : wxFrame(parent, wxID_ANY, _("Actions"), wxDefaultPosition, wxSize(1200, 600)) {
 	AplicarIconoPrincipal(this);
 	Widgets();
 

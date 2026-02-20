@@ -1,5 +1,7 @@
 #include "gui/ActionsFrame/ActionsFrame.hpp"
 #include "utils/DateTimeUtils.hpp"
+#include "print/Print_Utils_Getters.hpp"
+#include "print/Print_Utils.hpp"
 
 void ActionsFrame::OnSearch(wxCommandEvent& event) {
     wxString fechaInicio = GetStartDate();        // YYYY-MM-DD
@@ -18,6 +20,7 @@ void ActionsFrame::OnSearch(wxCommandEvent& event) {
     root = treeDays->AddRoot("root");
 
     fechaToItem.clear();
+    stringToPrint = "";
 
     wxDateTime dtStart, dtEnd;
     dtStart.ParseDateTime(StartDateTime);
@@ -33,4 +36,9 @@ void ActionsFrame::OnSearch(wxCommandEvent& event) {
         current += wxDateSpan::Day();
     }
     GetActionsBetweenDates(start, end);
+}
+
+
+void ActionsFrame::OnPrintTicket(wxCommandEvent& event){
+    Print_Utils::PrintJustText(stringToPrint, false);
 }

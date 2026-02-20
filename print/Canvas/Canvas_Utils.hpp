@@ -1,5 +1,8 @@
 #include <wx/wx.h>
 #include "print/Canvas/CanvasItem/CanvasItem.hpp"
+#include <codecvt>
+#include <locale>
+#include "print/EscPos/EscPosDictionary.hpp"
 
 /**
     @namespace Canvas_Utils
@@ -115,6 +118,4 @@ namespace Canvas_Utils{
 
         return height;
     }
-
-
 }
