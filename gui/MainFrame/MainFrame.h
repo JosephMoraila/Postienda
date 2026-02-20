@@ -447,7 +447,7 @@ private:
 
 	void CreateProductsCategoriesTable();
 
-	void CreateDrawerTable();
+	void CreateDrawerAndReturnedProductsTable();
 
     //Discount:
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-10 09:42-0600\n"
+"POT-Creation-Date: 2026-02-20 16:43-0600\n"
 "PO-Revision-Date: 2025-11-11 20:39-0600\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -78,6 +78,186 @@ msgstr "Advertencia"
 msgid "Invalid barcode"
 msgstr "Código de barras inválido"
 
+#: db_functions/DB_Functions.cpp:65
+#, fuzzy
+msgid "Error making operation in drawer: "
+msgstr "Error al insertar la categoría: %s"
+
+#: gui/ActionsFrame/ActionsFrame.cpp:6 gui/MainFrame/MainFrame_UI.cpp:47
+#, fuzzy
+msgid "Actions"
+msgstr "Atención"
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:22
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:43
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:98
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:153
+#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:18
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:33
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:76
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:116
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:37
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:78
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:191
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:31
+msgid "The database was not found at:\n"
+msgstr "No se encontró la base de datos en:\n"
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:22
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:43
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:98
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:153
+#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:18
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:33
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:76
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:116
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:37
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:78
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:191
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:31
+msgid "Database error"
+msgstr "Error de base de datos"
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:41
+#, fuzzy
+msgid "Purchase"
+msgstr "Realizar compra"
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:43
+msgid "Drawer"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:45
+#: gui/ReturnsFrame/ReturnsFrame_UI.cpp:35
+msgid "Return"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:81
+#, c-format
+msgid "- %s: ID: %zu | %s | %s | %s | %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:93
+#, c-format
+msgid "%s | %s | %s | %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:105
+#, c-format
+msgid "- %s: ID: %zu | %s | %s | %s | %s | %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:113
+#, c-format
+msgid "- %s: ID: %zu | %s | %s | %s ID: %zu | %s | %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:126
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:38
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:117
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:193
+#, fuzzy, c-format
+msgid "Total: %s"
+msgstr "Total: %.2f"
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:127
+#, c-format
+msgid "Income Cash: %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:128
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:36
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:115
+#, c-format
+msgid "Manual Withdrawals: %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:129
+#, c-format
+msgid "Income Card: %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:130
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:35
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:114
+#, c-format
+msgid "Manual Income: %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:131
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:37
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:116
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:167
+#, c-format
+msgid "Returned: %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:157
+#, fuzzy
+msgid "An unknown error occurred while opening database"
+msgstr "Ocurrió un error desconocido al procesar la compra."
+
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:18
+msgid "Watch what happened between dates"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:27
+msgid "Print"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:33
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:112
+#, c-format
+msgid "Cash Income: %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:34
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:113
+#, c-format
+msgid "Card Income: %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:64
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:20
+#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:50
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:20
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:19
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:174
+msgid "Search"
+msgstr "Buscar"
+
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:70
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:30
+#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:19
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:30
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:28
+msgid "Start date:"
+msgstr "Fecha de inicio:"
+
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:76
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:34
+#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:23
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:34
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:32
+msgid "Start time:"
+msgstr "Hora de inicio:"
+
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:81
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:37
+#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:26
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:37
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:35
+msgid "End date:"
+msgstr "Fecha de fin:"
+
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:87
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:41
+#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:30
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:41
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:39
+msgid "End time:"
+msgstr "Hora de fin:"
+
 #: gui/AskCreatePasswordFrame/AskCreatePasswordFrame.hpp:6
 msgid "Create password"
 msgstr "Crear contraseña"
@@ -113,8 +293,8 @@ msgstr "Confirma tu contraseña:"
 #: gui/AskCreatePasswordFrame/AskCreatePasswordFrame_UI.cpp:18
 #: gui/AskEnterPasswordFrame/AskEnterPasswordFrame_UI.cpp:13
 #: gui/LanguageFrame/LanguageFrame_UI.cpp:64
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:84
-#: gui/ProductosFrame/StockDialog/StockDialog.cpp:61
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:99
+#: gui/ProductosFrame/StockDialog/StockDialog.cpp:63
 #: gui/TicketFrame/Canvas/InputTextModal/InputTextModal.cpp:25
 msgid "Accept"
 msgstr "Aceptar"
@@ -131,23 +311,257 @@ msgstr "Contraseña incorrecta"
 msgid "Enter password:"
 msgstr "Introduce contraseña:"
 
+#: gui/InfoDrawerFrame/InfoDrawerFrame.cpp:6 gui/MainFrame/MainFrame_UI.cpp:41
+msgid "Info Drawer"
+msgstr ""
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:18
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:59
+#: utils/translate/Translate_Utils.cpp:16
+msgid "Income"
+msgstr ""
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:19
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:58
+#: utils/translate/Translate_Utils.cpp:17
+msgid "Withdrawal"
+msgstr ""
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:58
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:112
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:164
+#, fuzzy
+msgid "No drawer history found. You have not done any."
+msgstr "No hay compras encontradas. No has hecho ninguna compra."
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:58
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:112
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:164
+#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:28
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:44
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:87
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:128
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:48
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:89
+msgid "Table not found"
+msgstr "Tabla no encontrada"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:64
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:118
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:49
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:93
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:54
+msgid "Page: -"
+msgstr "Página: -/-"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:74
+#, fuzzy, c-format
+msgid "No movements were found with the ID %llu."
+msgstr "No se encontraron compras con el ID %llu."
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:74
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:128
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:297
+#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:168
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:56
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:207
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:61
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:165
+msgid "No results"
+msgstr "Sin resultados"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:88
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:142
+#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:181
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:65
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:106
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:68
+msgid "An unknown error occurred while processing the purchase."
+msgstr "Ocurrió un error desconocido al procesar la compra."
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:128
+#, fuzzy, c-format
+msgid "No movements were found with the purchase ID %llu."
+msgstr "No se encontraron compras con el ID %llu."
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:297
+#, fuzzy
+msgid "No movements were found with the specified filters."
+msgstr "No se encontraron compras con los filtros especificados."
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:303
+#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:171
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:211
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:168
+msgid "No more records available."
+msgstr "No hay más registros disponibles."
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:303
+#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:171
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:211
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:168
+msgid "End of results"
+msgstr "Fin de los resultados"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:317
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:223
+#, fuzzy
+msgid "An unknown error occurred while retrieving movements."
+msgstr "Ocurrió un error desconocido al obtener las compras."
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:26
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:28
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:67
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:26
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:28
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:66
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:25
+msgid "Searching only for the ID cancels all other filters"
+msgstr "Buscar solo por ID cancela todos los demás filtros"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:44
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:44
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:42
+msgid "Minimum amount:"
+msgstr "Monto mínimo:"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:48
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:48
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:46
+msgid "Maximum amount:"
+msgstr "Monto máximo:"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:52
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:61
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:50
+msgid "Worker:"
+msgstr "Empleado:"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:55
+#, fuzzy
+msgid "Action:"
+msgstr "Atención"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:57
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:55
+msgid "Any"
+msgstr "Cualquiera"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:62
+msgid "Reason:"
+msgstr ""
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:65
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:64
+#: gui/ReturnsFrame/ReturnsFrame_UI.cpp:15
+#, fuzzy
+msgid "Purchase ID:"
+msgstr "ID de compra: %llu"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:69
+#, fuzzy
+msgid "Drawer after minimum amount:"
+msgstr "Monto mínimo:"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:73
+#, fuzzy
+msgid "Drawer after maximum amount:"
+msgstr "Monto máximo:"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:77
+#, fuzzy, c-format
+msgid "Income: %.2f"
+msgstr "Total: %.2f"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:78
+#, fuzzy, c-format
+msgid "Withawals: %.2f"
+msgstr "Total: %.2f"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:79
+#: gui/MainFrame/MainFrame_Binds.cpp:440
+#, c-format
+msgid "Total: %.2f"
+msgstr "Total: %.2f"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:138
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:114
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:91
+msgid "Date"
+msgstr "Fecha"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:139
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:115
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:92
+msgid "Time"
+msgstr "Hora"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:140
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:117
+#: gui/MainFrame/MainFrame_Binds.cpp:478
+msgid "Amount"
+msgstr ""
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:141
+#: gui/MainFrame/MainFrame_Binds.cpp:492
+msgid "Reason"
+msgstr ""
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:142
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:119
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:94
+msgid "Worker"
+msgstr "Empleado"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:143
+#, fuzzy
+msgid "Action"
+msgstr "Atención"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:144
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:120
+#, fuzzy
+msgid "Purchase ID"
+msgstr "ID de compra: %llu"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:145
+msgid "Drawer after"
+msgstr ""
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:151
+#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:89
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:126
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:102
+msgid "Load previous"
+msgstr "Cargar anteriores"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:155
+#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:93
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:130
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:106
+msgid "Page: -/-"
+msgstr "Página: -/-"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:160
+#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:98
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:135
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:111
+msgid "Load more"
+msgstr "Cargar más"
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:190
+#, c-format
+msgid "Income: %s"
+msgstr ""
+
+#: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:191
+#, c-format
+msgid "Withdrawals: %s"
+msgstr ""
+
 #: gui/InfoProductsFrame/InfoProductsFrame.cpp:6
 msgid "Info products"
 msgstr "Info Compras"
-
-#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:18
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:37
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:78
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:191
-msgid "The database was not found at:\n"
-msgstr "No se encontró la base de datos en:\n"
-
-#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:18
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:37
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:78
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:191
-msgid "Database error"
-msgstr "Error de base de datos"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:28
 #: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:48
@@ -155,57 +569,10 @@ msgstr "Error de base de datos"
 msgid "No purchases found. You have not done any purchase."
 msgstr "No hay compras encontradas. No has hecho ninguna compra."
 
-#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:28
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:48
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:89
-msgid "Table not found"
-msgstr "Tabla no encontrada"
-
 #: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:168
 #: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:165
 msgid "No purchases were found with the specified filters."
 msgstr "No se encontraron compras con los filtros especificados."
-
-#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:168
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:61
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:165
-msgid "No results"
-msgstr "Sin resultados"
-
-#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:171
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:168
-msgid "No more records available."
-msgstr "No hay más registros disponibles."
-
-#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:171
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:168
-msgid "End of results"
-msgstr "Fin de los resultados"
-
-#: gui/InfoProductsFrame/InfoProductsFrame_DB_Search.cpp:181
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:68
-msgid "An unknown error occurred while processing the purchase."
-msgstr "Ocurrió un error desconocido al procesar la compra."
-
-#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:19
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:23
-msgid "Start date:"
-msgstr "Fecha de inicio:"
-
-#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:23
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:27
-msgid "Start time:"
-msgstr "Hora de inicio:"
-
-#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:26
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:30
-msgid "End date:"
-msgstr "Fecha de fin:"
-
-#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:30
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:34
-msgid "End time:"
-msgstr "Hora de fin:"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:33
 msgid "Minimum price:"
@@ -223,24 +590,20 @@ msgstr "Nombre/Código de barras del producto:"
 msgid "Highest to lowest"
 msgstr "Mayor a menor"
 
-#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:50
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:55
-#: gui/ProductosFrame/ProductosFrame_UI.cpp:172
-msgid "Search"
-msgstr "Buscar"
-
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:79
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:116
+#: gui/ReturnsFrame/ReturnsFrame_UI.cpp:46
 msgid "Product name"
 msgstr "Nombre del producto"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:80
-#: gui/MainFrame/MainFrame_UI.cpp:126
+#: gui/MainFrame/MainFrame_UI.cpp:152
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:48
 msgid "Price"
 msgstr "Precio"
 
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:81
-#: gui/MainFrame/MainFrame_UI.cpp:127
+#: gui/MainFrame/MainFrame_UI.cpp:153 gui/ReturnsFrame/ReturnsFrame_UI.cpp:49
 msgid "Barcode"
 msgstr "Código de barras"
 
@@ -248,22 +611,60 @@ msgstr "Código de barras"
 msgid "Quantity sold"
 msgstr "Cantidad vendida"
 
-#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:89
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:102
-msgid "Load previous"
-msgstr "Cargar anteriores"
+#: gui/InfoReturnsFrame/InfoReturnsFrame.cpp:7
+#: gui/MainFrame/MainFrame_UI.cpp:44
+msgid "Info Returns"
+msgstr ""
 
-#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:93
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:106
-msgid "Page: -/-"
-msgstr "Página: -/-"
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:44
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:87
+#, fuzzy
+msgid "No returned products found. You have not done any."
+msgstr "No hay compras encontradas. No has hecho ninguna compra."
 
-#: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:98
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:111
-msgid "Load more"
-msgstr "Cargar más"
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:56
+#, fuzzy, c-format
+msgid "No returns were found with the ID %llu."
+msgstr "No se encontraron compras con el ID %llu."
 
-#: gui/LanguageFrame/LanguageFrame.hpp:8 gui/MainFrame/MainFrame_UI.cpp:20
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:128
+#, fuzzy
+msgid "No returns found. You have not done any."
+msgstr "No hay compras encontradas. No has hecho ninguna compra."
+
+#: gui/InfoReturnsFrame/InfoReturnsFrame_DB_Search.cpp:207
+#, fuzzy
+msgid "No returned products were found with the specified filters."
+msgstr "No se encontraron compras con los filtros especificados."
+
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:52
+#, fuzzy
+msgid "Product name:"
+msgstr "Nombre del producto"
+
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:55
+#, fuzzy
+msgid "Minimum Quantity:"
+msgstr "Monto mínimo:"
+
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:58
+#, fuzzy
+msgid "Maximum Quantity:"
+msgstr "Monto máximo:"
+
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:68
+#, c-format
+msgid "Returned: %.2f"
+msgstr ""
+
+#: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:118
+#: gui/MainFrame/logic/MainFrame_DB.cpp:126
+#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:47
+#: gui/ReturnsFrame/ReturnsFrame_UI.cpp:47
+msgid "Quantity"
+msgstr "Cantidad"
+
+#: gui/LanguageFrame/LanguageFrame.hpp:8 gui/MainFrame/MainFrame_UI.cpp:28
 msgid "Language"
 msgstr "Idioma"
 
@@ -272,9 +673,11 @@ msgid "Could not write: "
 msgstr "No se pudo escribir"
 
 #: gui/LanguageFrame/LanguageFrame_Bindings.cpp:34
-#: gui/MainFrame/logic/MainFrame_DB.cpp:166
-#: gui/MainFrame/MainFrame_Binds.cpp:87 gui/MainFrame/MainFrame_Binds.cpp:104
-#: gui/MainFrame/MainFrame_Binds.cpp:268 gui/MainFrame/MainFrame_Binds.cpp:285
+#: gui/MainFrame/logic/MainFrame_DB.cpp:167
+#: gui/MainFrame/MainFrame_Binds.cpp:88 gui/MainFrame/MainFrame_Binds.cpp:105
+#: gui/MainFrame/MainFrame_Binds.cpp:330 gui/MainFrame/MainFrame_Binds.cpp:332
+#: gui/MainFrame/MainFrame_Binds.cpp:412 gui/MainFrame/MainFrame_Binds.cpp:433
+#: gui/MainFrame/MainFrame_Binds.cpp:486 gui/MainFrame/MainFrame_Binds.cpp:488
 msgid "Error"
 msgstr "Error"
 
@@ -291,96 +694,91 @@ msgstr "Información"
 msgid "Select your language:"
 msgstr "Selecciona tu idioma"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:11
+#: gui/MainFrame/logic/MainFrame_DB.cpp:13
 msgid "Close the windows Products before continuing"
 msgstr "Cierra las ventanas de Productos antes de continuar"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:44
+#: gui/MainFrame/logic/MainFrame_DB.cpp:46
 msgid "That product with that barcode does not exist."
 msgstr "Ese producto con ese código de barras no existe."
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:62
-#: gui/MainFrame/logic/MainFrame_DB.cpp:70
+#: gui/MainFrame/logic/MainFrame_DB.cpp:64
+#: gui/MainFrame/logic/MainFrame_DB.cpp:72
 msgid "You can not add to cart a product without stock"
 msgstr "No puedes agregar al carrito un producto sin inventario"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:110
+#: gui/MainFrame/logic/MainFrame_DB.cpp:111
 msgid "Kilos"
 msgstr "Kilos"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:111
+#: gui/MainFrame/logic/MainFrame_DB.cpp:112
 msgid "Grams"
 msgstr "Gramos"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:114
+#: gui/MainFrame/logic/MainFrame_DB.cpp:115
 msgid "Do you want to enter the amount in kilograms or grams?"
 msgstr "¿Deseas ingresar la cantidad en kilogramos o gramos?"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:114
+#: gui/MainFrame/logic/MainFrame_DB.cpp:115
 msgid "Unit of measurement"
 msgstr "Unidad de medida"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:123
+#: gui/MainFrame/logic/MainFrame_DB.cpp:124
 msgid "Enter the quantity in kilograms (example: 1.5):"
 msgstr "Ingresa la cantidad en kilogramos (ejemplo: 1.5):"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:123
+#: gui/MainFrame/logic/MainFrame_DB.cpp:124
 msgid "Enter the amount in grams (example: 750):"
 msgstr "Ingresa la cantidad en gramos (ejemplo: 750):"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:125
-#: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_UI.cpp:47
-msgid "Quantity"
-msgstr "Cantidad"
-
-#: gui/MainFrame/logic/MainFrame_DB.cpp:136
+#: gui/MainFrame/logic/MainFrame_DB.cpp:137
 #, c-format
 msgid " (%.3f kg)"
 msgstr " (%.3f kg)"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:140
+#: gui/MainFrame/logic/MainFrame_DB.cpp:141
 #, c-format
 msgid " (%.3f g)"
 msgstr " (%.3f g)"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:156
+#: gui/MainFrame/logic/MainFrame_DB.cpp:157
 msgid "There's not enough quantity"
 msgstr ""
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:166
+#: gui/MainFrame/logic/MainFrame_DB.cpp:167
 msgid "Invalid quantity"
 msgstr "Cantidad inválida"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:195
-#: gui/MainFrame/logic/MainFrame_DB.cpp:225
-#: gui/MainFrame/logic/MainFrame_DB.cpp:253
+#: gui/MainFrame/logic/MainFrame_DB.cpp:196
+#: gui/MainFrame/logic/MainFrame_DB.cpp:226
+#: gui/MainFrame/logic/MainFrame_DB.cpp:254
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_DB.cpp:37
 msgid "Info"
 msgstr "Información"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:200
-#: gui/MainFrame/logic/MainFrame_DB.cpp:229
-#: gui/MainFrame/logic/MainFrame_DB.cpp:256
+#: gui/MainFrame/logic/MainFrame_DB.cpp:201
+#: gui/MainFrame/logic/MainFrame_DB.cpp:230
+#: gui/MainFrame/logic/MainFrame_DB.cpp:257
 msgid "Error obtaining products: "
 msgstr "Error al obtener productos: "
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:266
+#: gui/MainFrame/logic/MainFrame_DB.cpp:267
 msgid "No products were found with that name.."
 msgstr "No se encontraron productos con ese nombre."
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:266
+#: gui/MainFrame/logic/MainFrame_DB.cpp:267
 msgid "Advice"
 msgstr "Aviso"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:280
+#: gui/MainFrame/logic/MainFrame_DB.cpp:281
 msgid " - Category: "
 msgstr " - Categoría: "
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:282
+#: gui/MainFrame/logic/MainFrame_DB.cpp:283
 msgid " - Barcode: "
 msgstr " - Código de barras: "
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:286
+#: gui/MainFrame/logic/MainFrame_DB.cpp:287
 msgid ""
 "Multiple products with that name were found.\n"
 "Choose one:"
@@ -388,29 +786,29 @@ msgstr ""
 "Se encontraron múltiples productos con ese nombre.\n"
 "Elige uno:"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:286
+#: gui/MainFrame/logic/MainFrame_DB.cpp:287
 msgid "Select product"
 msgstr "Seleccionar producto"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:316
+#: gui/MainFrame/logic/MainFrame_DB.cpp:328
 msgid "Error creating cart table "
 msgstr "Error al crear la tabla del carrito "
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:332
+#: gui/MainFrame/logic/MainFrame_DB.cpp:346
 msgid "Error adding product to cart:"
 msgstr "Error al agregar producto al carrito:"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:366
+#: gui/MainFrame/logic/MainFrame_DB.cpp:380
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:375
-#: gui/MainFrame/logic/MainFrame_DB.cpp:489
+#: gui/MainFrame/logic/MainFrame_DB.cpp:389
+#: gui/MainFrame/logic/MainFrame_DB.cpp:504
 #, c-format
 msgid "Error emptying cart: %s"
 msgstr "Error al vaciar el carrito: %s"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:382
+#: gui/MainFrame/logic/MainFrame_DB.cpp:396
 #, c-format
 msgid ""
 "SQL error while emptying the cart\n"
@@ -423,7 +821,7 @@ msgstr ""
 "Código: %d\n"
 "Mensaje: %s"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:483
+#: gui/MainFrame/logic/MainFrame_DB.cpp:498
 msgid ""
 "The program did not close properly and there are items in the cart.\n"
 "Do you want to restore them?"
@@ -431,16 +829,31 @@ msgstr ""
 "El programa no se cerró correctamente y hay elementos en el carrito.\n"
 "¿Deseas restaurarlos?"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:566
+#: gui/MainFrame/logic/MainFrame_DB.cpp:584
 msgid "Error creating the purchases table:"
 msgstr "Error al crear la tabla de compras:"
 
-#: gui/MainFrame/logic/MainFrame_DB.cpp:619
+#: gui/MainFrame/logic/MainFrame_DB.cpp:636
 #, c-format
 msgid "Error registering purchase: %s"
 msgstr "Error al registrar la compra: %s"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:56
+#: gui/MainFrame/logic/MainFrame_DB.cpp:771
+#, fuzzy
+msgid "Error creating the drawer table:"
+msgstr "Error al crear la tabla de compras:"
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:788
+#: gui/MainFrame/logic/MainFrame_DB.cpp:803
+#, fuzzy
+msgid "Error retrieving the namee:"
+msgstr "Error al crear la tabla de compras:"
+
+#: gui/MainFrame/logic/MainFrame_DB.cpp:816
+msgid "Error apply discount:"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:57
 msgid ""
 "To access products, you need to empty your cart. Do you want to empty it and "
 "access?"
@@ -448,52 +861,71 @@ msgstr ""
 "Para acceder a los productos, debes vaciar tu carrito. ¿Deseas vaciarlo y "
 "continuar?"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:87
+#: gui/MainFrame/MainFrame_Binds.cpp:88
 msgid "Error verifying password"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:104
+#: gui/MainFrame/MainFrame_Binds.cpp:105
 msgid "There was an error creating the password, try again."
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:219
+#: gui/MainFrame/MainFrame_Binds.cpp:301
 msgid "Do you want to delete the selected item?"
 msgstr "¿Deseas eliminar el elemento seleccionado?"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:219
+#: gui/MainFrame/MainFrame_Binds.cpp:301
 msgid "Do you want to delete the selected items?"
 msgstr "¿Deseas eliminar los elementos seleccionados?"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:220
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:45
+#: gui/MainFrame/MainFrame_Binds.cpp:302
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:116
 msgid "Confirm deletion"
 msgstr "Confirmar eliminación"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:240
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:51
+#: gui/MainFrame/MainFrame_Binds.cpp:323
+#, c-format
+msgid "Apply discount to %s:"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:323
+msgid "Discount"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:330 gui/MainFrame/MainFrame_Binds.cpp:486
+#, fuzzy
+msgid "The amount must be greater than zero."
+msgstr "El precio debe ser un número mayor o igual a cero."
+
+#: gui/MainFrame/MainFrame_Binds.cpp:332 gui/MainFrame/MainFrame_Binds.cpp:412
+#: gui/MainFrame/MainFrame_Binds.cpp:488
+msgid "Invalid amount, please try again."
+msgstr "Monto inválido, por favor intenta nuevamente."
+
+#: gui/MainFrame/MainFrame_Binds.cpp:384
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:56
 #: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:18
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:103
 #: utils/translate/Translate_Utils.cpp:8
 msgid "Cash"
 msgstr "Efectivo"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:241
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:52
+#: gui/MainFrame/MainFrame_Binds.cpp:385
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:57
 #: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:19
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:104
 #: utils/translate/Translate_Utils.cpp:9
 msgid "Card"
 msgstr "Tarjeta"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:246
+#: gui/MainFrame/MainFrame_Binds.cpp:390
 msgid "Select payment method:"
 msgstr "Selecciona método de pago:"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:247
+#: gui/MainFrame/MainFrame_Binds.cpp:391
 msgid "Payment method"
 msgstr "Método de pago"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:265
+#: gui/MainFrame/MainFrame_Binds.cpp:409
 #, c-format
 msgid ""
 "Total: $%.2f\n"
@@ -504,15 +936,11 @@ msgstr ""
 "\n"
 "Ingresa el monto recibido:"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:265
+#: gui/MainFrame/MainFrame_Binds.cpp:409
 msgid "Cash payment"
 msgstr "Pago en efectivo"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:268
-msgid "Invalid amount, please try again."
-msgstr "Monto inválido, por favor intenta nuevamente."
-
-#: gui/MainFrame/MainFrame_Binds.cpp:277
+#: gui/MainFrame/MainFrame_Binds.cpp:421
 #, c-format
 msgid ""
 "Purchase registered successfully.\n"
@@ -525,7 +953,7 @@ msgstr ""
 "Pagado: $%.2f\n"
 "Cambio: $%.2f"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:278
+#: gui/MainFrame/MainFrame_Binds.cpp:422
 #, c-format
 msgid ""
 "Purchase registered successfully.\n"
@@ -536,21 +964,69 @@ msgstr ""
 "Total: $%.2f\n"
 "Pagado con tarjeta."
 
-#: gui/MainFrame/MainFrame_Binds.cpp:282
+#: gui/MainFrame/MainFrame_Binds.cpp:426
+#, fuzzy, c-format
+msgid "Purchase ID: %zu"
+msgstr "ID de compra: %llu"
+
+#: gui/MainFrame/MainFrame_Binds.cpp:430
 msgid "Purchase completed"
 msgstr "Compra completada"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:285
+#: gui/MainFrame/MainFrame_Binds.cpp:433
 #, c-format
 msgid "Error creating table: %s"
 msgstr "Error al crear la tabla: %s"
 
-#: gui/MainFrame/MainFrame_Binds.cpp:292
-#, c-format
-msgid "Total: %.2f"
-msgstr "Total: %.2f"
+#: gui/MainFrame/MainFrame_Binds.cpp:462
+msgid "Withdraw"
+msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:307
+#: gui/MainFrame/MainFrame_Binds.cpp:463
+msgid "Add"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:464
+#, fuzzy
+msgid "Select drawer method:"
+msgstr "Selecciona método de pago:"
+
+#: gui/MainFrame/MainFrame_Binds.cpp:464
+#, fuzzy
+msgid "Drawer method"
+msgstr "Método de pago"
+
+#: gui/MainFrame/MainFrame_Binds.cpp:475
+msgid "add to"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:475
+msgid "withdraw from"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:478
+#, c-format
+msgid "Enter amount to %s:"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:492
+#, fuzzy, c-format
+msgid "Enter reason for %s:"
+msgstr "Introduce contraseña:"
+
+#: gui/MainFrame/MainFrame_Binds.cpp:496
+msgid "Successful deposit of funds"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:496
+msgid "Successful withdrawal of funds"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:498
+msgid "Drawer updated"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_Binds.cpp:513
 msgid ""
 "You have products in your cart.\n"
 "Do you want to close? Cart items will be deleted."
@@ -560,13 +1036,13 @@ msgstr ""
 
 #: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:24
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_Binds.cpp:37
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:100
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:101 print/Print_Utils.hpp:47
 msgid "No canvas available by the moment. Select EscPos"
 msgstr "No canvas disponoble por el momento. Selecciona EscPos"
 
 #: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:24
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_Binds.cpp:37
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:100
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:101 print/Print_Utils.hpp:47
 msgid "No available"
 msgstr "No disponible"
 
@@ -574,24 +1050,25 @@ msgstr "No disponible"
 msgid "Error obtaining print mode"
 msgstr "Error al obtener el modo de impresión"
 
-#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:61
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:89
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:42
 msgid "The products could not be obtained."
 msgstr "No se pudieron obtener los productos."
 
-#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:162
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:271
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_DB.cpp:37
 msgid "No items were found for this purchase."
 msgstr "No se encontraron artículos para esta compra."
 
-#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:195
-#, c-format
+#: gui/MainFrame/MainFrame_PrintTicket_Canvas.cpp:304
+#, fuzzy, c-format
 msgid ""
 "Total: $%s\n"
 "Paid: $%s\n"
 "Change: $%s\n"
 "Payment method: %s\n"
-"Attended by: %s"
+"Attended by: %s\n"
+"%zu"
 msgstr ""
 "Total: $%s\n"
 "Pagado: $%s\n"
@@ -599,116 +1076,102 @@ msgstr ""
 "Método de pago: %s\n"
 "Atendido por: %s"
 
-#: gui/MainFrame/MainFrame_UI.cpp:10 gui/TicketFrame/TicketFrame.cpp:59
+#: gui/MainFrame/MainFrame_UI.cpp:13 gui/TicketFrame/TicketFrame.cpp:59
 msgid "Settings"
 msgstr "Configuración"
 
-#: gui/MainFrame/MainFrame_UI.cpp:11 gui/ProductosFrame/ProductosFrame.cpp:14
-#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Conect_Load.cpp:101
+#: gui/MainFrame/MainFrame_UI.cpp:16 gui/ProductosFrame/ProductosFrame.cpp:14
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Conect_Load.cpp:16
 #: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Search.cpp:173
 msgid "Products"
 msgstr "Productos"
 
-#: gui/MainFrame/MainFrame_UI.cpp:14
+#: gui/MainFrame/MainFrame_UI.cpp:17
+msgid "Register/Modify Products/Stock"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:19 gui/ReturnsFrame/ReturnsFrame.cpp:7
+msgid "Returns"
+msgstr ""
+
+#: gui/MainFrame/MainFrame_UI.cpp:22
 msgid "Users"
 msgstr "Usuarios"
 
-#: gui/MainFrame/MainFrame_UI.cpp:17
+#: gui/MainFrame/MainFrame_UI.cpp:25
 msgid "Ticket"
 msgstr "Ticket"
 
-#: gui/MainFrame/MainFrame_UI.cpp:25
+#: gui/MainFrame/MainFrame_UI.cpp:33
 msgid "View"
 msgstr "Ver"
 
-#: gui/MainFrame/MainFrame_UI.cpp:27
+#: gui/MainFrame/MainFrame_UI.cpp:35
 msgid "Previous purchases"
 msgstr "Compras anteriores"
 
-#: gui/MainFrame/MainFrame_UI.cpp:30
+#: gui/MainFrame/MainFrame_UI.cpp:38
 msgid "Info Products"
 msgstr "Info Compras"
 
-#: gui/MainFrame/MainFrame_UI.cpp:35
+#: gui/MainFrame/MainFrame_UI.cpp:52
 msgid "Appearance"
 msgstr "Apariencia"
 
-#: gui/MainFrame/MainFrame_UI.cpp:37 gui/MainFrame/MainFrame_UI.cpp:60
+#: gui/MainFrame/MainFrame_UI.cpp:54 gui/MainFrame/MainFrame_UI.cpp:77
 msgid "Light"
 msgstr "Claro"
 
-#: gui/MainFrame/MainFrame_UI.cpp:38 gui/MainFrame/MainFrame_UI.cpp:61
+#: gui/MainFrame/MainFrame_UI.cpp:55 gui/MainFrame/MainFrame_UI.cpp:78
 msgid "Dark"
 msgstr "Oscuro"
 
-#: gui/MainFrame/MainFrame_UI.cpp:39 gui/MainFrame/MainFrame_UI.cpp:62
+#: gui/MainFrame/MainFrame_UI.cpp:56 gui/MainFrame/MainFrame_UI.cpp:79
 msgid "System"
 msgstr "Sistema"
 
-#: gui/MainFrame/MainFrame_UI.cpp:82
+#: gui/MainFrame/MainFrame_UI.cpp:99
 #: gui/ProductosFrame/ProductosFrame_UI.cpp:16
 msgid "Delete"
 msgstr "Eliminar"
 
-#: gui/MainFrame/MainFrame_UI.cpp:87
+#: gui/MainFrame/MainFrame_UI.cpp:104
 msgid "Make purchase"
 msgstr "Realizar compra"
 
-#: gui/MainFrame/MainFrame_UI.cpp:96
+#: gui/MainFrame/MainFrame_UI.cpp:114
+#, fuzzy, c-format
+msgid "Drawer: %.2f"
+msgstr "Total: %.2f"
+
+#: gui/MainFrame/MainFrame_UI.cpp:122
 msgid "Enter name or barcode"
 msgstr "Ingresa nombre o código de barras"
 
-#: gui/MainFrame/MainFrame_UI.cpp:125
+#: gui/MainFrame/MainFrame_UI.cpp:151
 msgid "Product"
 msgstr "Producto"
 
-#: gui/MainFrame/MainFrame_UI.cpp:128
+#: gui/MainFrame/MainFrame_UI.cpp:154
 msgid "ID"
 msgstr "ID"
+
+#: gui/MainFrame/MainFrame_UI.cpp:229
+#, c-format
+msgid "Drawer: %s"
+msgstr ""
 
 #: gui/PreviousPurchasesFrame/PreviousPurchasesFrame.cpp:6
 msgid "Previous Purchases"
 msgstr "Compras anteriores"
 
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:20
-msgid "Searching only for the ID cancels all other filters"
-msgstr "Buscar solo por ID cancela todos los demás filtros"
-
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:37
-msgid "Minimum amount:"
-msgstr "Monto mínimo:"
-
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:41
-msgid "Maximum amount:"
-msgstr "Monto máximo:"
-
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:45
-msgid "Worker:"
-msgstr "Empleado:"
-
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:48
+#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:53
 msgid "Method:"
 msgstr "Método"
-
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:50
-msgid "Any"
-msgstr "Cualquiera"
-
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:91
-msgid "Date"
-msgstr "Fecha"
-
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:92
-msgid "Time"
-msgstr "Hora"
 
 #: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:93
 msgid "Total"
 msgstr "Total"
-
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:94
-msgid "Worker"
-msgstr "Empleado"
 
 #: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:95
 msgid "Method"
@@ -723,13 +1186,9 @@ msgid "View purchase"
 msgstr "Ver compra"
 
 #: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_Binds.cpp:96
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:78
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:79
 msgid "Copied to clipboard"
 msgstr "Copiado al portapapeles"
-
-#: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:54
-msgid "Page: -"
-msgstr "Página: -/-"
 
 #: gui/PreviousPurchasesFrame/PreviousPurchasesFrame_DB_Search.cpp:61
 #, c-format
@@ -754,11 +1213,12 @@ msgid "Unknown error loading purchase details."
 msgstr "Error desconocido al cargar los detalles de la compra."
 
 #: gui/PreviousPurchasesFrame/SpecificPurchaseInfoMenu/SpecificPurchaseInfoMenu_PrintTicket_Canvas.cpp:118
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Total: %s\n"
 "Payment method: %s\n"
-"Attended by: %s"
+"Attended by: %s\n"
+"%llu"
 msgstr ""
 "Total: $%s\n"
 "Método de pago: %s\n"
@@ -773,127 +1233,190 @@ msgstr "Imprimir ticket"
 msgid "Name"
 msgstr "Nombre"
 
-#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:8
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:11
 msgid "Edit Product"
 msgstr "Editar producto"
 
-#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:28
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:65
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:39
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:74
 msgid "Price per kilo:"
 msgstr "Precio por kilo:"
 
-#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:34
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:23
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:71
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:45
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:24
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:83
 msgid "Price:"
 msgstr "Precio:"
 
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:9
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:59
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:181
+msgid "The product name cannot be empty or contain only spaces."
+msgstr "El nombre del producto no puede estar vacío ni contener solo espacios."
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:74
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:78
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:196
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:200
+msgid "The price must be a number greater than or equal to zero."
+msgstr "El precio debe ser un número mayor o igual a cero."
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:94
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:216
+msgid "The barcode cannot have more than 20 characters."
+msgstr "El código de barras no puede tener más de 20 caracteres."
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:100
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:222
+msgid "The barcode must contain at least one number or letter."
+msgstr "El código de barras debe contener al menos un número o letra."
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:119
+msgid ""
+"The product name is invalid. It must contain at least one valid character."
+msgstr ""
+"El nombre del producto no es válido. Debe contener al menos un carácter "
+"válido."
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:119
+msgid "Invalid name"
+msgstr "Nombre inválido"
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:130
+msgid "There is already a product with that name in this category."
+msgstr "Ya existe un producto con ese nombre en esta categoría."
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:130
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:139
+msgid "Duplicate Product"
+msgstr "Producto duplicado"
+
+#: gui/ProductosFrame/ChangeProductDialog/ChangeProductDialog.cpp:139
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:260
+#, c-format
+msgid "The barcode '%s' is already in use by another product."
+msgstr "El código de barras '%s' ya está en uso por otro producto."
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:10
 msgid "New product"
 msgstr "Nuevo producto"
 
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:18
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:19
 msgid "Name:"
 msgstr "Nombre:"
 
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:35
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:36
 msgid "Barcode (optional):"
 msgstr "Código de barras (opcional):"
 
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:41
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:42
 msgid ""
 "The barcode must contain only numbers and letters (maximum 20 characters)."
 msgstr ""
 "El código de barras debe contener solo números y letras (máximo 20 "
 "caracteres)."
 
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:47
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:48
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:88
+msgid "Stock:"
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:56
 msgid "Product by weight?"
 msgstr "Producto por peso?"
 
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:85
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:79
+msgid "Stock (kg):"
+msgstr ""
+
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:100
 #: gui/TicketFrame/Canvas/InputTextModal/InputTextModal.cpp:26
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:137
-msgid "The product name cannot be empty or contain only spaces."
-msgstr "El nombre del producto no puede estar vacío ni contener solo espacios."
-
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:148
-msgid "The price must be a number greater than or equal to zero."
-msgstr "El precio debe ser un número mayor o igual a cero."
-
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:168
-msgid "The barcode cannot have more than 20 characters."
-msgstr "El código de barras no puede tener más de 20 caracteres."
-
-#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:174
-msgid "The barcode must contain at least one number or letter."
-msgstr "El código de barras debe contener al menos un número o letra."
-
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:10
-msgid "You cannot add a category within a product."
-msgstr "No se puede agregar una categoría dentro de un producto."
-
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:13
-msgid "Enter category name:"
-msgstr "Ingrese el nombre de la categoría:"
-
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:13
-#: gui/ProductosFrame/ProductosFrame_UI.cpp:14
-msgid "New category"
-msgstr "Nueva categoría"
-
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:18
-msgid "Invalid name. Category was not created"
-msgstr "Nombre inválido. La categoría no fue creada."
-
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:27
-#, c-format
-msgid "There is already a category called '%s' at this level."
-msgstr "Ya existe una categoría llamada '%s' en este nivel."
-
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:38
-msgid "You cannot add a product inside another product."
-msgstr "No se puede agregar un producto dentro de otro producto."
-
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:52
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:246
 msgid "Invalid name. The product was not created."
 msgstr "Nombre inválido. El producto no fue creado."
 
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:60
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:254
 #, c-format
 msgid "There is already a product called '%s' in this category."
 msgstr "Ya existe un producto llamado '%s' en esta categoría."
 
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:68
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:132
-#, c-format
-msgid "The barcode '%s' is already in use by another product."
-msgstr "El código de barras '%s' ya está en uso por otro producto."
-
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:68
+#: gui/ProductosFrame/ProductoDialog/ProductoDialog.cpp:260
 msgid "Duplicated barcode"
 msgstr "Código de barras duplicado"
 
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:86
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:12
+msgid "You cannot add a category within a product."
+msgstr "No se puede agregar una categoría dentro de un producto."
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:15
+msgid "Enter category name:"
+msgstr "Ingrese el nombre de la categoría:"
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:15
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:14
+msgid "New category"
+msgstr "Nueva categoría"
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:20
+msgid "Invalid name. Category was not created"
+msgstr "Nombre inválido. La categoría no fue creada."
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:29
+#, c-format
+msgid "There is already a category called '%s' at this level."
+msgstr "Ya existe una categoría llamada '%s' en este nivel."
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:42
+msgid "You cannot add a product inside another product."
+msgstr "No se puede agregar un producto dentro de otro producto."
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:51
+#, fuzzy
+msgid "Product added successfully."
+msgstr "Usuario agregado con éxito"
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:51
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:82
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:173 gui/TicketFrame/TicketFrame.cpp:255
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:104
+#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:154
+msgid "Success"
+msgstr "Éxito"
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:60
 msgid "There are no items selected to delete."
 msgstr "No hay elementos seleccionados para eliminar."
 
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:94
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:86
 msgid "Selected item is not valid."
 msgstr "El elemento seleccionado no es válido."
 
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:100
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:93
 #, c-format
 msgid "Are you sure you want to delete the '%s' category?"
 msgstr "¿Está seguro que desea eliminar la categoría '%s'?"
 
-#: gui/ProductosFrame/ProductosFrame_Binds.cpp:100
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:95
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:129
 #: gui/UsuariosFrame/UsuariosFrame_DB.cpp:124
 msgid "Confirm Deletion"
 msgstr "Confirmar eliminación"
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:114
+msgid "Are you sure you want to delete the product '"
+msgstr "¿Estás seguro de que deseas eliminar el producto '"
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:115
+#, fuzzy
+msgid "' from the category '"
+msgstr "' de la categoría '"
+
+#: gui/ProductosFrame/ProductosFrame_Binds.cpp:128
+#, fuzzy
+msgid "Are you sure you want to delete the selected items?"
+msgstr "¿Deseas eliminar los elementos seleccionados?"
 
 #: gui/ProductosFrame/ProductosFrame_Category.cpp:72
 msgid "Enter the category name:"
@@ -907,7 +1430,7 @@ msgstr "Nueva categoría"
 msgid "There is already a category with that name at this level."
 msgstr "Ya hay una categoría con ese nombre en este nivel"
 
-#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Conect_Load.cpp:254
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Conect_Load.cpp:169
 #, c-format
 msgid "Error getting stock: %s"
 msgstr "Error al vaciar el carrito: %s"
@@ -974,7 +1497,7 @@ msgstr ""
 "Mensaje de error:\n"
 "%s"
 
-#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Insert.cpp:83
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Insert.cpp:86
 #, c-format
 msgid ""
 "Error inserting stock for the product into the database\n"
@@ -1030,9 +1553,15 @@ msgid "There is already a product with that barcode."
 msgstr "Ya existe un producto con ese código de barras."
 
 #: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Update.cpp:69
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Update.cpp:110
 #, c-format
 msgid "Error updating product: %s"
 msgstr "Error al actualizar el producto: %s"
+
+#: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Update.cpp:99
+#, fuzzy, c-format
+msgid "Error updating category: %s"
+msgstr "Error al insertar la categoría: %s"
 
 #: gui/ProductosFrame/ProductosFrame_DB/ProductosFrame_DB_Utils.cpp:33
 #, c-format
@@ -1096,45 +1625,66 @@ msgstr ""
 msgid "Error adjusting stock: %s"
 msgstr "Error al ajustar el stock: %s"
 
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:33
+#: gui/ProductosFrame/ProductosFrame_DragAndDrop.cpp:24
+#, fuzzy
+msgid "The root category cannot be moved."
+msgstr "No se pudieron obtener los productos."
+
+#: gui/ProductosFrame/ProductosFrame_DragAndDrop.cpp:24
+#, fuzzy
+msgid "Invalid selection"
+msgstr "ID de usuario seleccionado no válido"
+
+#: gui/ProductosFrame/ProductosFrame_DragAndDrop.cpp:44
+msgid "You can only move items to a category."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DragAndDrop.cpp:44
+#, fuzzy
+msgid "Invalid destination"
+msgstr "Nombre inválido"
+
+#: gui/ProductosFrame/ProductosFrame_DragAndDrop.cpp:63
+msgid "Cannot move a category to one of its subcategories."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_DragAndDrop.cpp:63
+#, fuzzy
+msgid "Invalid move"
+msgstr "Nombre inválido"
+
+#: gui/ProductosFrame/ProductosFrame_DragAndDrop.cpp:112
+#, fuzzy, c-format
+msgid "A category named '%s' already exists in the destination."
+msgstr "El nombre de usuario ya existe, elija otro."
+
+#: gui/ProductosFrame/ProductosFrame_DragAndDrop.cpp:112
+#: gui/ProductosFrame/ProductosFrame_DragAndDrop.cpp:163
+#, fuzzy
+msgid "Duplicate name"
+msgstr "Código de barras duplicado"
+
+#: gui/ProductosFrame/ProductosFrame_DragAndDrop.cpp:163
+#, c-format
+msgid "A product named '%s' already exists in the destination category."
+msgstr ""
+
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:32
 msgid "Error: Category father could not be obtained"
 msgstr "Error: No se pudo obtener la categoría padre"
 
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:45
-msgid "Are you sure you want to delete the product '"
-msgstr "¿Estás seguro de que deseas eliminar el producto '"
-
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:45
-msgid "'­from the category '"
-msgstr "' de la categoría '"
-
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:54
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:41
 msgid "Error: Category not found on item map"
 msgstr "Error: Categoría no encontrada en el mapa de elementos"
 
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:61
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:47
 msgid "Error: Pointer to father category is null"
 msgstr "Error: El puntero a la categoría padre es nulo"
 
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:111
-msgid ""
-"The product name is invalid. It must contain at least one valid character."
-msgstr ""
-"El nombre del producto no es válido. Debe contener al menos un carácter "
-"válido."
-
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:111
-msgid "Invalid name"
-msgstr "Nombre inválido"
-
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:122
-msgid "There is already a product with that name in this category."
-msgstr "Ya existe un producto con ese nombre en esta categoría."
-
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:122
-#: gui/ProductosFrame/ProductosFrame_Product.cpp:132
-msgid "Duplicate Product"
-msgstr "Producto duplicado"
+#: gui/ProductosFrame/ProductosFrame_Product.cpp:82
+#, fuzzy
+msgid "Product updated successfully."
+msgstr "Usuario agregado con éxito"
 
 #: gui/ProductosFrame/ProductosFrame_UI.cpp:9
 msgid ""
@@ -1152,30 +1702,30 @@ msgstr "Nuevo producto"
 msgid "Modify"
 msgstr "Modificar"
 
-#: gui/ProductosFrame/ProductosFrame_UI.cpp:72
-#: gui/ProductosFrame/ProductosFrame_UI.cpp:95
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:74
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:97
 msgid "Edit category"
 msgstr "Editar categoría"
 
-#: gui/ProductosFrame/ProductosFrame_UI.cpp:72
-#: gui/ProductosFrame/ProductosFrame_UI.cpp:99
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:74
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:101
 msgid "Edit product"
 msgstr "Editar producto"
 
-#: gui/ProductosFrame/ProductosFrame_UI.cpp:73
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:75
 msgid "Edit stock"
 msgstr "Editar stock"
 
-#: gui/ProductosFrame/ProductosFrame_UI.cpp:162
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:164
 msgid "Search:"
 msgstr "Buscar:"
 
-#: gui/ProductosFrame/ProductosFrame_UI.cpp:168
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:170
 msgid "Enter category or product name, barcode, or price..."
 msgstr ""
 "Introduce nombre de categoría o producto, código de barras, o precio..."
 
-#: gui/ProductosFrame/ProductosFrame_UI.cpp:177
+#: gui/ProductosFrame/ProductosFrame_UI.cpp:179
 msgid "Clean"
 msgstr "Limpiar"
 
@@ -1195,15 +1745,145 @@ msgstr ""
 "\n"
 "Introduce el stock por unidad"
 
-#: gui/ProductosFrame/StockDialog/StockDialog.cpp:39
+#: gui/ProductosFrame/StockDialog/StockDialog.cpp:40
+#, fuzzy, c-format
 msgid ""
-"Product stock.\n"
-"Please note that it decreases as purchases are made."
+"Product stock: \"%s\".\n"
+"Please note that it decreases as purchases are made. %s"
 msgstr ""
 "Stock del producto.\n"
 "Ten en cuenta que disminuye a medida que se realizan compras."
 
+#: gui/ReturnsFrame/ReturnsFrame_Bindings.cpp:18
+#, fuzzy
+msgid "No product selected"
+msgstr "Info Compras"
+
+#: gui/ReturnsFrame/ReturnsFrame_Bindings.cpp:33
+msgid "There was an error getting the quantity"
+msgstr ""
+
+#: gui/ReturnsFrame/ReturnsFrame_Bindings.cpp:37
+msgid "There was an error getting the product ID"
+msgstr ""
+
+#: gui/ReturnsFrame/ReturnsFrame_Bindings.cpp:41
+#, fuzzy
+msgid "There was an error getting the purchase item ID"
+msgstr "Error al crear la tabla de compras:"
+
+#: gui/ReturnsFrame/ReturnsFrame_Bindings.cpp:46
+msgid "The selected product no longer exists."
+msgstr ""
+
+#: gui/ReturnsFrame/ReturnsFrame_Bindings.cpp:46
+#, fuzzy
+msgid "Product does not exists"
+msgstr "Ese producto con ese código de barras no existe."
+
+#: gui/ReturnsFrame/ReturnsFrame_Bindings.cpp:51
+msgid "The selected product has already been returned."
+msgstr ""
+
+#: gui/ReturnsFrame/ReturnsFrame_Bindings.cpp:51
+msgid "Product already returned"
+msgstr ""
+
+#: gui/ReturnsFrame/ReturnsFrame_Bindings.cpp:54
+#, c-format
+msgid "Confirm return of the product: %s"
+msgstr ""
+
+#: gui/ReturnsFrame/ReturnsFrame_Bindings.cpp:54
+#, fuzzy
+msgid "Confirm return"
+msgstr "Confirmar eliminación"
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:12
+#, fuzzy
+msgid "Please enter a valid purchase ID."
+msgstr "Por favor seleccione una impresora válida."
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:12
+#, fuzzy
+msgid "Invalid ID"
+msgstr "Nombre inválido"
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:17
+#, fuzzy, c-format
+msgid "No purchase was found with the ID %llu."
+msgstr "No se encontraron compras con el ID %llu."
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:17
+#, fuzzy
+msgid "Not found"
+msgstr "Tabla no encontrada"
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:51
+#, fuzzy
+msgid "An unknown error occurred while processing the ID."
+msgstr "Ocurrió un error desconocido al procesar la compra."
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:120
+#, fuzzy, c-format
+msgid "Error retrieving the data: %s"
+msgstr "Error al conectar con la base de datos: %s"
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:138
+#, fuzzy, c-format
+msgid "Error retrieving the product: %s"
+msgstr "Error al obtener los productos: %s"
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:168
+#, fuzzy, c-format
+msgid "Returned: %s from purchase ID: %llu"
+msgstr "ID de compra: %llu"
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:173
+msgid "The product was successfully returned to stock."
+msgstr ""
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:176
+#, fuzzy, c-format
+msgid "Error returning to stock: %s"
+msgstr "Error al vaciar el carrito: %s"
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:193
+#, fuzzy, c-format
+msgid "Error checking return status: %s"
+msgstr "Error al conectar con la base de datos: %s"
+
+#: gui/ReturnsFrame/ReturnsFrame_DB.cpp:218
+#, fuzzy, c-format
+msgid "Error creating returns table: %s"
+msgstr "Error al crear la tabla: %s"
+
+#: gui/ReturnsFrame/ReturnsFrame_UI.cpp:19
+msgid "Enter the Purchase ID to validate the return"
+msgstr ""
+
+#: gui/ReturnsFrame/ReturnsFrame_UI.cpp:23
+#, fuzzy
+msgid "Validate"
+msgstr "Nombre inválido"
+
+#: gui/ReturnsFrame/ReturnsFrame_UI.cpp:44
+#, fuzzy
+msgid "Product ID"
+msgstr "Producto"
+
+#: gui/ReturnsFrame/ReturnsFrame_UI.cpp:45
+#, fuzzy
+msgid "Purchase Item ID"
+msgstr "ID de compra: %llu"
+
+#: gui/ReturnsFrame/ReturnsFrame_UI.cpp:48
+#, fuzzy
+msgid "Price at purchase"
+msgstr "Ver compra"
+
 #: gui/TicketFrame/Canvas/Canvas.cpp:93
+#, fuzzy
 msgid ""
 "Sunday, 9/november/2025\n"
 "16:14:30\n"
@@ -1213,7 +1893,8 @@ msgid ""
 "Paid: $300\n"
 "Change: $12\n"
 "Payment method: Cash\n"
-"Attended by: Jose"
+"Attended by: Jose\n"
+"4321"
 msgstr ""
 "Domingo, 9/noviembre/2025\n"
 "16:14:30\n"
@@ -1336,7 +2017,7 @@ msgid "There are no elements to print on the ticket."
 msgstr "No hay elementos para imprimir en el ticket."
 
 #: gui/TicketFrame/PrintMenu/PrintMenu.cpp:31
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:89
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:90
 msgid "No printers were detected"
 msgstr "No se detectaron impresoras"
 
@@ -1348,11 +2029,11 @@ msgstr "Seleccione una impresora donde se imprimirán los tickets:"
 msgid "Print receipt when making purchase"
 msgstr "Imprimir recibo al realizar la compra"
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:60
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:61
 msgid "Test print"
 msgstr "Impresión de prueba"
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:67
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:68
 msgid ""
 "If the ticket is not being printed, maybe you need\n"
 "to enable your user to use line printers on terminal.\n"
@@ -1362,15 +2043,15 @@ msgstr ""
 "habilitar tu usuario para usar la línea de impresoras en terminal.\n"
 "Intenta este comando: "
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:70
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:71
 msgid "Copy command"
 msgstr "Copiar comando"
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:93
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:94
 msgid "Please select a valid printer."
 msgstr "Por favor seleccione una impresora válida."
 
-#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:93
+#: gui/TicketFrame/PrintMenu/PrintMenu.cpp:94
 msgid "Selection Error"
 msgstr "Error de selección"
 
@@ -1442,6 +2123,7 @@ msgstr ""
 "Solo puede agregarse una vez."
 
 #: gui/TicketFrame/TicketFrame.cpp:204
+#, fuzzy
 msgid ""
 "\n"
 "[PURCHASE_INFO_STARTS]\n"
@@ -1454,6 +2136,7 @@ msgid ""
 "Change: $12\n"
 "Payment method: Cash\n"
 "Attended by: Jose\n"
+"3412\n"
 "[PURCHASE_INFO_FINISHES]\n"
 msgstr ""
 "\n"
@@ -1498,12 +2181,6 @@ msgstr ""
 "Ticket guardado con éxito.\n"
 "Si desea probar el ticket, haga clic en \"Configuración\" > \"Impresión de "
 "prueba\"."
-
-#: gui/TicketFrame/TicketFrame.cpp:255
-#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:104
-#: gui/UsuariosFrame/UsuariosFrame_DB.cpp:154
-msgid "Success"
-msgstr "Éxito"
 
 #: gui/TicketFrame/TicketFrame.cpp:259
 msgid "Error loading ticket"
@@ -1645,6 +2322,14 @@ msgstr "SESIÓN: "
 msgid "You have logged out, so purchases will not have an assigned user."
 msgstr ""
 "Ha cerrado sesión, por lo que las compras no tendrán un usuario asignado."
+
+#: print/Print_Utils.hpp:21
+msgid "No info to print"
+msgstr ""
+
+#: print/Print_Utils.hpp:21
+msgid "No info"
+msgstr ""
 
 #: print/Print_Utils_Getters.hpp:28 print/Print_Utils_Getters.hpp:156
 #: print/Print_Utils_Getters.hpp:363

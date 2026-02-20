@@ -642,7 +642,7 @@ std::pair<double, size_t> MainFrame::AddCompraToDB(bool esEfectivo) {
 void MainFrame::CreateTables() {
     CreateProductsCategoriesTable();
     CreateComprasTable();
-    CreateDrawerTable();
+    CreateDrawerAndReturnedProductsTable();
     CreateCartTable();
 }
 
@@ -729,7 +729,7 @@ void MainFrame::CreateProductsCategoriesTable() {
 
 //DRAWER TABLE:
 
-void MainFrame::CreateDrawerTable() {
+void MainFrame::CreateDrawerAndReturnedProductsTable() {
     try {
         sqlite::database db(GetDBPath());
         db << "PRAGMA encoding = 'UTF-8';";
@@ -751,6 +751,20 @@ void MainFrame::CreateDrawerTable() {
             "purchase_id INTEGER,"
             "drawer_after_insertion REAL NOT NULL CHECK(drawer_after_insertion = ROUND(drawer_after_insertion, 2)),"
             "FOREIGN KEY(purchase_id) REFERENCES purchases(id) ON DELETE SET NULL"
+            ");";
+
+        db << "CREATE TABLE IF NOT EXISTS returned_products ("
+            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "purchase_id INTEGER NOT NULL,"
+            "product_id INTEGER NOT NULL,"
+            "purchase_item_id INTEGER NOT NULL,"
+            "price_at_return REAL NOT NULL CHECK(price_at_return = ROUND(price_at_return, 2)),"
+            "quantity REAL NOT NULL,"
+            "worker TEXT,"
+            "return_date TEXT NOT NULL,"
+            "FOREIGN KEY(purchase_id) REFERENCES purchases(id),"
+            "FOREIGN KEY(product_id) REFERENCES products(id)"
+            "FOREIGN KEY(purchase_item_id) REFERENCES purchase_items(id)"
             ");";
     }
     catch (const sqlite::sqlite_exception& e) {
