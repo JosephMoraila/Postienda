@@ -10,4 +10,11 @@ namespace Translate_Utils
         else translatedText = method; // fallback
 		return translatedText;
 	}
+
+    wxString GetTranslitionAdditionOrWithdrawal(bool isAddition) {
+        wxString translatedText;
+        if (isAddition) translatedText = _("Income");
+        else translatedText = _("Withdrawal");
+        return translatedText;
+    }
 }

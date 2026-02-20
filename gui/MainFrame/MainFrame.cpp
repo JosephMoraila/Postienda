@@ -68,6 +68,7 @@ void MainFrame::AplicarTema(bool oscuro) {
     if (infoProductsVentana) infoProductsVentana->AplicarTema(oscuro);
     if(infoDrawerVentana) infoDrawerVentana->AplicarTema(oscuro);
 	if (infoReturnsVentana) infoReturnsVentana->AplicarTema(oscuro);
+    if (actionsFrameVentana) actionsFrameVentana->AplicarTema(oscuro);
     if (previousPurchasesVentana) {
         previousPurchasesVentana->AplicarTema(oscuro);
         //Apply theme to previousPurchasesVentana children windows
