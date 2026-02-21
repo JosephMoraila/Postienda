@@ -29,17 +29,19 @@ private:
 	wxTreeCtrl* treeDays = nullptr;
 	wxTreeItemId root;
 	std::unordered_map<std::string, wxTreeItemId> fechaToItem; ///Mapa inverso para obtener el treeItemId en base a su texto ya que cada texto es unico
-	double totalMoneyCash = 0.0;
-	double totalMoneyCard = 0.0;
+	double grossCash = 0.0;
+	double totalMoneyCard = 0.0; ///Brutos
 	double manualAdditions = 0.0;
 	double manualWithdrawals = 0.0;
 	double returnsMoney = 0.0;
+	double netCash = 0.0; ///Netos
 	double total = 0.0;
-	wxStaticText* toatlMoneyCashLabel;
+	wxStaticText* grossCashLabel;
 	wxStaticText* totalMoneyCardLabel;
 	wxStaticText* manalAdditionsLabel;
 	wxStaticText* manalWithdrawalsLabel;
 	wxStaticText* returnsMoneyLabel;
+	wxStaticText* netCashLabel;
 	wxStaticText* totalLabel;
 
 	void UpdateLabelsMoney();

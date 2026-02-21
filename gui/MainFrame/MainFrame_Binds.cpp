@@ -407,7 +407,6 @@ void MainFrame::OnRealizarCompra(wxCommandEvent& event) {
             bool valido = false;
             do {
                 wxString pagoStr = wxGetTextFromUser(wxString::Format(_("Total: $%.2f\n\nEnter amount received:"), resultInsertionPurchase.first), _("Cash payment"));
-                if (pagoStr.IsEmpty()) return; // Si presiona cancelar
                 if (pagoStr.ToDouble(&pagoCliente))valido = true;
                 else wxMessageBox(_("Invalid amount, please try again."), _("Error"), wxOK | wxICON_ERROR);
 
@@ -425,7 +424,7 @@ void MainFrame::OnRealizarCompra(wxCommandEvent& event) {
 		bool isAdd = true; //Agregamos que se agrega dinero al drawer porque se hizo una compra, esto es para el historial del drawer
         wxString reasonWx = wxString::Format(_("Purchase ID: %zu"), resultInsertionPurchase.second);
         std::string reason = reasonWx.ToStdString();
-        bool success = DB_Functions::Drawer_DB_Functions::Insert_Drawer_History(resultInsertionPurchase.first, isAdd, reason, &resultInsertionPurchase.second);
+        if (esEfectivo) bool success = DB_Functions::Drawer_DB_Functions::Insert_Drawer_History(resultInsertionPurchase.first, isAdd, reason, &resultInsertionPurchase.second);
         PrintTicket(pagoCliente, esEfectivo);
         wxMessageBox(mensaje, _("Purchase completed"), wxOK | wxICON_INFORMATION);
     }
