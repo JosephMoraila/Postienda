@@ -1064,11 +1064,11 @@ msgstr "Products"
 
 #: gui/MainFrame/MainFrame_UI.cpp:17
 msgid "Register/Modify Products/Stock"
-msgstr ""
+msgstr "Register/Modify Products/Stock"
 
 #: gui/MainFrame/MainFrame_UI.cpp:19 gui/ReturnsFrame/ReturnsFrame.cpp:7
 msgid "Returns"
-msgstr ""
+msgstr "Returns"
 
 #: gui/MainFrame/MainFrame_UI.cpp:22
 msgid "Users"
