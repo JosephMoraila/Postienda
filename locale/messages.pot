@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-20 16:43-0600\n"
+"POT-Creation-Date: 2026-02-20 21:41-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:22
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:23
 #: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:43
 #: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:98
 #: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:153
@@ -94,7 +94,7 @@ msgstr ""
 msgid "The database was not found at:\n"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:22
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:23
 #: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:43
 #: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:98
 #: gui/InfoDrawerFrame/InfoDrawerFrame_DB_Search.cpp:153
@@ -109,80 +109,88 @@ msgstr ""
 msgid "Database error"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:41
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:42
 msgid "Purchase"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:43
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:44
 msgid "Drawer"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:45
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:46
 #: gui/ReturnsFrame/ReturnsFrame_UI.cpp:35
 msgid "Return"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:81
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:85
 #, c-format
 msgid "- %s: ID: %zu | %s | %s | %s | %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:93
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:97
 #, c-format
 msgid "%s | %s | %s | %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:105
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:109
 #, c-format
 msgid "- %s: ID: %zu | %s | %s | %s | %s | %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:113
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:117
 #, c-format
 msgid "- %s: ID: %zu | %s | %s | %s ID: %zu | %s | %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:126
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:38
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:117
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:133
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:39
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:121
 #: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:193
 #, c-format
 msgid "Total: %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:127
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:134
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:33
 #, c-format
-msgid "Income Cash: %s"
+msgid "Gross Cash: %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:128
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:135
 #: gui/ActionsFrame/ActionsFrame_UI.cpp:36
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:115
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:118
 #, c-format
 msgid "Manual Withdrawals: %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:129
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:136
 #, c-format
 msgid "Income Card: %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:130
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:137
 #: gui/ActionsFrame/ActionsFrame_UI.cpp:35
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:114
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:117
 #, c-format
 msgid "Manual Income: %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:131
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:138
 #: gui/ActionsFrame/ActionsFrame_UI.cpp:37
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:116
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:119
 #: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:167
 #, c-format
 msgid "Returned: %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:157
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:139
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:38
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:120
+#, c-format
+msgid "Net Cash: %s"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_DB_Search.cpp:168
 msgid "An unknown error occurred while opening database"
 msgstr ""
 
@@ -194,19 +202,13 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:33
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:112
-#, c-format
-msgid "Cash Income: %s"
-msgstr ""
-
 #: gui/ActionsFrame/ActionsFrame_UI.cpp:34
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:113
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:116
 #, c-format
 msgid "Card Income: %s"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:64
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:67
 #: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:20
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:50
 #: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:20
@@ -215,7 +217,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:70
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:73
 #: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:30
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:19
 #: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:30
@@ -223,7 +225,7 @@ msgstr ""
 msgid "Start date:"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:76
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:79
 #: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:34
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:23
 #: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:34
@@ -231,7 +233,7 @@ msgstr ""
 msgid "Start time:"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:81
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:84
 #: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:37
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:26
 #: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:37
@@ -239,12 +241,17 @@ msgstr ""
 msgid "End date:"
 msgstr ""
 
-#: gui/ActionsFrame/ActionsFrame_UI.cpp:87
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:90
 #: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:41
 #: gui/InfoProductsFrame/InfoProductsFrame_UI.cpp:30
 #: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:41
 #: gui/PreviousPurchasesFrame/PreviousPurchasesFrameUI.cpp:39
 msgid "End time:"
+msgstr ""
+
+#: gui/ActionsFrame/ActionsFrame_UI.cpp:115
+#, c-format
+msgid "Gross Income: %s"
 msgstr ""
 
 #: gui/AskCreatePasswordFrame/AskCreatePasswordFrame.hpp:6
@@ -461,7 +468,7 @@ msgid "Withawals: %.2f"
 msgstr ""
 
 #: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:79
-#: gui/MainFrame/MainFrame_Binds.cpp:440
+#: gui/MainFrame/MainFrame_Binds.cpp:439
 #, c-format
 msgid "Total: %.2f"
 msgstr ""
@@ -480,12 +487,12 @@ msgstr ""
 
 #: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:140
 #: gui/InfoReturnsFrame/InfoReturnsFrame_UI.cpp:117
-#: gui/MainFrame/MainFrame_Binds.cpp:478
+#: gui/MainFrame/MainFrame_Binds.cpp:477
 msgid "Amount"
 msgstr ""
 
 #: gui/InfoDrawerFrame/InfoDrawerFrame_UI.cpp:141
-#: gui/MainFrame/MainFrame_Binds.cpp:492
+#: gui/MainFrame/MainFrame_Binds.cpp:491
 msgid "Reason"
 msgstr ""
 
@@ -650,8 +657,8 @@ msgstr ""
 #: gui/MainFrame/logic/MainFrame_DB.cpp:167
 #: gui/MainFrame/MainFrame_Binds.cpp:88 gui/MainFrame/MainFrame_Binds.cpp:105
 #: gui/MainFrame/MainFrame_Binds.cpp:330 gui/MainFrame/MainFrame_Binds.cpp:332
-#: gui/MainFrame/MainFrame_Binds.cpp:412 gui/MainFrame/MainFrame_Binds.cpp:433
-#: gui/MainFrame/MainFrame_Binds.cpp:486 gui/MainFrame/MainFrame_Binds.cpp:488
+#: gui/MainFrame/MainFrame_Binds.cpp:411 gui/MainFrame/MainFrame_Binds.cpp:432
+#: gui/MainFrame/MainFrame_Binds.cpp:485 gui/MainFrame/MainFrame_Binds.cpp:487
 msgid "Error"
 msgstr ""
 
@@ -850,12 +857,12 @@ msgstr ""
 msgid "Discount"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:330 gui/MainFrame/MainFrame_Binds.cpp:486
+#: gui/MainFrame/MainFrame_Binds.cpp:330 gui/MainFrame/MainFrame_Binds.cpp:485
 msgid "The amount must be greater than zero."
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:332 gui/MainFrame/MainFrame_Binds.cpp:412
-#: gui/MainFrame/MainFrame_Binds.cpp:488
+#: gui/MainFrame/MainFrame_Binds.cpp:332 gui/MainFrame/MainFrame_Binds.cpp:411
+#: gui/MainFrame/MainFrame_Binds.cpp:487
 msgid "Invalid amount, please try again."
 msgstr ""
 
@@ -895,7 +902,7 @@ msgstr ""
 msgid "Cash payment"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:421
+#: gui/MainFrame/MainFrame_Binds.cpp:420
 #, c-format
 msgid ""
 "Purchase registered successfully.\n"
@@ -904,7 +911,7 @@ msgid ""
 "Change: $%.2f"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:422
+#: gui/MainFrame/MainFrame_Binds.cpp:421
 #, c-format
 msgid ""
 "Purchase registered successfully.\n"
@@ -912,67 +919,67 @@ msgid ""
 "Paid with card."
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:426
+#: gui/MainFrame/MainFrame_Binds.cpp:425
 #, c-format
 msgid "Purchase ID: %zu"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:430
+#: gui/MainFrame/MainFrame_Binds.cpp:429
 msgid "Purchase completed"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:433
+#: gui/MainFrame/MainFrame_Binds.cpp:432
 #, c-format
 msgid "Error creating table: %s"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:462
+#: gui/MainFrame/MainFrame_Binds.cpp:461
 msgid "Withdraw"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:463
+#: gui/MainFrame/MainFrame_Binds.cpp:462
 msgid "Add"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:464
+#: gui/MainFrame/MainFrame_Binds.cpp:463
 msgid "Select drawer method:"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:464
+#: gui/MainFrame/MainFrame_Binds.cpp:463
 msgid "Drawer method"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:475
+#: gui/MainFrame/MainFrame_Binds.cpp:474
 msgid "add to"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:475
+#: gui/MainFrame/MainFrame_Binds.cpp:474
 msgid "withdraw from"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:478
+#: gui/MainFrame/MainFrame_Binds.cpp:477
 #, c-format
 msgid "Enter amount to %s:"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:492
+#: gui/MainFrame/MainFrame_Binds.cpp:491
 #, c-format
 msgid "Enter reason for %s:"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:496
+#: gui/MainFrame/MainFrame_Binds.cpp:495
 msgid "Successful deposit of funds"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:496
+#: gui/MainFrame/MainFrame_Binds.cpp:495
 msgid "Successful withdrawal of funds"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:498
+#: gui/MainFrame/MainFrame_Binds.cpp:497
 msgid "Drawer updated"
 msgstr ""
 
-#: gui/MainFrame/MainFrame_Binds.cpp:513
+#: gui/MainFrame/MainFrame_Binds.cpp:512
 msgid ""
 "You have products in your cart.\n"
 "Do you want to close? Cart items will be deleted."

@@ -30,18 +30,17 @@ void ActionsFrame::Widgets() {
     printButton->Bind(wxEVT_BUTTON, &ActionsFrame::OnPrintTicket, this);
     buttonSizer->Add(printButton, 0, wxALL, 5);
 
-    toatlMoneyCashLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Cash Income: %s"), FormatFloatWithCommas(totalMoneyCash)));
+    grossCashLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Gross Cash: %s"), FormatFloatWithCommas(grossCash)));
     totalMoneyCardLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Card Income: %s"), FormatFloatWithCommas(totalMoneyCard)));
     manalAdditionsLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Manual Income: %s"), FormatFloatWithCommas(manualAdditions)));
     manalWithdrawalsLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Manual Withdrawals: %s"), FormatFloatWithCommas(manualWithdrawals)));
     returnsMoneyLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Returned: %s"), FormatFloatWithCommas(returnsMoney)));
+    netCashLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Net Cash: %s"), FormatFloatWithCommas(netCash)));
     totalLabel = new wxStaticText(buttonPanel, wxID_ANY, wxString::Format(_("Total: %s"), FormatFloatWithCommas(total)));
     int spacing = FromDIP(40);   // Espacio adaptable
     int lineHeight = FromDIP(28);
     int lineWidth = FromDIP(2);
 
-    buttonSizer->Add(toatlMoneyCashLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
-    buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
     buttonSizer->Add(totalMoneyCardLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
     // Línea separadora
     buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
@@ -51,6 +50,10 @@ void ActionsFrame::Widgets() {
     // Línea separadora
     buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
     buttonSizer->Add(returnsMoneyLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
+    buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
+    buttonSizer->Add(grossCashLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
+    buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
+    buttonSizer->Add(netCashLabel, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, spacing);
     buttonSizer->Add(new wxStaticLine(buttonPanel, wxID_ANY, wxDefaultPosition, wxSize(lineWidth, lineHeight), wxLI_VERTICAL), 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, spacing);
     // ---- Total ----
     buttonSizer->Add(totalLabel, 0, wxALIGN_CENTER_VERTICAL);
@@ -109,11 +112,12 @@ void ActionsFrame::Widgets() {
 
 
 void ActionsFrame::UpdateLabelsMoney() {
-    toatlMoneyCashLabel->SetLabel(wxString::Format(_("Cash Income: %s"), FormatFloatWithCommas(this->totalMoneyCash)));
+    grossCashLabel->SetLabel(wxString::Format(_("Gross Income: %s"), FormatFloatWithCommas(grossCash)));
     totalMoneyCardLabel->SetLabel(wxString::Format(_("Card Income: %s"), FormatFloatWithCommas(totalMoneyCard)));
     manalAdditionsLabel->SetLabel(wxString::Format(_("Manual Income: %s"), FormatFloatWithCommas(manualAdditions)));
     manalWithdrawalsLabel->SetLabel(wxString::Format(_("Manual Withdrawals: %s"), FormatFloatWithCommas(manualWithdrawals)));
     returnsMoneyLabel->SetLabel(wxString::Format(_("Returned: %s"), FormatFloatWithCommas(returnsMoney)));
+    netCashLabel->SetLabel(wxString::Format(_("Net Cash: %s"), FormatFloatWithCommas(netCash)));
     totalLabel->SetLabel(wxString::Format(_("Total: %s"), FormatFloatWithCommas(total)));
 }
 

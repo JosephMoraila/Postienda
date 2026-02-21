@@ -14,8 +14,9 @@ void ActionsFrame::GetActionsBetweenDates(std::string startDateTime, std::string
         this->returnsMoney = 0.0;
         this->manualWithdrawals = 0.0;
         this->total = 0.0;
-        this->totalMoneyCash = 0.0;
+        this->grossCash = 0.0;
         this->totalMoneyCard = 0.0;
+        this->netCash = 0.0;
         wxString dbPath = GetDBPath();
         // Verificar si existe el archivo de base de datos
         if (!wxFileExists(dbPath)) {
@@ -76,7 +77,10 @@ void ActionsFrame::GetActionsBetweenDates(std::string startDateTime, std::string
                 wxString methodPaid = Translate_Utils::GetTranslatedPaymentMethod(extra_info);
                 std::string strMethod = methodPaid.ToStdString(); 
                 stringToPrint += std::format("{}:ID:{}|{}\n{}|{}|{}:\n", strPurchaseWord, id, strCantidadDinero, horaStr, strMethod, worker);
-                if (strMethod == "Cash") this->totalMoneyCash += amount;
+                if (extra_info == "Cash") {
+                    this->grossCash += amount;
+                    this->netCash += amount;
+                }
                 else this->totalMoneyCard += amount;
                 wxString str = wxString::Format(_("- %s: ID: %zu | %s | %s | %s | %s"), purchaseWord,id, cantidaDinerodWx, wxString::FromUTF8(worker), methodPaid, hora);
                 wxTreeItemId purchaseItemId = treeDays->AppendItem(parent, str);
@@ -116,26 +120,31 @@ void ActionsFrame::GetActionsBetweenDates(std::string startDateTime, std::string
             if (purchaseData) stringToPrint += std::format("\n");
             else stringToPrint += std::format("\n\n");;
         };
-        this->total = totalMoneyCash + totalMoneyCard + manualAdditions - manualWithdrawals - returnsMoney;
+        this->total = grossCash + totalMoneyCard + manualAdditions - manualWithdrawals - returnsMoney;
+        this->grossCash += manualAdditions; // Efectivo bruto = ventas cash + ingresos manuales
+        this->netCash = grossCash - manualWithdrawals - returnsMoney; // Neto = bruto - salidas - devoluciones
         wxString totalWX = FormatFloatWithCommas(total); 
-        wxString incomeCashWx = FormatFloatWithCommas(totalMoneyCash); 
+        wxString incomeCashWx = FormatFloatWithCommas(grossCash); 
         wxString withdrawalsWx = FormatFloatWithCommas(manualWithdrawals); 
         wxString manualAdditionWx = FormatFloatWithCommas(manualAdditions);
         wxString returnedWx = FormatFloatWithCommas(returnsMoney);
         wxString incomeCardWx = FormatFloatWithCommas(totalMoneyCard);
+        wxString netCashWx = FormatFloatWithCommas(netCash);
         wxString a = wxString::Format(_("Total: %s"), totalWX); 
-        wxString b = wxString::Format(_("Income Cash: %s"), incomeCashWx); 
+        wxString b = wxString::Format(_("Gross Cash: %s"), incomeCashWx); 
         wxString c = wxString::Format(_("Manual Withdrawals: %s"), withdrawalsWx); 
         wxString d = wxString::Format(_("Income Card: %s"), incomeCardWx);
         wxString e = wxString::Format(_("Manual Income: %s"), manualAdditionWx);
         wxString f = wxString::Format(_("Returned: %s"), returnedWx);
+        wxString g = wxString::Format(_("Net Cash: %s"), netCashWx);
         std::string totalStr = a.ToStdString(); 
-        std::string incomeCashStr = b.ToStdString(); 
+        std::string grossCashStr = b.ToStdString(); 
         std::string withdrawalsStr = c.ToStdString(); 
         std::string incomeCardStr = d.ToStdString();
         std::string manualIncomeStr = e.ToStdString();
         std::string returnedStr = f.ToStdString();
-        stringToPrint += std::format("{}\n{}\n{}\n{}\n{}\n{}\n\n", incomeCashStr, incomeCardStr, manualIncomeStr,withdrawalsStr, returnedStr, totalStr);
+        std::string netCashStr = g.ToStdString();
+        stringToPrint += std::format("{}\n{}\n{}\n{}\n{}\n{}\n{}\n\n", incomeCardStr, manualIncomeStr,withdrawalsStr, returnedStr, grossCashStr, netCashStr, totalStr);
 
 	}
     catch (const std::exception& e) {
@@ -143,8 +152,9 @@ void ActionsFrame::GetActionsBetweenDates(std::string startDateTime, std::string
         this->returnsMoney = 0.0;
         this->manualWithdrawals = 0.0;
         this->total = 0.0;
-        this->totalMoneyCash = 0.0;
+        this->grossCash = 0.0;
         this->totalMoneyCard = 0.0;
+        this->netCash = 0.0;
         wxMessageBox(wxString::Format("Unexpected error: %s", e.what()), "Error", wxOK | wxICON_ERROR, this);
     }
     catch (...) {
@@ -152,8 +162,9 @@ void ActionsFrame::GetActionsBetweenDates(std::string startDateTime, std::string
         this->returnsMoney = 0.0;
         this->manualWithdrawals = 0.0;
         this->total = 0.0;
-        this->totalMoneyCash = 0.0;
+        this->grossCash = 0.0;
         this->totalMoneyCard = 0.0;
+        this->netCash = 0.0;
         wxMessageBox(_("An unknown error occurred while opening database"), "Error", wxOK | wxICON_ERROR, this);
     }
     UpdateLabelsMoney();

@@ -110,7 +110,8 @@ fallback_no_locale:
 }
 
     wxInitAllImageHandlers();
-
+    // Forzar el uso de punto como separador decimal
+    setlocale(LC_NUMERIC, "C");
     // Mostrar ventana principal
     m_mainFrame = new MainFrame(APPNAME);
     m_mainFrame->Maximize(true);
