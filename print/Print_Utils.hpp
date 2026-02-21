@@ -6,6 +6,7 @@
 #include "print/Print_Utils_Getters.hpp"
 #include "constants/MESSAGES_ADVICE/ERROR/PRINTING/PRINTING_ERRORS.hpp"
 #include "print/Windows/Windows_Print_Functions_.hpp"
+#include "print/Linux/Linux_Print_Functions.hpp"
 
 namespace Print_Utils{
 

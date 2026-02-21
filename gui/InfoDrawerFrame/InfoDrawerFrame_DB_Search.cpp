@@ -62,7 +62,7 @@ void InfoDrawerFrame::GetDrawerHistoryById(unsigned long long& id) {
         size_t found = 0;
         list->DeleteAllItems();
         pageLabel->SetLabelText(_("Page: -"));
-        db << "SELECT id, date, amount, worker, is_addition, reason, purchase_id, drawer_after_insertion FROM drawer_history WHERE id = ?;" << id >> [&](unsigned long long ide, std::string date, double amount, std::string worker, bool is_addition, std::string reason, size_t purchase_id, double drawer_after_insertion) {
+        db << "SELECT id, date, amount, worker, is_addition, reason, purchase_id, drawer_after_insertion FROM drawer_history WHERE id = ?;" << id >> [&](unsigned long long ide, std::string date, double amount, std::string worker, bool is_addition, std::string reason, unsigned long long purchase_id, double drawer_after_insertion) {
             AddToListFromDB(ide, date, amount, worker, is_addition, reason, purchase_id, drawer_after_insertion ,&found);
             if (is_addition) totalIncomeByFilter = amount;
             else totalWithdrawalByFilter = amount;
@@ -116,7 +116,7 @@ void InfoDrawerFrame::GetDrawerHistoryByPurchaseId(unsigned long long& id) {
         size_t found = 0;
         list->DeleteAllItems();
         pageLabel->SetLabelText(_("Page: -"));
-        db << "SELECT id, date, amount, worker, is_addition, reason, purchase_id, drawer_after_insertion FROM drawer_history WHERE purchase_id = ?;" << id >> [&](unsigned long long ide, std::string date, double amount, std::string worker, bool is_addition, std::string reason, size_t purchase_id, double drawer_after_insertion) {
+        db << "SELECT id, date, amount, worker, is_addition, reason, purchase_id, drawer_after_insertion FROM drawer_history WHERE purchase_id = ?;" << id >> [&](unsigned long long ide, std::string date, double amount, std::string worker, bool is_addition, std::string reason, unsigned long long purchase_id, double drawer_after_insertion) {
             AddToListFromDB(ide, date, amount, worker, is_addition, reason, purchase_id, drawer_after_insertion, &found);
             totalIncomeByFilter = amount;
 
@@ -266,7 +266,7 @@ void InfoDrawerFrame::GetDrawerHistories(std::string startDateTime, std::string 
         if (drawerAfterMaxAmount != -1.0) stmt << drawerAfterMaxAmount;
 
         stmt << (int)limit << (int)offset
-            >> [&](unsigned long long ide, std::string date, double amount, std::string worker, bool is_addition, std::string reason, size_t purchase_id, double drawer_after_insertion) {
+            >> [&](unsigned long long ide, std::string date, double amount, std::string worker, bool is_addition, std::string reason, unsigned long long purchase_id, double drawer_after_insertion) {
             AddToListFromDB(ide, date, amount, worker, is_addition, reason, purchase_id, drawer_after_insertion,&found);
             if(is_addition) totalIncomeByFilter += amount;
 			else totalWithdrawalByFilter += amount;
